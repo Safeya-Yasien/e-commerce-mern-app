@@ -26,4 +26,10 @@
 
 ### 12. Create "AppRouter.tsx" file inside "routes" folder
 
+### 13. Create routes using createBrowserRouter in AppRouter.tsx file
+
+### 14. Import "AppRouter" in "main.tsx" file
+
+### 15. Setup "path alias" in "vite.config.ts" and "tsconfig.app.json" file to resolve the path
+
 <!-- ### 8. Add path alias in "vite.config.ts" and "tsconfig.app.json" file to resolve the path -->
