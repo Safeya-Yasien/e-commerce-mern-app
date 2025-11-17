@@ -1,1 +1,11 @@
 @import "tailwindcss";
+
+@theme {
+  --color-crimson-tide: #d31638;
+  --color-royal-plum: #a71666;
+  --color-sunstone: #e68815;
+  --color-mist-aqua: #c5dfdf;
+  --color-desert-taupe: #bd9e84;
+  --color-charcoal: #1a1a1a;
+  --color-deep-slate: #2d2d2d;
+}

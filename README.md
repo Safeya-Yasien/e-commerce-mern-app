@@ -32,4 +32,24 @@
 
 ### 15. Setup "path alias" in "vite.config.ts" and "tsconfig.app.json" file to resolve the path
 
-<!-- ### 8. Add path alias in "vite.config.ts" and "tsconfig.app.json" file to resolve the path -->
+### 16. Add color palette in "index.css" file
+
+### 17. Add height "min-h-dvh" to the whole dev container in "MainLayout.tsx" file
+
+### 18. Add "grow" to "main" in "MainLayout.tsx" file to make the main container grow with the content
+
+### 19. Add "fixed top-0 left-0 w-full z-50 h-16" to "header" tag in "Header.tsx" file and "h-full" to "container" to center the items in header after adding the height
+
+### 20. After making the header fixed, add 'pt-16' to "main" tag in "MainLayout.tsx" file to make the main container start from the top of the header
+
+********************************
+### 21. Add responsive to the header
+
+### 22. Add hover effect to CartIcon.tsx
+
+### 23. Add Hero section to home page
+
+
+## Future features
+
+- Add light and dark mode
