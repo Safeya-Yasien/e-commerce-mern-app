@@ -1,10 +1,10 @@
 import { Link } from "react-router";
 import CartIcon from "./CartIcon";
-import { Folders, Home, Mail, ShoppingBasket } from "lucide-react";
+import { Folders, Home, Mail, Menu, ShoppingBasket, X } from "lucide-react";
 
 const Header = () => {
   return (
-    <header className="bg-charcoal text-mist-aqua fixed top-0 left-0 w-full z-50 h-16">
+    <header className="bg-charcoal text-mist-aqua fixed top-0 left-0 w-full z-50 h-14">
       <div className="flex items-center justify-between px-4 h-full">
         {/* Logo */}
         <Link
@@ -16,9 +16,9 @@ const Header = () => {
         </Link>
 
         {/* Navigation + Actions */}
-        <div className="flex items-center gap-8">
+        <div className="flex items-center gap-6">
           {/* Nav */}
-          <nav>
+          <nav className="hidden md:flex">
             <ul className="flex items-center gap-6 font-medium">
               <li>
                 <Link
@@ -50,6 +50,14 @@ const Header = () => {
             </ul>
           </nav>
 
+          {/* mobile menu button */}
+          <label
+            htmlFor="my-drawer-5"
+            className="drawer-button cursor-pointer md:hidden bg-deep-slate px-2 py-1 rounded-md border border-deep-slate group transition"
+          >
+            <Menu className="w-6 h-6 text-mist-aqua group-hover:text-sunstone transition" />
+          </label>
+
           {/* Cart + Login */}
           <div className="flex items-center gap-4 font-medium">
             <CartIcon />
@@ -60,6 +68,59 @@ const Header = () => {
               Login
             </Link>
           </div>
+        </div>
+      </div>
+
+      {/* drawer */}
+      <div className="drawer drawer-end">
+        <input id="my-drawer-5" type="checkbox" className="drawer-toggle" />
+        <div className="drawer-content"></div>
+
+        <div className="drawer-side">
+          <label
+            htmlFor="my-drawer-5"
+            aria-label="close sidebar"
+            className="drawer-overlay"
+          ></label>
+
+          <div className="flex justify-end z-10 p-4">
+            <label
+              htmlFor="my-drawer-5"
+              className="cursor-pointer hover:text-crimson-tide transition"
+            >
+              <X className="w-6 h-6 text-mist-aqua" />
+            </label>
+          </div>
+
+          <ul className="menu bg-base-200 min-h-full w-80 p-4 pt-12">
+            <li>
+              <Link
+                to="/"
+                className="flex items-center gap-1 hover:text-sunstone transition"
+              >
+                <Home className="h-4 w-4" />
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/categories"
+                className="flex items-center gap-1 hover:text-sunstone transition"
+              >
+                <Folders className="h-4 w-4" />
+                Categories
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/contact"
+                className="flex items-center gap-1 hover:text-sunstone transition"
+              >
+                <Mail className="h-4 w-4" />
+                Contact
+              </Link>
+            </li>
+          </ul>
         </div>
       </div>
     </header>

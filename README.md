@@ -42,13 +42,20 @@
 
 ### 20. After making the header fixed, add 'pt-16' to "main" tag in "MainLayout.tsx" file to make the main container start from the top of the header
 
-********************************
-### 21. Add responsive to the header
+### 21. Install daisyUI library
+
+### 22. Add "Drawer" from "daisyUI" to handle responsive navigation
+
+---
+
 
 ### 22. Add hover effect to CartIcon.tsx
 
 ### 23. Add Hero section to home page
 
+### 24. Add Footer
+
+### 25. Add main padding to the main container
 
 ## Future features
 
