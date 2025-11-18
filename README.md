@@ -48,6 +48,8 @@
 
 ### 23. Enhance "Header" by adding links to array and loop through the links, and use 'memo' to optimize performance
 
+### 24. Add "Footer"
+
 ---
 
 ### 22. Add hover effect to CartIcon.tsx
