@@ -1,8 +1,29 @@
 import { Link } from "react-router";
 import CartIcon from "./CartIcon";
-import { Folders, Home, Mail, Menu, ShoppingBasket, X } from "lucide-react";
+import {
+  Folders,
+  Home,
+  Mail,
+  Menu,
+  ShoppingBasket,
+  X,
+  type LucideIcon,
+} from "lucide-react";
+import { memo } from "react";
 
-const Header = () => {
+interface INavItem {
+  path: string;
+  name: string;
+  Icon: LucideIcon;
+}
+
+const navItems: INavItem[] = [
+  { path: "/", name: "Home", Icon: Home },
+  { path: "/categories", name: "Categories", Icon: Folders },
+  { path: "/contact", name: "Contact", Icon: Mail },
+];
+
+const Header = memo(() => {
   return (
     <header className="bg-charcoal text-mist-aqua fixed top-0 left-0 w-full z-50 h-14">
       <div className="flex items-center justify-between px-4 h-full">
@@ -20,33 +41,17 @@ const Header = () => {
           {/* Nav */}
           <nav className="hidden md:flex">
             <ul className="flex items-center gap-6 font-medium">
-              <li>
-                <Link
-                  to="/"
-                  className="flex items-center gap-1 hover:text-sunstone transition"
-                >
-                  <Home className="h-4 w-4" />
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/categories"
-                  className="flex items-center gap-1 hover:text-sunstone transition"
-                >
-                  <Folders className="h-4 w-4" />
-                  Categories
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/contact"
-                  className="flex items-center gap-1 hover:text-sunstone transition"
-                >
-                  <Mail className="h-4 w-4" />
-                  Contact
-                </Link>
-              </li>
+              {navItems.map(({ path, name, Icon }) => (
+                <li>
+                  <Link
+                    to={path}
+                    className="flex items-center gap-1 hover:text-sunstone transition"
+                  >
+                    <Icon className="h-4 w-4" />
+                    {name}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </nav>
 
@@ -125,6 +130,6 @@ const Header = () => {
       </div>
     </header>
   );
-};
+});
 
 export default Header;

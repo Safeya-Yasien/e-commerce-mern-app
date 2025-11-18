@@ -46,8 +46,9 @@
 
 ### 22. Add "Drawer" from "daisyUI" to handle responsive navigation
 
----
+### 23. Enhance "Header" by adding links to array and loop through the links, and use 'memo' to optimize performance
 
+---
 
 ### 22. Add hover effect to CartIcon.tsx
 
