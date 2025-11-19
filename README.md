@@ -50,16 +50,20 @@
 
 ### 24. Add "Footer"
 
+### 25. Add 'ThemeController' in to handle theme change in "MainLayout.tsx" file
+
+### 26. Add my custom colors in "index.css" file
+
+### 27. add 'data-theme' attribute to the html tag in "index.html" file
+
 ---
 
+### 28. Update "Header.tsx" file to use 'data-theme' attribute to change the theme
+
+### 29. Update "Hero.tsx" file to use 'data-theme' attribute to change the theme
+
 ### 22. Add hover effect to CartIcon.tsx
-
-### 23. Add Hero section to home page
-
-### 24. Add Footer
 
 ### 25. Add main padding to the main container
 
 ## Future features
-
-- Add light and dark mode

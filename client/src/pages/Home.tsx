@@ -1,6 +1,10 @@
+import { Hero } from "@/components";
+
 const Home = () => {
   return (
-    <div>Home</div>
-  )
-}
-export default Home
+    <div>
+      <Hero />
+    </div>
+  );
+};
+export default Home;
