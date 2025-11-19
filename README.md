@@ -56,9 +56,9 @@
 
 ### 27. add 'data-theme' attribute to the html tag in "index.html" file
 
----
-
 ### 28. Update "Header.tsx" file to use 'data-theme' attribute to change the theme
+
+---
 
 ### 29. Update "Hero.tsx" file to use 'data-theme' attribute to change the theme
 

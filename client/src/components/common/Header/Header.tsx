@@ -77,7 +77,7 @@ const Header = memo(() => {
       </div>
 
       {/* drawer */}
-      <div className="drawer drawer-end">
+      <div className="drawer drawer-end ">
         <input id="my-drawer-5" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content"></div>
 
