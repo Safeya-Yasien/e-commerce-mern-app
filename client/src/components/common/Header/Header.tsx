@@ -25,14 +25,14 @@ const navItems: INavItem[] = [
 
 const Header = memo(() => {
   return (
-    <header className="bg-charcoal text-mist-aqua fixed top-0 left-0 w-full z-50 h-14">
+    <header className="bg-base-100 text-base-content fixed top-0 left-0 w-full z-50 h-14">
       <div className="flex items-center justify-between px-4 h-full">
         {/* Logo */}
         <Link
           to="/"
-          className="flex items-center font-bold text-xl text-crimson-tide transition hover:opacity-85"
+          className="flex items-center font-bold text-xl text-primary"
         >
-          <ShoppingBasket className="h-8 w-8 mr-2 text-crimson-tide" />
+          <ShoppingBasket className="h-8 w-8 mr-2 text-primary" />
           ECO
         </Link>
 
@@ -45,7 +45,7 @@ const Header = memo(() => {
                 <li>
                   <Link
                     to={path}
-                    className="flex items-center gap-1 hover:text-sunstone transition"
+                    className="flex items-center gap-1 hover:text-accent transition"
                   >
                     <Icon className="h-4 w-4" />
                     {name}
@@ -58,9 +58,9 @@ const Header = memo(() => {
           {/* mobile menu button */}
           <label
             htmlFor="my-drawer-5"
-            className="drawer-button cursor-pointer md:hidden bg-deep-slate px-2 py-1 rounded-md border border-deep-slate group transition"
+            className="drawer-button cursor-pointer md:hidden bg-neutral text-base-100 px-2 py-1 rounded-md border border-neutral group transition"
           >
-            <Menu className="w-6 h-6 text-mist-aqua group-hover:text-sunstone transition" />
+            <Menu className="w-6 h-6 text-primary group-hover:text-accent transition" />
           </label>
 
           {/* Cart + Login */}
@@ -68,7 +68,7 @@ const Header = memo(() => {
             <CartIcon />
             <Link
               to="/login"
-              className="transition bg-crimson-tide px-3 py-1 rounded text-white hover:opacity-85"
+              className="transition bg-primary px-3 py-1 rounded text-white hover:opacity-85"
             >
               Login
             </Link>
@@ -91,40 +91,24 @@ const Header = memo(() => {
           <div className="flex justify-end z-10 p-4">
             <label
               htmlFor="my-drawer-5"
-              className="cursor-pointer hover:text-crimson-tide transition"
+              className="cursor-pointer hover:text-primary transition"
             >
               <X className="w-6 h-6 text-mist-aqua" />
             </label>
           </div>
 
           <ul className="menu bg-base-200 min-h-full w-80 p-4 pt-12">
-            <li>
-              <Link
-                to="/"
-                className="flex items-center gap-1 hover:text-sunstone transition"
-              >
-                <Home className="h-4 w-4" />
-                Home
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/categories"
-                className="flex items-center gap-1 hover:text-sunstone transition"
-              >
-                <Folders className="h-4 w-4" />
-                Categories
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/contact"
-                className="flex items-center gap-1 hover:text-sunstone transition"
-              >
-                <Mail className="h-4 w-4" />
-                Contact
-              </Link>
-            </li>
+            {navItems.map(({ path, name, Icon }) => (
+              <li>
+                <Link
+                  to={path}
+                  className="flex items-center gap-1 hover:text-accent transition"
+                >
+                  <Icon className="h-4 w-4" />
+                  {name}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
       </div>
