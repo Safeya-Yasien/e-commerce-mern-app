@@ -40,10 +40,45 @@ const Categories = () => {
     },
   ];
 
+  const categories = [
+    {
+      id: 1,
+
+      name: "All",
+    },
+    {
+      id: 2,
+      name: "Men",
+    },
+    {
+      id: 3,
+      name: "Women",
+    },
+    {
+      id: 4,
+      name: "Electronics",
+    },
+    {
+      id: 5,
+      name: "Kids",
+    },
+  ];
+
   return (
     <div className="py-20 text-base-content">
       <div className="text-center mx-auto mb-12">
         <h2 className="text-3xl md:text-5xl font-bold mb-4">Categories</h2>
+      </div>
+
+      <div className="mb-14 max-w-7xl text-center mx-auto ">
+        {categories.map((category) => (
+          <button
+            className="btn bg-secondary text-base-100 mr-6 rounded-lg"
+            key={category.id}
+          >
+            {category.name}
+          </button>
+        ))}
       </div>
 
       <div className="max-w-7xl mx-auto grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
@@ -51,7 +86,7 @@ const Categories = () => {
           <Link
             to={"/"}
             key={product.id}
-            className="bg-base-200 rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:scale-[1.03] hover:shadow-xl"
+            className="bg-base-200 rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:scale-[1.03] hover:shadow-xl"
           >
             <div className="relative">
               <img
@@ -71,7 +106,9 @@ const Categories = () => {
                 <p className="line-clamp-2 text-sm">{product.description}</p>
               </div>
               <div className="flex items-center  justify-between">
-                <p className="text-primary font-bold text-lg ">{product.price}</p>
+                <p className="text-primary font-bold text-lg ">
+                  {product.price}
+                </p>
                 <button className="flex items-center gap-1 bg-primary text-base-100 py-1 p-2 rounded-lg font-semibold hover:bg-secondary transition text-sm">
                   <ShoppingBag className="w-4 h-4" />
                   Add
