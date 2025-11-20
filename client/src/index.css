@@ -7,6 +7,7 @@
   --color-royal-plum: #a71666;
   --color-sunstone: #e68815;
   --color-mist-aqua: #c5dfdf;
+  --color-dark-aqua: #2d6b6b;
   --color-desert-taupe: #bd9e84;
   --color-charcoal: #1a1a1a;
   --color-deep-slate: #2d2d2d;
@@ -24,8 +25,9 @@
   --color-secondary: var(--color-royal-plum);
   --color-accent: var(--color-sunstone);
 
-  --color-mist-aqua: var(--color-mist-aqua);
-  --color-desert-taupe: var(--color-desert-taupe);
+  --color-mist-aqua: var(--color-dark-aqua);
+  /* --color-desert-taupe: var(--color-desert-taupe); */
+  desert-taupe: var(--color-desert-taupe);
 }
 
 /* DARK THEME */
@@ -40,5 +42,6 @@
   --color-accent: var(--color-sunstone);
 
   --color-mist-aqua: var(--color-mist-aqua);
-  --color-desert-taupe: var(--color-desert-taupe);
+  desert-taupe: var(--color-desert-taupe);
+  /* --color-desert-taupe: var(--color-desert-taupe); */
 }

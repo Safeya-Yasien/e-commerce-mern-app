@@ -70,6 +70,15 @@
 
 ### 34. Add "CountdownTimer.tsx" in separate component
 
+### 35. I discovered that the colors in index.css such natural, base and primary are built-in colors of daisyUI, so I changed the colors to my custom colors. so when i use "desert-taupe" directly not working
+
+### 36. I skip colors for now and move on to finish home page so i started in form in contact us section
+
+### 37. Now after finished home page main design but i will back again to edit colors I will move to backend
+
+
+### 38. 
+
 ---
 
 ### 35. Use Timer to show the countdown

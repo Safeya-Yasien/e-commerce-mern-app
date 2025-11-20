@@ -45,10 +45,9 @@ const LimitedTimeOffers = () => {
     <div className="py-20 text-base-content">
       <div className="text-center mx-auto mb-12">
         <h2 className="text-3xl md:text-5xl font-bold mb-4">
-          {" "}
-          Limited Time Offers
+          Limited <span className="text-accent"> Time </span>Offers
         </h2>
-        <p> Get 50% off on all products</p>
+        <p className=""> Get 50% off on all products</p>
       </div>
 
       <CountdownTimer />
