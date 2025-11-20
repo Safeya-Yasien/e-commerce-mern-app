@@ -12,14 +12,14 @@ const Footer = memo(() => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-charcoal text-mist-aqua border-t border-deep-slate mt-auto">
+    <footer className="bg-base-100 text-mist-aqua border-t border-neutral mt-auto">
       <div className="max-w-7xl mx-auto px-4 py-8">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 pb-8 border-b border-deep-slate">
           {/* 1. Brand/Logo */}
           <div className="col-span-2 md:col-span-1">
             <Link
               to="/"
-              className="flex items-center font-bold text-2xl text-crimson-tide transition hover:opacity-85"
+              className="flex items-center font-bold text-2xl text-secondary"
             >
               <ShoppingBasket className="h-6 w-6 mr-2" aria-hidden="true" />
               ECO
@@ -31,27 +31,25 @@ const Footer = memo(() => {
 
           {/* 2. Quick Links */}
           <div>
-            <h3 className="text-sunstone font-bold mb-3 text-lg">
-              Quick Links
-            </h3>
+            <h3 className="text-accent font-bold mb-3 text-lg">Quick Links</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link to="#" className="hover:text-sunstone transition">
+                <Link to="#" className="hover:text-accent transition">
                   About Us
                 </Link>
               </li>
               <li>
-                <Link to="#" className="hover:text-sunstone transition">
+                <Link to="#" className="hover:text-accent transition">
                   Shipping
                 </Link>
               </li>
               <li>
-                <Link to="#" className="hover:text-sunstone transition">
+                <Link to="#" className="hover:text-accent transition">
                   Returns
                 </Link>
               </li>
               <li>
-                <Link to="#" className="hover:text-sunstone transition">
+                <Link to="#" className="hover:text-accent transition">
                   FAQ
                 </Link>
               </li>
@@ -60,25 +58,25 @@ const Footer = memo(() => {
 
           {/* 3. Categories */}
           <div>
-            <h3 className="text-sunstone font-bold mb-3 text-lg">Shop</h3>
+            <h3 className="text-accent font-bold mb-3 text-lg">Shop</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link to="#" className="hover:text-sunstone transition">
+                <Link to="#" className="hover:text-accent transition">
                   Apparel
                 </Link>
               </li>
               <li>
-                <Link to="#" className="hover:text-sunstone transition">
+                <Link to="#" className="hover:text-accent transition">
                   Home Goods
                 </Link>
               </li>
               <li>
-                <Link to="#" className="hover:text-sunstone transition">
+                <Link to="#" className="hover:text-accent transition">
                   Beauty
                 </Link>
               </li>
               <li>
-                <Link to="#" className="hover:text-sunstone transition">
+                <Link to="#" className="hover:text-accent transition">
                   Sale Items
                 </Link>
               </li>
@@ -87,12 +85,12 @@ const Footer = memo(() => {
 
           {/* 4. Contact/Social */}
           <div>
-            <h3 className="text-sunstone font-bold mb-3 text-lg">Connect</h3>
+            <h3 className="text-accent font-bold mb-3 text-lg">Connect</h3>
             <p className="text-sm">
               Email:{" "}
               <a
                 href="mailto:info@eco.com"
-                className="hover:text-sunstone transition"
+                className="hover:text-accent transition"
               >
                 info@eco.com
               </a>

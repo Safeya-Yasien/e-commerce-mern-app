@@ -58,9 +58,11 @@
 
 ### 28. Update "Header.tsx" file to use 'data-theme' attribute to change the theme
 
+### 29. Update "Hero.tsx" file to use 'data-theme' attribute to change the theme
+
 ---
 
-### 29. Update "Hero.tsx" file to use 'data-theme' attribute to change the theme
+### 30. There is a problem in text in dark in shop now button in hero section and bg in dark theme in learn more button in hero section
 
 ### 22. Add hover effect to CartIcon.tsx
 

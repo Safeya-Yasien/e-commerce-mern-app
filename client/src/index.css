@@ -23,12 +23,14 @@
   --color-primary: var(--color-crimson-tide);
   --color-secondary: var(--color-royal-plum);
   --color-accent: var(--color-sunstone);
+
+  --color-mist-aqua: var(--color-mist-aqua);
+  --color-desert-taupe: var(--color-desert-taupe);
 }
 
 /* DARK THEME */
 @plugin "daisyui/theme" {
   name: "dark";
-  prefersdark: true;
 
   --color-base-100: var(--color-charcoal);
   --color-neutral: var(--color-deep-slate);
@@ -36,4 +38,7 @@
   --color-primary: var(--color-royal-plum);
   --color-secondary: var(--color-crimson-tide);
   --color-accent: var(--color-sunstone);
+
+  --color-mist-aqua: var(--color-mist-aqua);
+  --color-desert-taupe: var(--color-desert-taupe);
 }

@@ -25,7 +25,7 @@ const navItems: INavItem[] = [
 
 const Header = memo(() => {
   return (
-    <header className="bg-base-100 text-base-content fixed top-0 left-0 w-full z-50 h-14">
+    <header className="bg-base-100 text-base-content fixed top-0 left-0 w-full z-50 h-14 border-b border-base-100 shadow-sm">
       <div className="flex items-center justify-between px-4 h-full">
         {/* Logo */}
         <Link
