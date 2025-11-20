@@ -1,7 +1,8 @@
-import { ShoppingBag } from "lucide-react";
 import { Link } from "react-router";
+import { ShoppingBag } from "lucide-react";
+import CountdownTimer from "./CountdownTimer";
 
-const Categories = () => {
+const LimitedTimeOffers = () => {
   const products = [
     {
       id: 1,
@@ -40,46 +41,17 @@ const Categories = () => {
     },
   ];
 
-  const categories = [
-    {
-      id: 1,
-
-      name: "All",
-    },
-    {
-      id: 2,
-      name: "Men",
-    },
-    {
-      id: 3,
-      name: "Women",
-    },
-    {
-      id: 4,
-      name: "Electronics",
-    },
-    {
-      id: 5,
-      name: "Kids",
-    },
-  ];
-
   return (
     <div className="py-20 text-base-content">
       <div className="text-center mx-auto mb-12">
-        <h2 className="text-3xl md:text-5xl font-bold mb-4">Categories</h2>
+        <h2 className="text-3xl md:text-5xl font-bold mb-4">
+          {" "}
+          Limited Time Offers
+        </h2>
+        <p> Get 50% off on all products</p>
       </div>
 
-      <div className="mb-14 max-w-7xl text-center mx-auto flex items-center justify-center gap-6 flex-wrap ">
-        {categories.map((category) => (
-          <button
-            className="btn bg-secondary text-base-100  rounded-lg"
-            key={category.id}
-          >
-            {category.name}
-          </button>
-        ))}
-      </div>
+      <CountdownTimer />
 
       <div className="max-w-7xl mx-auto grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
         {products.map((product) => (
@@ -121,5 +93,4 @@ const Categories = () => {
     </div>
   );
 };
-
-export default Categories;
+export default LimitedTimeOffers;

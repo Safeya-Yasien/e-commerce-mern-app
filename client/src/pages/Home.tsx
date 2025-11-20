@@ -1,4 +1,10 @@
-import { ContactUs, Features, Hero, Categories } from "@/components";
+import {
+  ContactUs,
+  Features,
+  Hero,
+  Categories,
+  LimitedTimeOffers,
+} from "@/components";
 
 const Home = () => {
   return (
@@ -8,6 +14,8 @@ const Home = () => {
       <Features />
 
       <Categories />
+
+      <LimitedTimeOffers />
 
       <ContactUs />
     </div>

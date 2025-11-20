@@ -66,8 +66,13 @@
 
 ### 32. Add Categories Section
 
+### 33. Add "LimitedTimeOffers.tsx" section
+
+### 34. Add "CountdownTimer.tsx" in separate component
 
 ---
+
+### 35. Use Timer to show the countdown
 
 ### 30. There is a problem in text in dark in shop now button in hero section and bg in dark theme in learn more button in hero section
 
@@ -76,6 +81,5 @@
 ### 22. Add hover effect to CartIcon.tsx
 
 ### 23 Make title of sections dynamic
-
 
 ## Future features
