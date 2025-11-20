@@ -60,12 +60,22 @@
 
 ### 29. Update "Hero.tsx" file to use 'data-theme' attribute to change the theme
 
+### 30. Add fixed padding to 'Home.tsx' page to make all sections on the same align
+
+### 31. Add Features Section
+
+### 32. Add Categories Section
+
+
 ---
 
 ### 30. There is a problem in text in dark in shop now button in hero section and bg in dark theme in learn more button in hero section
 
+### 31. There is a problem in border of header, footer
+
 ### 22. Add hover effect to CartIcon.tsx
 
-### 25. Add main padding to the main container
+### 23 Make title of sections dynamic
+
 
 ## Future features
