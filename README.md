@@ -6,6 +6,8 @@
 
 ### 2. create main directories "client", "server" and "admin"
 
+## Step-by-step Dev Log with client folder first
+
 ### 3. Start with the client directory
 
 ### 4. Install TailwindCSS vite using npm
@@ -76,8 +78,27 @@
 
 ### 37. Now after finished home page main design but i will back again to edit colors I will move to backend
 
+## Move to backend
 
-### 38. 
+### 38. Install main dependencies
+
+### 39. First type "npm init" to create a new package.json file
+
+### 40. Install "express", "mongoose" "jsonwebtoken", "nodemon", 'cors', 'bycrypt and "dotenv" using npm
+
+### 41. Create "index.ts" file in "server" directory
+
+### 42. Create "models", "controllers", "routes" and "middlewares" directory in "src" directory
+
+### 43. Install "typescript" and and init "tsc --init" to create tsconfig.json file
+
+### 44. Add 'start' script in package.json file with "nodemon index.ts"
+
+### 45. Add initial "express" code in "index.ts" file to test the server
+
+### 46. Run "npm start" to start the server
+
+### 47. Add "port", 'mongoURL' in ".env" file
 
 ---
 
