@@ -98,7 +98,23 @@
 
 ### 46. Run "npm start" to start the server
 
-### 47. Add "port", 'mongoURL' in ".env" file
+### 47. Add "port", 'mongoURI' in ".env" file
+
+### 48. Create "db.ts" mongodb connection in "lib" directory
+
+### 49. Run "npm start" to start the server
+
+## Back to client Admin
+
+### 50. Get the code of customer management dashboard from my previous project "customer-management-react-node"
+
+### 51. Install dependencies
+
+## Back to backend
+
+### 52. Get the code of "user" from my previous project "customer-management-react-node"
+
+### 53.
 
 ---
 
