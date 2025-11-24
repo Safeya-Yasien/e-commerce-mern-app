@@ -112,13 +112,21 @@
 
 ### 52. Update "Home" and replace 'customer' with 'products' to display total count of 'users' and 'products'
 
-### 53. Edit 
+### 53. Edit "Customers Page" to "Users Page"
+
+### 54. Pause protected route for now
 
 ## Back to backend
 
-### 52. Get the code of "user" from my previous project "customer-management-react-node"
+### 55. Get the code of "user" from my previous project "customer-management-react-node"
 
-### 53.
+### 56. Add 'AddUser', 'deleteUser' and 'editUser' to 'users.controller'
+
+### 57. Add 'add-user', 'edit-user' and 'delete-user' routes to 'users.route'
+
+### 58. Add 'country', 'phone', 'gender' to 'user.model
+
+### 59. Ask about handling 'full name' in 'user.model' if best i get it from user as 'firstName' and 'lastName' or 'fullName'?
 
 ---
 

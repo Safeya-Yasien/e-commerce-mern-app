@@ -5,7 +5,10 @@ interface IUser {
   fullName: string;
   email: string;
   password: string;
-  role: string;
+  role: "admin" | "user";
+  country?: string;
+  phone?: string;
+  gender?: "Male" | "Female";
 }
 
 const userSchema = new Schema<IUser>({
@@ -27,6 +30,9 @@ const userSchema = new Schema<IUser>({
     minlength: 6,
   },
   role: { type: String, default: "admin" },
+  country: { type: String },
+  phone: { type: String },
+  gender: { type: String },
 });
 
 const User = mongoose.model("User", userSchema);

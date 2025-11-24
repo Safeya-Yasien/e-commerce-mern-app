@@ -60,10 +60,19 @@ const signup = async (req: any, res: any) => {
 
 const addUser = async (req: any, res: any) => {
   try {
-    const allUsers = await User.find({}, { __v: 0 });
-    res.status(200).json({ msg: "success", data: allUsers, success: true });
+    const userData = req.body;
+
+    console.log("req body", req.body);
+
+    console.log("userData", userData);
+
+    const user = new User(userData);
+    await user.save();
+    res
+      .status(201)
+      .json({ msg: "user added successfully", data: user, success: true });
   } catch (err) {
-    res.status(500).send(err);
+    res.status(500).json({ msg: "error", data: err, success: false });
   }
 };
 
@@ -90,7 +99,7 @@ const getUsers = async (req: any, res: any) => {
     const allUsers = await User.find({}, { __v: 0 });
     res.status(200).json({ msg: "success", data: allUsers, success: true });
   } catch (err) {
-    res.status(500).send(err);
+    res.status(500).json({ msg: "error", data: err, success: false });
   }
 };
 
@@ -107,7 +116,7 @@ const getUserById = async (req: any, res: any) => {
 
     res.status(200).json({ msg: "success", data: user, success: true });
   } catch (err) {
-    res.status(500).send(err);
+    res.status(500).json({ msg: "error", data: err, success: false });
   }
 };
 
