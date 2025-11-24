@@ -13,14 +13,14 @@ const Users = () => {
   const { data, isLoading, isError } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
-      const token = localStorage.getItem("token");
+      // const token = localStorage.getItem("token");
 
       try {
-        if (!token) throw new Error("No token found");
+        // if (!token) throw new Error("No token found");
         const res = await fetch(`${BASE_URL}/users`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+          // headers: {
+          //   Authorization: `Bearer ${token}`,
+          // },
         });
         if (!res.ok) throw new Error("Failed to fetch users");
         return res.json();

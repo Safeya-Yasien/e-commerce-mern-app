@@ -42,12 +42,12 @@ const CustomersList = () => {
     },
   });
 
-  const viewCustomer = (id: string) => {
-    navigate(`/customers/${id}`);
+  const viewProduct = (id: string) => {
+    navigate(`/products/${id}`);
   };
 
-  const editCustomer = (id: string) => {
-    navigate(`/customers/edit-customer/${id}`);
+  const editProduct = (id: string) => {
+    navigate(`/products/edit-product/${id}`);
   };
 
   if (isPending || isSearching)
@@ -55,13 +55,13 @@ const CustomersList = () => {
   if (error)
     return <p className="text-white text-2xl">Error: {error.message}</p>;
 
-  if (!customers?.data)
-    return <p className="text-white text-2xl">No customers found</p>;
+  if (!products?.data)
+    return <p className="text-white text-2xl">No products found</p>;
 
-  const customersList =
-    filteredCustomers?.data && filteredCustomers.data.length > 0
-      ? filteredCustomers.data
-      : customers?.data || [];
+  const productsList =
+    filteredProducts?.data && filteredProducts.data.length > 0
+      ? filteredProducts.data
+      : products?.data || [];
 
   return (
     <div className="bg-[#252A30] rounded-2xl p-6 overflow-auto h-full">
@@ -81,7 +81,7 @@ const CustomersList = () => {
         </thead>
 
         <tbody>
-          {customersList.map((customer: ICustomer, index: number) => (
+          {productsList.map((customer: ICustomer, index: number) => (
             <tr
               key={customer.id}
               className="text-gray-200 border-b border-gray-700 hover:bg-[#2F343B] transition"

@@ -1,5 +1,5 @@
 import InputFiled from "@/components/InputFiled";
-import { CustomerSchema, type ICustomerForm } from "@/schemas/customerSchema";
+import { UserSchema, type IUserForm } from "@/schemas/userSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
@@ -9,30 +9,30 @@ import { toast } from "react-toastify";
 
 const BASE_URL = `${import.meta.env.VITE_API_URL}`;
 
-interface ICustomerFormProps {
+interface IUserFormProps {
   mode: "add" | "edit";
-  customerId?: string;
+  userId?: string;
 }
 
-const AddCustomerForm = ({ mode, customerId }: ICustomerFormProps) => {
+const AddUserForm = ({ mode, userId }: IUserFormProps) => {
   const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<ICustomerForm>({
-    resolver: zodResolver(CustomerSchema),
+  } = useForm<IUserForm>({
+    resolver: zodResolver(UserSchema),
   });
 
   const {
     isPending,
     error,
-    data: customer,
+    data: user,
   } = useQuery({
-    queryKey: ["customer", customerId],
+    queryKey: ["user", userId],
     queryFn: async () => {
-      const response = await fetch(`${BASE_URL}/customers/${customerId}`);
+      const response = await fetch(`${BASE_URL}/users/${userId}`);
       const data = await response.json();
       return data;
     },
@@ -40,16 +40,14 @@ const AddCustomerForm = ({ mode, customerId }: ICustomerFormProps) => {
   });
 
   useEffect(() => {
-    if (mode === "edit" && customer?.data) reset(customer.data);
-  }, [mode, customer, reset]);
+    if (mode === "edit" && user?.data) reset(user.data);
+  }, [mode, user, reset]);
 
   const mutation = useMutation({
-    mutationFn: async (formData: ICustomerForm) => {
+    mutationFn: async (formData: IUserForm) => {
       const method = mode === "edit" ? "PUT" : "POST";
       const url =
-        mode === "edit"
-          ? `${BASE_URL}/customers/${customerId}`
-          : `${BASE_URL}/customers`;
+        mode === "edit" ? `${BASE_URL}/users/${userId}` : `${BASE_URL}/users`;
       return await fetch(url, {
         method,
         headers: {
@@ -60,15 +58,13 @@ const AddCustomerForm = ({ mode, customerId }: ICustomerFormProps) => {
     },
     onSuccess: () => {
       toast.success(
-        `${
-          mode === "edit" ? "Customer updated " : "Customer added "
-        } successfully!`
+        `${mode === "edit" ? "User updated " : "User added "} successfully!`
       );
       reset();
 
       if (mode === "edit") {
         setTimeout(() => {
-          navigate(`/customers/${customerId}`);
+          navigate(`/users/${userId}`);
         }, 2000);
       }
     },
@@ -77,18 +73,18 @@ const AddCustomerForm = ({ mode, customerId }: ICustomerFormProps) => {
       toast.error(error.message);
     },
   });
-  const onSubmit = async (data: ICustomerForm) => {
+  const onSubmit = async (data: IUserForm) => {
     mutation.mutate(data);
   };
 
   if (mode === "edit" && isPending) {
-    return <p className="text-gray-400">Loading customer data...</p>;
+    return <p className="text-gray-400">Loading user data...</p>;
   }
 
   if (mode === "edit" && error) {
     return (
       <p className="text-red-500">
-        Failed to load customer info: {(error as Error).message}
+        Failed to load user info: {(error as Error).message}
       </p>
     );
   }
@@ -107,7 +103,6 @@ const AddCustomerForm = ({ mode, customerId }: ICustomerFormProps) => {
         />
 
         {/* Gender */}
-
         <div>
           <label className="text-gray-300 mb-1 block">Gender</label>
           <select
@@ -122,18 +117,7 @@ const AddCustomerForm = ({ mode, customerId }: ICustomerFormProps) => {
           </select>
         </div>
 
-        {/* Age */}
-        <InputFiled
-          register={register}
-          name="age"
-          placeholder="Enter your age"
-          label="Age"
-          type="number"
-          error={errors.age}
-        />
-
         {/* Email */}
-
         <InputFiled
           register={register}
           name="email"
@@ -187,4 +171,4 @@ const AddCustomerForm = ({ mode, customerId }: ICustomerFormProps) => {
     </form>
   );
 };
-export default AddCustomerForm;
+export default AddUserForm;

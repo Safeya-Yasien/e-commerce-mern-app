@@ -7,9 +7,9 @@ const Login = lazy(() => import("@/pages/auth/Login"));
 const Signup = lazy(() => import("@/pages/auth/Signup"));
 
 const Home = lazy(() => import("@/pages/Home"));
-const CustomersPage = lazy(() => import("@/pages/Customers"));
-const CustomerDetailsPage = lazy(() => import("@/pages/CustomerDetails"));
-const AddCustomerPage = lazy(() => import("@/pages/AddCustomer"));
+const CustomersPage = lazy(() => import("@/pages/Products"));
+const CustomerDetailsPage = lazy(() => import("@/pages/UserDetails"));
+const AddCustomerPage = lazy(() => import("@/pages/AddUser"));
 
 const UsersPage = lazy(() => import("@/pages/Users"));
 

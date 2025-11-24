@@ -1,7 +1,7 @@
-import AddCustomerForm from "@/forms/AddCustomerForm";
+import AddUserForm from "@/forms/AddUserForm";
 import { useParams } from "react-router";
 
-const AddCustomerPage = () => {
+const AddUserPage = () => {
   const { id } = useParams();
 
   const isEditMode = Boolean(id);
@@ -12,9 +12,9 @@ const AddCustomerPage = () => {
         {isEditMode ? "Edit Customer" : "Add Customer"}
       </h2>
 
-      <AddCustomerForm mode={isEditMode ? "edit" : "add"} customerId={id} />
+      <AddUserForm mode={isEditMode ? "edit" : "add"} userId={id} />
     </div>
   );
 };
 
-export default AddCustomerPage;
+export default AddUserPage;

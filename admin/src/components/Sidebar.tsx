@@ -1,4 +1,12 @@
-import { House, LogOut, UserRoundPlus } from "lucide-react";
+import {
+  House,
+  LayoutGrid,
+  LogOut,
+  PlusCircle,
+  User,
+  UserRoundPlus,
+  Users,
+} from "lucide-react";
 import { NavLink, useNavigate } from "react-router";
 
 const Sidebar = () => {
@@ -36,7 +44,7 @@ const Sidebar = () => {
         </li>
         <li>
           <NavLink
-            to="customers"
+            to="users"
             end
             className={({ isActive }: { isActive: boolean }) =>
               `flex items-center gap-3 px-4 py-2 rounded-lg transition-all duration-200 ${
@@ -46,13 +54,13 @@ const Sidebar = () => {
               }`
             }
           >
-            <UserRoundPlus className="w-4 h-4" />
-            Customers
+            <Users className="w-4 h-4" />
+            Users
           </NavLink>
         </li>
         <li>
           <NavLink
-            to="customers/add-customer"
+            to="users/add-user"
             className={({ isActive }: { isActive: boolean }) =>
               `flex items-center gap-3 px-4 py-2 rounded-lg transition-all duration-200 ${
                 isActive
@@ -62,13 +70,13 @@ const Sidebar = () => {
             }
           >
             <UserRoundPlus className="w-4 h-4" />
-            Add Customers
+            Add User
           </NavLink>
         </li>
 
         <li>
           <NavLink
-            to="users"
+            to="products"
             className={({ isActive }: { isActive: boolean }) =>
               `flex items-center gap-3 px-4 py-2 rounded-lg transition-all duration-200 ${
                 isActive
@@ -77,8 +85,24 @@ const Sidebar = () => {
               }`
             }
           >
-            <UserRoundPlus className="w-4 h-4" />
-            Users
+            <LayoutGrid className="w-4 h-4" />
+            Products
+          </NavLink>
+        </li>
+
+        <li>
+          <NavLink
+            to="products/add-product"
+            className={({ isActive }: { isActive: boolean }) =>
+              `flex items-center gap-3 px-4 py-2 rounded-lg transition-all duration-200 ${
+                isActive
+                  ? "bg-blue-600 text-white font-semibold shadow-md"
+                  : "text-gray-400 hover:text-white hover:bg-[#2A2F36]"
+              }`
+            }
+          >
+            <PlusCircle className="w-4 h-4" />
+            Add Product
           </NavLink>
         </li>
         <li>

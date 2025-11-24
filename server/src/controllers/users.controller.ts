@@ -2,7 +2,6 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import User from "../models/user.model";
 
-
 const login = async (req: any, res: any) => {
   const { email, password } = req.body;
 
@@ -59,6 +58,33 @@ const signup = async (req: any, res: any) => {
   }
 };
 
+const addUser = async (req: any, res: any) => {
+  try {
+    const allUsers = await User.find({}, { __v: 0 });
+    res.status(200).json({ msg: "success", data: allUsers, success: true });
+  } catch (err) {
+    res.status(500).send(err);
+  }
+};
+
+const updateUser = async (req: any, res: any) => {
+  try {
+    const allUsers = await User.find({}, { __v: 0 });
+    res.status(200).json({ msg: "success", data: allUsers, success: true });
+  } catch (err) {
+    res.status(500).send(err);
+  }
+};
+
+const deleteUser = async (req: any, res: any) => {
+  try {
+    const allUsers = await User.find({}, { __v: 0 });
+    res.status(200).json({ msg: "success", data: allUsers, success: true });
+  } catch (err) {
+    res.status(500).send(err);
+  }
+};
+
 const getUsers = async (req: any, res: any) => {
   try {
     const allUsers = await User.find({}, { __v: 0 });
@@ -94,4 +120,13 @@ const deleteAllUsers = async (req: any, res: any) => {
   }
 };
 
-export { getUsers, deleteAllUsers, login, signup, getUserById };
+export {
+  getUsers,
+  deleteAllUsers,
+  login,
+  signup,
+  getUserById,
+  addUser,
+  updateUser,
+  deleteUser,
+};

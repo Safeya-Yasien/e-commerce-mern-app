@@ -1,4 +1,4 @@
-import type { ICustomerForm } from "@/schemas/customerSchema";
+import type { ICustomerForm } from "@/schemas/userSchema";
 import type { FieldError, UseFormRegister } from "react-hook-form";
 
 interface IInputFiled {

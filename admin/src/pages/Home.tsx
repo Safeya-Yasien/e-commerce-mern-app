@@ -3,41 +3,43 @@ import { useQuery } from "@tanstack/react-query";
 const BASE_URL = import.meta.env.VITE_API_URL;
 
 const Home = () => {
-  const token = localStorage.getItem("token");
+  // const token = localStorage.getItem("token");
 
   const { data: usersData, isLoading: usersLoading } = useQuery({
     queryKey: ["users"],
-    enabled: !!token,
+    // enabled: !!token,
     queryFn: async () => {
-      const token = localStorage.getItem("token");
+      // const token = localStorage.getItem("token");
       const res = await fetch(`${BASE_URL}/users`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+        // headers: {
+        //   Authorization: `Bearer ${token}`,
+        // },
       });
       const json = await res.json();
       return json.data;
     },
   });
 
-  const { data: customersData, isLoading: customersLoading } = useQuery({
-    queryKey: ["customers"],
-    enabled: !!token,
-    queryFn: async () => {
-      const token = localStorage.getItem("JWT");
-      const res = await fetch(`${BASE_URL}/customers`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      const json = await res.json();
-      return json.data;
-    },
-  });
+  // products
+  // const { data: productsData, isLoading: productsLoading } = useQuery({
+  //   queryKey: ["products"],
+  //   enabled: !!token,
+  //   queryFn: async () => {
+  //     const token = localStorage.getItem("JWT");
+  //     const res = await fetch(`${BASE_URL}/products`, {
+  //       headers: { Authorization: `Bearer ${token}` },
+  //     });
+  //     const json = await res.json();
+  //     return json.data;
+  //   },
+  // });
 
-  if (!token) {
-    return null;
-  }
+  // if (!token) {
+  //   return null;
+  // }
 
-  if (usersLoading || customersLoading)
+  if (usersLoading)
+    // if (usersLoading || productsLoading)
     return (
       <div className="text-center text-gray-400 mt-10">Loading summary...</div>
     );
@@ -56,14 +58,15 @@ const Home = () => {
           </p>
         </div>
 
-        <div className="bg-white/10 p-6 rounded-2xl shadow-lg text-center">
+        {/* products */}
+        {/* <div className="bg-white/10 p-6 rounded-2xl shadow-lg text-center">
           <h2 className="text-lg font-medium text-gray-300 mb-2">
-            Total Customers
+            Total Products
           </h2>
           <p className="text-4xl font-bold text-green-400">
-            {customersData?.length || 0}
+            {productsData?.length || 0}
           </p>
-        </div>
+        </div> */}
       </div>
     </div>
   );
