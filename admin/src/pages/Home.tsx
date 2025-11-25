@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 
-const BASE_URL = import.meta.env.VITE_API_URL;
+const BASE_URL = `${import.meta.env.VITE_API_URI}/api`;
+
 
 const Home = () => {
   // const token = localStorage.getItem("token");
@@ -11,10 +12,13 @@ const Home = () => {
     queryFn: async () => {
       // const token = localStorage.getItem("token");
       const res = await fetch(`${BASE_URL}/users`, {
-        // headers: {
-        //   Authorization: `Bearer ${token}`,
-        // },
+        headers: {
+          // Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
       });
+
+      console.log("res", res);
       const json = await res.json();
       return json.data;
     },
