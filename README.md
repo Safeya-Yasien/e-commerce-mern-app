@@ -128,6 +128,14 @@
 
 ### 59. Ask about handling 'full name' in 'user.model' if best i get it from user as 'firstName' and 'lastName' or 'fullName'?
 
+### 60. The answer is 'firstName' and 'lastName' because i'ts easier to combine two fields than to to split
+
+### 61. Then combine 'firstName' and 'lastName' in 'fullName' field using 'virtual' in 'user.model'
+
+### 62. If i want 'fullName' appears when send data to frontend then i need to add 'toJSON' and 'toObject' in 'user.model'
+
+### 63. Add 'enum' in 'gender' field for more strict validation in 'user.model'
+
 ---
 
 ### 35. Use Timer to show the countdown

@@ -2,7 +2,8 @@ import mongoose, { Schema } from "mongoose";
 import validator from "validator";
 
 interface IUser {
-  fullName: string;
+  firstName: string;
+  lastName: string;
   email: string;
   password: string;
   role: "admin" | "user";
@@ -11,28 +12,47 @@ interface IUser {
   gender?: "Male" | "Female";
 }
 
-const userSchema = new Schema<IUser>({
-  fullName: {
-    type: String,
-    required: [true, "Please enter a full name"],
-    lowercase: true,
+const userSchema = new Schema<IUser>(
+  {
+    firstName: {
+      type: String,
+      required: [true, "Please enter your first name"],
+      lowercase: true,
+    },
+    lastName: {
+      type: String,
+      required: [true, "Please enter your last name"],
+      lowercase: true,
+    },
+    email: {
+      type: String,
+      required: [true, "Please enter an email"],
+      unique: true,
+      lowercase: true,
+      validate: [validator.isEmail, "Please enter a valid email"],
+    },
+    password: {
+      type: String,
+      required: [true, "Please enter a password"],
+      minlength: 6,
+    },
+    role: { type: String, default: "admin" },
+    country: { type: String },
+    phone: { type: String },
+    gender: { type: String, lowercase: true, enum: ["male", "female"] },
   },
-  email: {
-    type: String,
-    required: [true, "Please enter an email"],
-    unique: true,
-    lowercase: true,
-    validate: [validator.isEmail, "Please enter a valid email"],
-  },
-  password: {
-    type: String,
-    required: [true, "Please enter a password"],
-    minlength: 6,
-  },
-  role: { type: String, default: "admin" },
-  country: { type: String },
-  phone: { type: String },
-  gender: { type: String },
+  {
+    toJSON: {
+      virtuals: true,
+    },
+    toObject: {
+      virtuals: true,
+    },
+  }
+);
+
+userSchema.virtual("fullname").get(function () {
+  return this.firstName + " " + this.lastName;
 });
 
 const User = mongoose.model("User", userSchema);
