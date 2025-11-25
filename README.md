@@ -138,6 +138,8 @@
 
 ---
 
+### 64. Understand what is the 'virtuals' and 'enum' in 'user.model'
+
 ### 35. Use Timer to show the countdown
 
 ### 30. There is a problem in text in dark in shop now button in hero section and bg in dark theme in learn more button in hero section

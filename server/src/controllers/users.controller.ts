@@ -62,10 +62,6 @@ const addUser = async (req: any, res: any) => {
   try {
     const userData = req.body;
 
-    console.log("req body", req.body);
-
-    console.log("userData", userData);
-
     const user = new User(userData);
     await user.save();
     res
