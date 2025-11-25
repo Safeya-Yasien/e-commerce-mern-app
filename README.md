@@ -136,9 +136,21 @@
 
 ### 63. Add 'enum' in 'gender' field for more strict validation in 'user.model'
 
----
-
 ### 64. Understand what is the 'virtuals' and 'enum' in 'user.model'
+
+### 65. I understand that 'virtuals' is used to add virtual fields to the model and not added to database it's only and 'enum' is built-in validator in mongoose to define restricted values for a field
+
+## Back to server
+
+### 66. Add cors to server
+
+### 67. Add 'corsOptions' by add origin of the 'admin' in origin are allowed to access
+
+## Back to admin
+
+### 68. Display all users in 'Users' page
+
+---
 
 ### 35. Use Timer to show the countdown
 

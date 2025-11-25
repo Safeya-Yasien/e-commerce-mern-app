@@ -51,7 +51,7 @@ const userSchema = new Schema<IUser>(
   }
 );
 
-userSchema.virtual("fullname").get(function () {
+userSchema.virtual("fullName").get(function () {
   return this.firstName + " " + this.lastName;
 });
 

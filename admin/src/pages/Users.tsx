@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 
-const BASE_URL = `${import.meta.env.VITE_API_URL}`;
+const BASE_URL = `${import.meta.env.VITE_API_URI}/api`;
 
 interface IUser {
   _id: string;
@@ -13,15 +13,9 @@ const Users = () => {
   const { data, isLoading, isError } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
-      // const token = localStorage.getItem("token");
-
       try {
-        // if (!token) throw new Error("No token found");
-        const res = await fetch(`${BASE_URL}/users`, {
-          // headers: {
-          //   Authorization: `Bearer ${token}`,
-          // },
-        });
+        const res = await fetch(`${BASE_URL}/users`, {});
+
         if (!res.ok) throw new Error("Failed to fetch users");
         return res.json();
       } catch (err) {
