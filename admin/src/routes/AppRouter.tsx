@@ -2,6 +2,7 @@ import { createBrowserRouter, RouterProvider } from "react-router";
 import { lazy } from "react";
 
 import ProtectedRoute from "@/components/ProtectedRoute";
+import AddUserPage from "@/pages/AddUser";
 
 const Login = lazy(() => import("@/pages/auth/Login"));
 const Signup = lazy(() => import("@/pages/auth/Signup"));
@@ -68,6 +69,14 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <UsersPage />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "users/add-user",
+        element: (
+          <ProtectedRoute>
+            <AddUserPage />
           </ProtectedRoute>
         ),
       },
