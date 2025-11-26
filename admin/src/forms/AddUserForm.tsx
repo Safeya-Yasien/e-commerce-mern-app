@@ -1,4 +1,4 @@
-import InputFiled from "@/components/InputFiled";
+import { InputField } from "@/components";
 import { UserSchema, type IUserForm } from "@/schemas/userSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQuery } from "@tanstack/react-query";
@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
 
-const BASE_URL = `${import.meta.env.VITE_API_URL}`;
+const BASE_URL = `${import.meta.env.VITE_API_URL}/api`;
 
 interface IUserFormProps {
   mode: "add" | "edit";
@@ -94,7 +94,7 @@ const AddUserForm = ({ mode, userId }: IUserFormProps) => {
       {/* Left Column */}
       <div className="space-y-4">
         {/* First Name */}
-        <InputFiled
+        <InputField
           register={register}
           name="firstName"
           placeholder="Enter first name"
@@ -118,7 +118,7 @@ const AddUserForm = ({ mode, userId }: IUserFormProps) => {
         </div>
 
         {/* Email */}
-        <InputFiled
+        <InputField
           register={register}
           name="email"
           placeholder="Enter your email"
@@ -127,12 +127,36 @@ const AddUserForm = ({ mode, userId }: IUserFormProps) => {
           error={errors.email}
           disabled={mode === "edit"}
         />
+
+        {/* role */}
+        <div>
+          <label className="text-gray-300 mb-1 block">Role</label>
+          <select
+            disabled={mode === "edit"}
+            className={`w-full px-4 py-2 rounded-md bg-[#1C2024] text-white border border-gray-600 focus:outline-none focus:border-blue-500
+              ${mode === "edit" ? "cursor-not-allowed bg-gray-700" : ""}`}
+            {...register("role", { required: true })}
+          >
+            <option value="">Select role</option>
+            <option value="User">User</option>
+            <option value="Admin">Admin</option>
+          </select>
+        </div>
+
+        {/* password */}
+        <InputField
+          register={register}
+          name="password"
+          placeholder="Enter your password"
+          label="Password"
+          error={errors.password}
+        />
       </div>
 
       {/* Right Column */}
       <div className="space-y-4">
         {/* Last Name */}
-        <InputFiled
+        <InputField
           register={register}
           name="lastName"
           placeholder="Enter your last name"
@@ -141,7 +165,7 @@ const AddUserForm = ({ mode, userId }: IUserFormProps) => {
         />
 
         {/* Country */}
-        <InputFiled
+        <InputField
           register={register}
           name="country"
           placeholder="Enter your country"
@@ -150,7 +174,7 @@ const AddUserForm = ({ mode, userId }: IUserFormProps) => {
         />
 
         {/* Phone */}
-        <InputFiled
+        <InputField
           register={register}
           name="phone"
           placeholder="Enter your phone number"
@@ -164,7 +188,7 @@ const AddUserForm = ({ mode, userId }: IUserFormProps) => {
             type="submit"
             className="cursor-pointer w-full bg-blue-600 hover:bg-blue-500 text-white py-2 rounded-md font-semibold transition"
           >
-            {mode === "edit" ? "Update Customer" : "Add Customer"}
+            {mode === "edit" ? "Update User" : "Add User"}
           </button>
         </div>
       </div>

@@ -1,39 +1,45 @@
-import React, { useState } from "react";
-import type { UseFormRegisterReturn } from "react-hook-form";
+import type { FieldError, UseFormRegister } from "react-hook-form";
 import { Eye, EyeOff } from "lucide-react";
+import type { IUserForm } from "@/schemas/userSchema";
+import { useState } from "react";
 
-interface InputFieldProps {
-  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
-  placeholder: string;
+interface IInputFiled {
   type?: string;
-  register: UseFormRegisterReturn;
-  error?: string;
+  name: keyof IUserForm;
+  placeholder: string;
+  label: string;
+  register: UseFormRegister<IUserForm>;
+  error?: FieldError;
+  disabled?: boolean;
 }
 
-const InputField: React.FC<InputFieldProps> = ({
-  icon: Icon,
-  placeholder,
+const InputFiled = ({
   type = "text",
+  name,
+  placeholder,
+  label,
   register,
   error,
-}) => {
+  disabled,
+}: IInputFiled) => {
   const [showPassword, setShowPassword] = useState(false);
 
   const isPassword = type === "password";
 
   return (
     <div className="relative">
-      <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+      {/* <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
         <Icon className="h-5 w-5 text-gray-400" />
-      </div>
+      </div> */}
 
+      <label className="text-gray-300 mb-1 block">{label}</label>
       <input
         type={isPassword && showPassword ? "text" : type}
+        className={`w-full px-4 py-2 rounded-md bg-[#1C2024] text-white border border-gray-600 focus:outline-none focus:border-blue-500
+          ${disabled ? "cursor-not-allowed bg-gray-700" : ""}`}
         placeholder={placeholder}
-        {...register}
-        className={`block w-full pl-10 pr-10 py-3 bg-white/10 text-white placeholder-gray-400 border rounded-xl focus:outline-none focus:ring-1 focus:ring-indigo-500 transition duration-150 ${
-          error ? "border-red-500" : "border-white/20"
-        }`}
+        disabled={disabled}
+        {...register(name, type === "number" ? { valueAsNumber: true } : {})}
       />
 
       {isPassword && (
@@ -49,13 +55,8 @@ const InputField: React.FC<InputFieldProps> = ({
         </div>
       )}
 
-      {error && (
-        <span className="absolute left-0 -bottom-5 text-red-400 text-sm">
-          {error}
-        </span>
-      )}
+      {error && <p className="text-red-500">{error.message}</p>}
     </div>
   );
 };
-
-export default InputField;
+export default InputFiled;

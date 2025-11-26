@@ -9,7 +9,7 @@ const AddUserPage = () => {
   return (
     <div className="bg-[#252A30]  p-8">
       <h2 className="text-white text-2xl font-semibold mb-6 text-left">
-        {isEditMode ? "Edit Customer" : "Add Customer"}
+        {isEditMode ? "Edit User" : "Add User"}
       </h2>
 
       <AddUserForm mode={isEditMode ? "edit" : "add"} userId={id} />
