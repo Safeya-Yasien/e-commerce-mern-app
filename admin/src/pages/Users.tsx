@@ -43,6 +43,7 @@ const Users = () => {
               <th className="p-3 text-left">Full Name</th>
               <th className="p-3 text-left">Email</th>
               <th className="p-3 text-left">Role</th>
+              <th className="p-3">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -54,6 +55,17 @@ const Users = () => {
                 <td className="p-3">{user.fullName}</td>
                 <td className="p-3">{user.email}</td>
                 <td className="p-3 capitalize">{user.role}</td>
+                <td className="p-3 flex space-x-2 justify-center">
+                  <button className="cursor-pointer px-3 py-1 bg-blue-600 rounded-md text-white text-sm hover:bg-blue-500 flex items-center gap-1">
+                    Edit
+                  </button>
+                  <button className="cursor-pointer px-3 py-1 bg-red-600 rounded-md text-white text-sm hover:bg-red-500 flex items-center gap-1">
+                    Delete
+                  </button>
+                  <button className="cursor-pointer px-3 py-1 bg-green-600 rounded-md text-white text-sm hover:bg-green-500 flex items-center gap-1">
+                    View
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>
