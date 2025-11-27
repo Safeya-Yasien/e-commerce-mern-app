@@ -1,6 +1,7 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import User from "../models/user.model";
+import crypto from "crypto";
 
 const login = async (req: any, res: any) => {
   const { email, password } = req.body;
@@ -60,10 +61,18 @@ const signup = async (req: any, res: any) => {
 
 const addUser = async (req: any, res: any) => {
   try {
+    const tempPassword = "use_" + crypto.randomBytes(2).toString("hex");
+    const hashedPassword = await bcrypt.hash(tempPassword, 10);
+
     const userData = req.body;
 
-    const user = new User(userData);
+    const user = new User({
+      ...userData,
+      password: hashedPassword,
+    });
     await user.save();
+
+ 
     res
       .status(201)
       .json({ msg: "user added successfully", data: user, success: true });

@@ -150,7 +150,30 @@
 
 ### 68. Display all users in 'Users' page
 
+### 69. Work on 'Add User' page
+
+### 70. for now i will work only on 'AddUserForm' with its 'inputFiled' validations
+
+### 71. Escape for now reset password after user login
+
+### 72. focusing only for adding users
+
+### 73. How the admin will add users without adding password? i will generate a random password and add hidden field in the form so the admin can't see the password
+
+## Back to server
+
+### 74. Add hashed password in 'user.controller' when sending the user data to the database
+
+### 75. What is the difference between 'create' and 'new'?
+
+    i found that new User() + save: when i want to update any data before saving it to the database
+    create User(): when i want to create a new user and save it to the database without updating any data
+
+### 76. Finished the 'Add User' page
+
 ---
+
+### 70. How to handle password field in 'Add User' page
 
 ### 35. Use Timer to show the countdown
 

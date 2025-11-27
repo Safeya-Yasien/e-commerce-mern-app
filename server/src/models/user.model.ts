@@ -8,7 +8,7 @@ interface IUser {
   password: string;
   role: "admin" | "user";
   country?: string;
-  phone?: string;
+  phone: string;
   gender?: "Male" | "Female";
 }
 
@@ -36,7 +36,11 @@ const userSchema = new Schema<IUser>(
       required: [true, "Please enter a password"],
       minlength: 6,
     },
-    role: { type: String, default: "admin" },
+    role: {
+      type: String,
+      default: "admin",
+      required: [true, "Please select a role"],
+    },
     country: { type: String },
     phone: { type: String },
     gender: { type: String, lowercase: true, enum: ["male", "female"] },

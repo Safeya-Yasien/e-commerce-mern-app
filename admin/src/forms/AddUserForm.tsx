@@ -1,21 +1,13 @@
 import { InputField } from "@/components";
 import { UserSchema, type IUserForm } from "@/schemas/userSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useMutation, useQuery } from "@tanstack/react-query";
-import { useEffect } from "react";
+import { useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
 
-const BASE_URL = `${import.meta.env.VITE_API_URL}/api`;
+const BASE_URL = `${import.meta.env.VITE_API_URI}/api/users`;
 
-interface IUserFormProps {
-  mode: "add" | "edit";
-  userId?: string;
-}
-
-const AddUserForm = ({ mode, userId }: IUserFormProps) => {
-  const navigate = useNavigate();
+const AddUserForm = () => {
   const {
     register,
     handleSubmit,
@@ -25,31 +17,10 @@ const AddUserForm = ({ mode, userId }: IUserFormProps) => {
     resolver: zodResolver(UserSchema),
   });
 
-  const {
-    isPending,
-    error,
-    data: user,
-  } = useQuery({
-    queryKey: ["user", userId],
-    queryFn: async () => {
-      const response = await fetch(`${BASE_URL}/users/${userId}`);
-      const data = await response.json();
-      return data;
-    },
-    enabled: mode === "edit",
-  });
-
-  useEffect(() => {
-    if (mode === "edit" && user?.data) reset(user.data);
-  }, [mode, user, reset]);
-
   const mutation = useMutation({
     mutationFn: async (formData: IUserForm) => {
-      const method = mode === "edit" ? "PUT" : "POST";
-      const url =
-        mode === "edit" ? `${BASE_URL}/users/${userId}` : `${BASE_URL}/users`;
-      return await fetch(url, {
-        method,
+      return await fetch(`${BASE_URL}/add`, {
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
@@ -57,16 +28,8 @@ const AddUserForm = ({ mode, userId }: IUserFormProps) => {
       });
     },
     onSuccess: () => {
-      toast.success(
-        `${mode === "edit" ? "User updated " : "User added "} successfully!`
-      );
+      toast.success(`User added  successfully!`);
       reset();
-
-      if (mode === "edit") {
-        setTimeout(() => {
-          navigate(`/users/${userId}`);
-        }, 2000);
-      }
     },
 
     onError: (error) => {
@@ -76,18 +39,6 @@ const AddUserForm = ({ mode, userId }: IUserFormProps) => {
   const onSubmit = async (data: IUserForm) => {
     mutation.mutate(data);
   };
-
-  if (mode === "edit" && isPending) {
-    return <p className="text-gray-400">Loading user data...</p>;
-  }
-
-  if (mode === "edit" && error) {
-    return (
-      <p className="text-red-500">
-        Failed to load user info: {(error as Error).message}
-      </p>
-    );
-  }
 
   return (
     <form className="grid grid-cols-2 gap-6" onSubmit={handleSubmit(onSubmit)}>
@@ -106,9 +57,7 @@ const AddUserForm = ({ mode, userId }: IUserFormProps) => {
         <div>
           <label className="text-gray-300 mb-1 block">Gender</label>
           <select
-            disabled={mode === "edit"}
-            className={`w-full px-4 py-2 rounded-md bg-[#1C2024] text-white border border-gray-600 focus:outline-none focus:border-blue-500
-              ${mode === "edit" ? "cursor-not-allowed bg-gray-700" : ""}`}
+            className={`w-full px-4 py-2 rounded-md bg-[#1C2024] text-white border border-gray-600 focus:outline-none focus:border-blue-500`}
             {...register("gender", { required: true })}
           >
             <option value="">Select gender</option>
@@ -125,32 +74,21 @@ const AddUserForm = ({ mode, userId }: IUserFormProps) => {
           label="Email"
           type="email"
           error={errors.email}
-          disabled={mode === "edit"}
         />
 
         {/* role */}
         <div>
           <label className="text-gray-300 mb-1 block">Role</label>
           <select
-            disabled={mode === "edit"}
-            className={`w-full px-4 py-2 rounded-md bg-[#1C2024] text-white border border-gray-600 focus:outline-none focus:border-blue-500
-              ${mode === "edit" ? "cursor-not-allowed bg-gray-700" : ""}`}
+            className={`w-full px-4 py-2 rounded-md bg-[#1C2024] text-white border border-gray-600 focus:outline-none focus:border-blue-500`}
             {...register("role", { required: true })}
           >
             <option value="">Select role</option>
-            <option value="User">User</option>
-            <option value="Admin">Admin</option>
+            <option value="user">User</option>
+            <option value="admin">Admin</option>
           </select>
+          {errors && <p className="text-red-500">{errors.role?.message}</p>}
         </div>
-
-        {/* password */}
-        <InputField
-          register={register}
-          name="password"
-          placeholder="Enter your password"
-          label="Password"
-          error={errors.password}
-        />
       </div>
 
       {/* Right Column */}
@@ -188,7 +126,7 @@ const AddUserForm = ({ mode, userId }: IUserFormProps) => {
             type="submit"
             className="cursor-pointer w-full bg-blue-600 hover:bg-blue-500 text-white py-2 rounded-md font-semibold transition"
           >
-            {mode === "edit" ? "Update User" : "Add User"}
+            Add User
           </button>
         </div>
       </div>
