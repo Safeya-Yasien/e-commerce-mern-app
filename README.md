@@ -169,7 +169,9 @@
     i found that new User() + save: when i want to update any data before saving it to the database
     create User(): when i want to create a new user and save it to the database without updating any data
 
-### 76. Finished the 'Add User' page
+### 76. I use 'transform' in 'toJSON' to remove password from the response
+
+### 77. Finished the 'Add User' page
 
 ---
 

@@ -48,6 +48,10 @@ const userSchema = new Schema<IUser>(
   {
     toJSON: {
       virtuals: true,
+      transform: (doc, ret) => {
+        delete (ret as any).password;
+        return ret;
+      },
     },
     toObject: {
       virtuals: true,
