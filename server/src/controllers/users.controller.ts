@@ -72,7 +72,6 @@ const addUser = async (req: any, res: any) => {
     });
     await user.save();
 
- 
     res
       .status(201)
       .json({ msg: "user added successfully", data: user, success: true });
