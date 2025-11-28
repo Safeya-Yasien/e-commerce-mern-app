@@ -1,5 +1,5 @@
 import { useSearch } from "@/context/useSearchContext";
-import type { ICustomer } from "@/types/customer.types";
+import type { ICustomer } from "@/types/product.types";
 import { useQuery } from "@tanstack/react-query";
 
 const BASE_URL = `${import.meta.env.VITE_API_URL}`;

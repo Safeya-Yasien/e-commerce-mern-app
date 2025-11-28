@@ -2,17 +2,16 @@ import { createBrowserRouter, RouterProvider } from "react-router";
 import { lazy } from "react";
 
 import ProtectedRoute from "@/components/ProtectedRoute";
-import AddUserPage from "@/pages/AddUser";
 
 const Login = lazy(() => import("@/pages/auth/Login"));
 const Signup = lazy(() => import("@/pages/auth/Signup"));
 
 const Home = lazy(() => import("@/pages/Home"));
-const CustomersPage = lazy(() => import("@/pages/Products"));
+const UsersPage = lazy(() => import("@/pages/Users"));
+const AddUserPage = lazy(() => import("@/pages/AddUser"));
+const ProductsPage = lazy(() => import("@/pages/Products"));
 const CustomerDetailsPage = lazy(() => import("@/pages/UserDetails"));
 const AddCustomerPage = lazy(() => import("@/pages/AddUser"));
-
-const UsersPage = lazy(() => import("@/pages/Users"));
 
 const MainLayout = lazy(() => import("@/layouts/MainLayout/MainLayout"));
 const AuthLayout = lazy(() => import("@/layouts/AuthLayout/AuthLayout"));
@@ -32,10 +31,10 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "customers",
+        path: "products",
         element: (
           <ProtectedRoute>
-            <CustomersPage />
+            <ProductsPage />
           </ProtectedRoute>
         ),
       },

@@ -173,6 +173,12 @@
 
 ### 77. Finished the 'Add User' page
 
+### 78. Move to 'Products' page
+
+### 79. Add main titles in products table 'Name', 'Category', 'Price', 'Image', 'Description', 'inStock'
+
+### 80.
+
 ---
 
 ### 70. How to handle password field in 'Add User' page

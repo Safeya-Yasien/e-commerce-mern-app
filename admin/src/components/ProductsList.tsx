@@ -1,44 +1,41 @@
 import { Eye } from "lucide-react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import type { ICustomer } from "@/types/customer.types";
 import { useNavigate } from "react-router";
-import useSearchQuery from "@/hooks/useSearchQuery";
+import type { IProduct } from "@/types/product.types";
 
-const BASE_URL = `${import.meta.env.VITE_API_URL}`;
+const BASE_URL = `${import.meta.env.VITE_API_URL}/api/products`;
 
-const CustomersList = () => {
+const ProductsList = () => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
-
-  const { data: filteredCustomers, isFetching: isSearching } = useSearchQuery();
 
   const {
     isPending,
     error,
-    data: customers,
+    data: products,
   } = useQuery({
-    queryKey: ["customers"],
+    queryKey: ["product"],
     queryFn: async () => {
       try {
-        const response = await fetch(`${BASE_URL}/customers`);
+        const response = await fetch(`${BASE_URL}`);
 
         if (!response.ok) {
           throw new Error(`Server responded with ${response.status}`);
         }
         return await response.json();
       } catch (err) {
-        console.error("Fetch customers failed:", err);
+        console.error("Fetch products failed:", err);
         throw err;
       }
     },
   });
 
-  const deleteCustomer = useMutation({
+  const deleteProduct = useMutation({
     mutationFn: async (id: string) => {
-      return await fetch(`${BASE_URL}/customers/${id}`, { method: "DELETE" });
+      return await fetch(`${BASE_URL}/${id}`, { method: "DELETE" });
     },
     onSuccess: async () => {
-      await queryClient.invalidateQueries({ queryKey: ["customers"] });
+      await queryClient.invalidateQueries({ queryKey: ["product"] });
     },
   });
 
@@ -50,63 +47,51 @@ const CustomersList = () => {
     navigate(`/products/edit-product/${id}`);
   };
 
-  if (isPending || isSearching)
-    return <p className="text-white text-2xl">Loading...</p>;
-  if (error)
-    return <p className="text-white text-2xl">Error: {error.message}</p>;
-
-  if (!products?.data)
-    return <p className="text-white text-2xl">No products found</p>;
-
-  const productsList =
-    filteredProducts?.data && filteredProducts.data.length > 0
-      ? filteredProducts.data
-      : products?.data || [];
-
   return (
     <div className="bg-[#252A30] rounded-2xl p-6 overflow-auto h-full">
-      <h2 className="text-white text-xl font-semibold mb-4">Customers</h2>
+      <h2 className="text-white text-xl font-semibold mb-4">Products</h2>
 
       <table className="min-w-full border-collapse">
         <thead>
           <tr className="text-gray-300 text-left border-b border-gray-700">
             <th className="p-3">#</th>
-            <th className="p-3">Full Name</th>
-            <th className="p-3">Gender</th>
-            <th className="p-3">Country</th>
-            <th className="p-3">Age</th>
-            <th className="p-3">Last Updated</th>
+            <th className="p-3">Name</th>
+            <th className="p-3">Category</th>
+            <th className="p-3">Price</th>
+            <th className="p-3">Image</th>
+            <th className="p-3">Description</th>
+            <th className="p-3">inStock</th>
             <th className="p-3">Actions</th>
           </tr>
         </thead>
 
         <tbody>
-          {productsList.map((customer: ICustomer, index: number) => (
+          {products?.data.map((product: IProduct, index: number) => (
             <tr
-              key={customer.id}
+              key={product.id}
               className="text-gray-200 border-b border-gray-700 hover:bg-[#2F343B] transition"
             >
               <td className="p-3">{index + 1}</td>
-              <td className="p-3">{customer.fullName}</td>
-              <td className="p-3">{customer.gender}</td>
-              <td className="p-3">{customer.country}</td>
-              <td className="p-3">{customer.age}</td>
-              <td className="p-3">{customer.createdAt}</td>
+              <td className="p-3">{product.fullName}</td>
+              <td className="p-3">{product.gender}</td>
+              <td className="p-3">{product.country}</td>
+              <td className="p-3">{product.age}</td>
+              <td className="p-3">{product.createdAt}</td>
               <td className="p-3 flex space-x-2">
                 <button
-                  onClick={() => editCustomer(customer.id)}
+                  onClick={() => editProduct(product.id)}
                   className="cursor-pointer px-3 py-1 bg-blue-600 rounded-md text-white text-sm hover:bg-blue-500 flex items-center gap-1"
                 >
                   Edit
                 </button>
                 <button
-                  onClick={() => deleteCustomer.mutate(customer.id)}
+                  onClick={() => deleteProduct.mutate(product.id)}
                   className="cursor-pointer px-3 py-1 bg-red-600 rounded-md text-white text-sm hover:bg-red-500 flex items-center gap-1"
                 >
                   Delete
                 </button>
                 <button
-                  onClick={() => viewCustomer(customer.id)}
+                  onClick={() => viewProduct(product.id)}
                   className="cursor-pointer px-3 py-1 bg-green-600 rounded-md text-white text-sm hover:bg-green-500 flex items-center gap-1"
                 >
                   <Eye className="w-4 h-4" /> View
@@ -120,4 +105,4 @@ const CustomersList = () => {
   );
 };
 
-export default CustomersList;
+export default ProductsList;
