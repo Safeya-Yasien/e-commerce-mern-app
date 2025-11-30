@@ -3,7 +3,6 @@ import {
   LayoutGrid,
   LogOut,
   PlusCircle,
-  User,
   UserRoundPlus,
   Users,
 } from "lucide-react";
@@ -77,6 +76,7 @@ const Sidebar = () => {
         <li>
           <NavLink
             to="products"
+            end
             className={({ isActive }: { isActive: boolean }) =>
               `flex items-center gap-3 px-4 py-2 rounded-lg transition-all duration-200 ${
                 isActive
@@ -105,6 +105,7 @@ const Sidebar = () => {
             Add Product
           </NavLink>
         </li>
+
         <li>
           <button
             onClick={handleLogout}

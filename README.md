@@ -177,7 +177,19 @@
 
 ### 79. Add main titles in products table 'Name', 'Category', 'Price', 'Image', 'Description', 'inStock'
 
-### 80.
+## Back to server
+
+### 80. Add product model, controller and route
+
+### 81. Add "AddProduct", "getProducts in "products.controller"
+
+## Back to admin
+
+### 82. Add "AddProductPage" in "admin"
+
+### 83. When i add 'add-product' route in "sidebar" it makes products and addProduct active so i use end in navLink to solve this problem
+
+### 84. Handle "AddProductForm" in "AddProduct" page
 
 ---
 

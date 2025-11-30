@@ -1,4 +1,10 @@
+import AddProductForm from "@/forms/AddProductForm";
+
 const AddProductPage = () => {
-  return <div>AddProductPage</div>;
+  return (
+    <div>
+      <AddProductForm />
+    </div>
+  );
 };
 export default AddProductPage;

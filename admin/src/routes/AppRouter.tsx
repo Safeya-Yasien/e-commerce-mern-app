@@ -10,8 +10,7 @@ const Home = lazy(() => import("@/pages/Home"));
 const UsersPage = lazy(() => import("@/pages/Users"));
 const AddUserPage = lazy(() => import("@/pages/AddUser"));
 const ProductsPage = lazy(() => import("@/pages/Products"));
-const CustomerDetailsPage = lazy(() => import("@/pages/UserDetails"));
-const AddCustomerPage = lazy(() => import("@/pages/AddUser"));
+const AddProductPage = lazy(() => import("@/pages/AddProduct"));
 
 const MainLayout = lazy(() => import("@/layouts/MainLayout/MainLayout"));
 const AuthLayout = lazy(() => import("@/layouts/AuthLayout/AuthLayout"));
@@ -23,13 +22,13 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-
         element: (
           <ProtectedRoute>
             <Home />
           </ProtectedRoute>
         ),
       },
+
       {
         path: "products",
         element: (
@@ -38,27 +37,12 @@ const router = createBrowserRouter([
           </ProtectedRoute>
         ),
       },
+
       {
-        path: "customers/add-customer",
+        path: "products/add-product",
         element: (
           <ProtectedRoute>
-            <AddCustomerPage />
-          </ProtectedRoute>
-        ),
-      },
-      {
-        path: "customers/edit-customer/:id",
-        element: (
-          <ProtectedRoute>
-            <AddCustomerPage />
-          </ProtectedRoute>
-        ),
-      },
-      {
-        path: "customers/:id",
-        element: (
-          <ProtectedRoute>
-            <CustomerDetailsPage />
+            <AddProductPage />
           </ProtectedRoute>
         ),
       },
@@ -71,6 +55,7 @@ const router = createBrowserRouter([
           </ProtectedRoute>
         ),
       },
+
       {
         path: "users/add-user",
         element: (

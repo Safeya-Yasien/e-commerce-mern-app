@@ -1,15 +1,25 @@
 import Product from "../models/product.model";
 
+const getProducts = async (req: any, res: any) => {
+  try {
+    const allProducts = await Product.find({}, { __v: 0 });
+    res.status(200).json({ msg: "success", data: allProducts, success: true });
+  } catch (err) {
+    res.status(500).json({ msg: "error", data: err, success: false });
+  }
+};
+
 const addProduct = async (req: any, res: any) => {
   try {
     const productData = req.body;
-
     const product = new Product(productData);
     await product.save();
 
-    res
-      .status(201)
-      .json({ msg: "user added successfully", data: product, success: true });
+    res.status(201).json({
+      msg: "product added successfully",
+      data: product,
+      success: true,
+    });
   } catch (err) {
     res.status(500).json({ msg: "error", data: err, success: false });
   }
@@ -33,15 +43,6 @@ const deleteProduct = async (req: any, res: any) => {
   }
 };
 
-const getProducts = async (req: any, res: any) => {
-  try {
-    const allProducts = await Product.find({}, { __v: 0 });
-    res.status(200).json({ msg: "success", data: allProducts, success: true });
-  } catch (err) {
-    res.status(500).json({ msg: "error", data: err, success: false });
-  }
-};
-
 const getProductById = async (req: any, res: any) => {
   const { id } = req.params;
   try {
@@ -62,7 +63,9 @@ const getProductById = async (req: any, res: any) => {
 const deleteAllProducts = async (req: any, res: any) => {
   try {
     await Product.deleteMany({});
-    res.status(200).json({ msg: "Deleted all products success", data: null, success: true });
+    res
+      .status(200)
+      .json({ msg: "Deleted all products success", data: null, success: true });
   } catch (err) {
     res.status(500).json({ msg: "error", data: err, success: false });
   }
