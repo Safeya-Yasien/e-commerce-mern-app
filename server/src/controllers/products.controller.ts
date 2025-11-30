@@ -62,7 +62,7 @@ const getProductById = async (req: any, res: any) => {
 const deleteAllProducts = async (req: any, res: any) => {
   try {
     await Product.deleteMany({});
-    res.status(200).json({ msg: "success", data: null, success: true });
+    res.status(200).json({ msg: "Deleted all products success", data: null, success: true });
   } catch (err) {
     res.status(500).json({ msg: "error", data: err, success: false });
   }
