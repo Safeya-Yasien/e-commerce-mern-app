@@ -1,6 +1,6 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
-const BASE_URL = `${import.meta.env.VITE_API_URI}/api`;
+const BASE_URI = `${import.meta.env.VITE_API_URI}/api/users`;
 
 interface IUser {
   _id: string;
@@ -10,11 +10,13 @@ interface IUser {
 }
 
 const Users = () => {
+  const queryClient = useQueryClient();
+
   const { data, isLoading, isError } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
       try {
-        const res = await fetch(`${BASE_URL}/users`, {});
+        const res = await fetch(`${BASE_URI}`, {});
 
         if (!res.ok) throw new Error("Failed to fetch users");
         return res.json();
@@ -22,6 +24,16 @@ const Users = () => {
         console.error("Token retrieval error:", err);
         throw err;
       }
+    },
+  });
+
+  const deleteUser = useMutation({
+    mutationKey: ["deleteUser"],
+    mutationFn: async (_id: string) => {
+      return await fetch(`${BASE_URI}/delete/${_id}`, { method: "DELETE" });
+    },
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey: ["users"] });
     },
   });
 
@@ -59,7 +71,10 @@ const Users = () => {
                   <button className="cursor-pointer px-3 py-1 bg-blue-600 rounded-md text-white text-sm hover:bg-blue-500 flex items-center gap-1">
                     Edit
                   </button>
-                  <button className="cursor-pointer px-3 py-1 bg-red-600 rounded-md text-white text-sm hover:bg-red-500 flex items-center gap-1">
+                  <button
+                    onClick={() => deleteUser.mutate(user._id)}
+                    className="cursor-pointer px-3 py-1 bg-red-600 rounded-md text-white text-sm hover:bg-red-500 flex items-center gap-1"
+                  >
                     Delete
                   </button>
                   <button className="cursor-pointer px-3 py-1 bg-green-600 rounded-md text-white text-sm hover:bg-green-500 flex items-center gap-1">
