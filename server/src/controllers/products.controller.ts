@@ -35,11 +35,29 @@ const updateProduct = async (req: any, res: any) => {
 };
 
 const deleteProduct = async (req: any, res: any) => {
+  const { id } = req.params;
+
   try {
-    const allProducts = await Product.find({}, { __v: 0 });
-    res.status(200).json({ msg: "success", data: allProducts, success: true });
+    if (!id) {
+      res
+        .status(400)
+        .json({ msg: "Please provide a valid id", data: null, success: false });
+      return;
+    }
+
+    const product = await Product.findByIdAndDelete(id);
+    if (!product) {
+      res
+        .status(404)
+        .json({ msg: "Product not found", data: null, success: false });
+      return;
+    }
+
+    res
+      .status(200)
+      .json({ msg: "Product deleted successfully", data: null, success: true });
   } catch (err) {
-    res.status(500).send(err);
+    res.status(500).json({ msg: "error", data: err, success: false });
   }
 };
 

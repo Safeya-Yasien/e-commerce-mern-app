@@ -195,9 +195,33 @@
 
 ### 86. I Faced a react-hook-form problem in number and boolean types so i use coerce.number() and coerce.boolean() in zod schema, but i faced another problem in resolver in 'addProductForm' so i will search for it
 
-### 87.
+### 87. First i faced a problem in resolver in 'addProductForm' so i searched and asked ai
+
+    - first i removed product interface from productSchema.ts
+    - second i used z.input and z.output instead of z.infer because i want to get the data from the form in way and then zod will validate it and resolve it to the correct type
+    - third i go to 'AddProductForm' and used "parse method" to parse the data from the form to the correct type
+
+### 88. handle crud logics to 'AddProductForm' in 'AddProduct' page
+
+### 89. I faced a problem in "ProductsList" page with type of id is i add it in "productSchema.ts" file or what???
+
+    i solved it by adding "id" in "productSchema.ts" file
+
+### 90. handle 'delete product'
+
+## Back to server
+
+### 91. Add "deleteProduct" logic in "products.controller" by using "findByIdAndDelete" method
+
+### 92. Add "deleteUser" logic in "users.controller" by using "findByIdAndDelete" method
+
+## Back to admin
+
+### 93. Add "deleteUser" logic in "Users page"
 
 ---
+
+### use axios or fetch
 
 ### 70. How to handle password field in 'Add User' page
 

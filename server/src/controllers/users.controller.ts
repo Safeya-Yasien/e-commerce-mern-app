@@ -90,11 +90,27 @@ const updateUser = async (req: any, res: any) => {
 };
 
 const deleteUser = async (req: any, res: any) => {
+  const { id } = req.params;
   try {
-    const allUsers = await User.find({}, { __v: 0 });
-    res.status(200).json({ msg: "success", data: allUsers, success: true });
+    if (!id) {
+      res
+        .status(400)
+        .json({ msg: "Please provide a valid id", data: null, success: false });
+      return;
+    }
+
+    const user = await User.findByIdAndDelete(id);
+
+    if (!user) {
+      res
+        .status(404)
+        .json({ msg: "User not found", data: null, success: false });
+      return;
+    }
+
+    res.status(200).json({ msg: "success", data: null, success: true });
   } catch (err) {
-    res.status(500).send(err);
+    res.status(500).json({ msg: "error", data: err, success: false });
   }
 };
 

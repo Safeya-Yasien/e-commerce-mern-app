@@ -1,6 +1,6 @@
+import type { IProductForm } from "@/schemas/productSchema";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router";
-import type { IProductInput } from "@/schemas/productSchema";
 
 const BASE_URL = `${import.meta.env.VITE_API_URI}/api/products`;
 
@@ -26,8 +26,8 @@ const ProductsList = () => {
   });
 
   const deleteProduct = useMutation({
-    mutationFn: async (id: string) => {
-      return await fetch(`${BASE_URL}/${id}`, { method: "DELETE" });
+    mutationFn: async (_id: string) => {
+      return await fetch(`${BASE_URL}/delete/${_id}`, { method: "DELETE" });
     },
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: ["product"] });
@@ -61,9 +61,9 @@ const ProductsList = () => {
         </thead>
 
         <tbody>
-          {products?.data.map((product: IProductInput, index: number) => (
+          {products?.data.map((product: IProductForm, index: number) => (
             <tr
-              key={product.id}
+              key={product._id}
               className="text-gray-200 border-b border-gray-700 hover:bg-[#2F343B] transition"
             >
               <td className="p-3">{index + 1}</td>
@@ -76,19 +76,19 @@ const ProductsList = () => {
 
               <td className="p-3 flex space-x-2">
                 <button
-                  onClick={() => editProduct(product.id)}
+                  onClick={() => editProduct(product._id)}
                   className="cursor-pointer px-3 py-1 bg-blue-600 rounded-md text-white text-sm hover:bg-blue-500 flex items-center gap-1"
                 >
                   Edit
                 </button>
                 <button
-                  onClick={() => deleteProduct.mutate(product.id)}
+                  onClick={() => deleteProduct.mutate(product._id)}
                   className="cursor-pointer px-3 py-1 bg-red-600 rounded-md text-white text-sm hover:bg-red-500 flex items-center gap-1"
                 >
                   Delete
                 </button>
                 <button
-                  onClick={() => viewProduct(product.id)}
+                  onClick={() => viewProduct(product._id)}
                   className="cursor-pointer px-3 py-1 bg-green-600 rounded-md text-white text-sm hover:bg-green-500 flex items-center gap-1"
                 >
                   View
