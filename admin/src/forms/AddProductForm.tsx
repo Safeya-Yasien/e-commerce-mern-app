@@ -1,4 +1,8 @@
-import { ProductSchema, type IProductForm } from "@/schemas/productSchema";
+import {
+  ProductSchema,
+  type IProductForm,
+  type IProductInput,
+} from "@/schemas/productSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
@@ -12,7 +16,7 @@ const AddProductForm = () => {
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<IProductForm>({
+  } = useForm<IProductInput>({
     resolver: zodResolver(ProductSchema),
   });
 
@@ -44,21 +48,62 @@ const AddProductForm = () => {
       {/* Left Column */}
       <div className="space-y-4">
         {/* Name */}
-        <input
-          type="text"
-          {...register("name", { required: true })}
-          placeholder="Enter product name"
-          className="w-full px-4 py-2 rounded-md bg-[#1C2024] text-white border border-gray-600 focus:outline-none focus:border-blue-500"
-          required
-        />
-        {errors && <p className="text-red-500">{errors.name?.message}</p>}
+        <div>
+          <label className="text-gray-300 mb-1 block">Name</label>
+          <input
+            type="text"
+            {...register("name")}
+            placeholder="Enter product name"
+            className="w-full px-4 py-2 rounded-md bg-[#1C2024] text-white border border-gray-600 focus:outline-none focus:border-blue-500"
+          />
+          {errors && <p className="text-red-500">{errors.name?.message}</p>}
+        </div>
 
+        {/* Description */}
+        <div>
+          <label className="text-gray-300 mb-1 block">Description</label>
+          <textarea
+            rows={1}
+            {...register("description")}
+            placeholder="Enter product description"
+            className="resize-none w-full px-4 py-2 rounded-md bg-[#1C2024] text-white border border-gray-600 focus:outline-none focus:border-blue-500"
+          />
+          {errors && (
+            <p className="text-red-500">{errors.description?.message}</p>
+          )}
+        </div>
+
+        {/* Price */}
+        <div>
+          <label className="text-gray-300 mb-1 block">Price</label>
+          <input
+            type="number"
+            {...register("price")}
+            placeholder="Enter product price"
+            className="w-full px-4 py-2 rounded-md bg-[#1C2024] text-white border border-gray-600 focus:outline-none focus:border-blue-500"
+          />
+          {errors && <p className="text-red-500">{errors.price?.message}</p>}
+        </div>
+
+        {/* Submit Button */}
+        <div className="flex items-end mt-11">
+          <button
+            type="submit"
+            className="cursor-pointer w-full bg-blue-600 hover:bg-blue-500 text-white py-2 rounded-md font-semibold transition"
+          >
+            Add Product
+          </button>
+        </div>
+      </div>
+
+      {/* right column */}
+      <div className="space-y-4">
         {/* Category */}
         <div>
           <label className="text-gray-300 mb-1 block">Category</label>
           <select
             className={`w-full px-4 py-2 rounded-md bg-[#1C2024] text-white border border-gray-600 focus:outline-none focus:border-blue-500`}
-            {...register("category", { required: true })}
+            {...register("category")}
           >
             <option value="">Select category</option>
             <option value="Electronics">Electronics</option>
@@ -70,55 +115,30 @@ const AddProductForm = () => {
           {errors && <p className="text-red-500">{errors.category?.message}</p>}
         </div>
 
-        {/* Price */}
-        <input
-          type="number"
-          {...register("price", { required: true })}
-          placeholder="Enter product price"
-          className="w-full px-4 py-2 rounded-md bg-[#1C2024] text-white border border-gray-600 focus:outline-none focus:border-blue-500"
-          required
-          min={0}
-        />
-
         {/* Image */}
-        <input
-          type="text"
-          {...register("image", { required: true })}
-          placeholder="Enter product image"
-          className="w-full px-4 py-2 rounded-md bg-[#1C2024] text-white border border-gray-600 focus:outline-none focus:border-blue-500"
-          required
-        />
-
-        {/* Description */}
-        <textarea
-          {...register("description", { required: true })}
-          placeholder="Enter product description"
-          className="w-full px-4 py-2 rounded-md bg-[#1C2024] text-white border border-gray-600 focus:outline-none focus:border-blue-500"
-          required
-        />
+        <div>
+          <label className="text-gray-300 mb-1 block">Image</label>
+          <input
+            type="text"
+            {...register("image")}
+            placeholder="Enter product image"
+            className="w-full px-4 py-2 rounded-md bg-[#1C2024] text-white border border-gray-600 focus:outline-none focus:border-blue-500"
+          />
+          {errors && <p className="text-red-500">{errors.image?.message}</p>}
+        </div>
 
         {/* inStock */}
         <div>
           <label className="text-gray-300 mb-1 block">inStock</label>
           <select
             className={`w-full px-4 py-2 rounded-md bg-[#1C2024] text-white border border-gray-600 focus:outline-none focus:border-blue-500`}
-            {...register("inStock", { required: true })}
+            {...register("inStock")}
           >
             <option value="">Select inStock</option>
             <option value="true">Yes</option>
             <option value="false">No</option>
           </select>
           {errors && <p className="text-red-500">{errors.inStock?.message}</p>}
-        </div>
-
-        {/* Submit Button */}
-        <div className="flex items-end mt-11">
-          <button
-            type="submit"
-            className="cursor-pointer w-full bg-blue-600 hover:bg-blue-500 text-white py-2 rounded-md font-semibold transition"
-          >
-            Add Product
-          </button>
         </div>
       </div>
     </form>

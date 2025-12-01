@@ -22,7 +22,8 @@
       "@services/*": ["./src/services/*"],
       "@types/*": ["./src/types/*"],
       "@assets/*": ["./src/assets/*"],
-      "forms": ["./src/forms/*"]
+      "@forms": ["./src/forms/*"],
+      "@shared-types": ["../shared-types/*"]
     },
 
     /* Bundler mode */
@@ -41,5 +42,5 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src"]
+  "include": ["src", "../shared-types/product.types.ts"]
 }

@@ -191,6 +191,12 @@
 
 ### 84. Handle "AddProductForm" in "AddProduct" page
 
+### 85. Add logic to handle "AddProductForm" in "AddProduct" page
+
+### 86. I Faced a react-hook-form problem in number and boolean types so i use coerce.number() and coerce.boolean() in zod schema, but i faced another problem in resolver in 'addProductForm' so i will search for it
+
+### 87.
+
 ---
 
 ### 70. How to handle password field in 'Add User' page

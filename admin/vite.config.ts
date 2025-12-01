@@ -21,6 +21,7 @@ export default defineConfig({
       "@schemas": path.resolve(__dirname, "./src/schemas"),
       "@services": path.resolve(__dirname, "./src/services"),
       "@types": path.resolve(__dirname, "./src/types"),
+      "@shared-types": path.resolve(__dirname, "../shared-types"),
     },
   },
 });

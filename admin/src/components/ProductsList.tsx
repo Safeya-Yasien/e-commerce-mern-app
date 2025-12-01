@@ -1,19 +1,14 @@
-import { Eye } from "lucide-react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router";
-import type { IProduct } from "@/types/product.types";
+import type { IProductInput } from "@/schemas/productSchema";
 
-const BASE_URL = `${import.meta.env.VITE_API_URL}/api/products`;
+const BASE_URL = `${import.meta.env.VITE_API_URI}/api/products`;
 
 const ProductsList = () => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
-  const {
-    isPending,
-    error,
-    data: products,
-  } = useQuery({
+  const { data: products } = useQuery({
     queryKey: ["product"],
     queryFn: async () => {
       try {
@@ -66,17 +61,19 @@ const ProductsList = () => {
         </thead>
 
         <tbody>
-          {products?.data.map((product: IProduct, index: number) => (
+          {products?.data.map((product: IProductInput, index: number) => (
             <tr
               key={product.id}
               className="text-gray-200 border-b border-gray-700 hover:bg-[#2F343B] transition"
             >
               <td className="p-3">{index + 1}</td>
-              <td className="p-3">{product.fullName}</td>
-              <td className="p-3">{product.gender}</td>
-              <td className="p-3">{product.country}</td>
-              <td className="p-3">{product.age}</td>
-              <td className="p-3">{product.createdAt}</td>
+              <td className="p-3">{product.name}</td>
+              <td className="p-3">{product.category}</td>
+              <td className="p-3">{product.price}</td>
+              <td className="p-3">{product.image}</td>
+              <td className="p-3">{product.description}</td>
+              <td className="p-3">{product.inStock ? "Yes" : "No"}</td>
+
               <td className="p-3 flex space-x-2">
                 <button
                   onClick={() => editProduct(product.id)}
@@ -94,7 +91,7 @@ const ProductsList = () => {
                   onClick={() => viewProduct(product.id)}
                   className="cursor-pointer px-3 py-1 bg-green-600 rounded-md text-white text-sm hover:bg-green-500 flex items-center gap-1"
                 >
-                  <Eye className="w-4 h-4" /> View
+                  View
                 </button>
               </td>
             </tr>
