@@ -207,7 +207,7 @@
 
     i solved it by adding "id" in "productSchema.ts" file
 
-### 90. handle 'delete product'
+### 90. handle 'delete product' in 'ProductsList' page
 
 ## Back to server
 
