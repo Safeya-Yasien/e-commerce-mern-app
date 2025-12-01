@@ -1,7 +1,7 @@
 import {
   ProductSchema,
   type IProductForm,
-  type IProductInput,
+  type IProductFormInput,
 } from "@/schemas/productSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
@@ -16,7 +16,7 @@ const AddProductForm = () => {
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<IProductInput>({
+  } = useForm<IProductFormInput>({
     resolver: zodResolver(ProductSchema),
   });
 
@@ -39,8 +39,9 @@ const AddProductForm = () => {
       toast.error(error.message);
     },
   });
-  const onSubmit = async (data: IProductForm) => {
-    mutation.mutate(data);
+  const onSubmit = async (data: IProductFormInput) => {
+    const parsed = ProductSchema.parse(data);
+    mutation.mutate(parsed);
   };
 
   return (

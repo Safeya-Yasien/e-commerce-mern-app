@@ -1,15 +1,5 @@
 import * as z from "zod";
 
-export interface IProductInput {
-  id: string;
-  name: string;
-  category: string;
-  price: string;
-  image: string;
-  description: string;
-  inStock: "true" | "false";
-}
-
 export const ProductSchema = z.object({
   name: z.string().nonempty("Name is required").min(2, "Too Short"),
   category: z.string().nonempty("Category is required").min(2, "Too Short"),
@@ -22,4 +12,5 @@ export const ProductSchema = z.object({
   inStock: z.coerce.boolean(),
 });
 
-export type IProductForm = z.infer<typeof ProductSchema>;
+export type IProductFormInput = z.input<typeof ProductSchema>;
+export type IProductForm = z.output<typeof ProductSchema>;
