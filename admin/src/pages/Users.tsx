@@ -1,7 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router";
 
-const BASE_URI = `${import.meta.env.VITE_API_URI}/api/users`;
+const BASE_URL = `${import.meta.env.VITE_API_URI}/api/users`;
 
 interface IUser {
   _id: string;
@@ -18,7 +18,7 @@ const Users = () => {
     queryKey: ["users"],
     queryFn: async () => {
       try {
-        const res = await fetch(`${BASE_URI}`, {});
+        const res = await fetch(`${BASE_URL}`, {});
 
         if (!res.ok) throw new Error("Failed to fetch users");
         return res.json();
@@ -32,7 +32,7 @@ const Users = () => {
   const deleteUser = useMutation({
     mutationKey: ["deleteUser"],
     mutationFn: async (_id: string) => {
-      return await fetch(`${BASE_URI}/delete/${_id}`, { method: "DELETE" });
+      return await fetch(`${BASE_URL}/delete/${_id}`, { method: "DELETE" });
     },
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: ["users"] });

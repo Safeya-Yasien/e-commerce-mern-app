@@ -12,6 +12,7 @@ const AddUserPage = lazy(() => import("@/pages/AddUser"));
 const UserDetailPage = lazy(() => import("@/pages/UserDetails"));
 const ProductsPage = lazy(() => import("@/pages/Products"));
 const AddProductPage = lazy(() => import("@/pages/AddProduct"));
+const ProductDetailsPage = lazy(() => import("@/pages/ProductDetails"));
 
 const MainLayout = lazy(() => import("@/layouts/MainLayout/MainLayout"));
 const AuthLayout = lazy(() => import("@/layouts/AuthLayout/AuthLayout"));
@@ -44,6 +45,15 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <AddProductPage />
+          </ProtectedRoute>
+        ),
+      },
+
+      {
+        path: "products/:id",
+        element: (
+          <ProtectedRoute>
+            <ProductDetailsPage />
           </ProtectedRoute>
         ),
       },

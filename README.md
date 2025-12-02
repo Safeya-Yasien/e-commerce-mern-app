@@ -225,6 +225,24 @@
 
 ### 95. Add "timestamps" in 'user.model' to add createdAt and updatedAt fields
 
+### 96. I faced a problem in displaying the date in users the timestamps not work
+
+    i solved it by just restarting the laptop
+
+## Back to admin
+
+### 97. To convert date retrieved from database to date format in frontend use "toLocaleDateString()" method
+
+### 98. Create "ProductDetails" page
+
+### 99. Handle AddProductForm in "AddProduct" page the submit button not working
+
+    I found the problem in "productSchema.ts" which i was write _id: z.string() and this is means required field so i add "optional()" to make it optional
+
+### 100. Then active view product button
+
+### 101.
+
 ---
 
 ### use axios or fetch

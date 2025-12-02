@@ -10,34 +10,42 @@ export interface IProduct {
   inStock: boolean;
 }
 
-const productSchema = new Schema<IProduct>({
-  name: {
-    type: String,
-    required: [true, "Please enter product name"],
+const productSchema = new Schema<IProduct>(
+  {
+    name: {
+      type: String,
+      required: [true, "Please enter product name"],
+    },
+    category: {
+      type: String,
+      required: [true, "Please select a category"],
+      enum: ["Electronics", "Toys", "Clothing", "Books", "Sports"],
+    },
+    price: {
+      type: Number,
+      required: [true, "Please enter a price"],
+      min: 0,
+    },
+    image: {
+      type: String,
+      required: [true, "Please enter an image"],
+    },
+    description: {
+      type: String,
+      required: [true, "Please enter a description"],
+    },
+    inStock: {
+      type: Boolean,
+      default: true,
+    },
   },
-  category: {
-    type: String,
-    required: [true, "Please select a category"],
-    enum: ["Electronics", "Toys", "Clothing", "Books", "Sports"],
-  },
-  price: {
-    type: Number,
-    required: [true, "Please enter a price"],
-    min: 0,
-  },
-  image: {
-    type: String,
-    required: [true, "Please enter an image"],
-  },
-  description: {
-    type: String,
-    required: [true, "Please enter a description"],
-  },
-  inStock: {
-    type: Boolean,
-    default: true,
-  },
-});
+  {
+    timestamps: {
+      createdAt: "created_at",
+      updatedAt: "updated_at",
+    },
+  }
+);
 
 const Product = mongoose.model("Product", productSchema);
 
