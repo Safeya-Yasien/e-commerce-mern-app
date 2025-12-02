@@ -78,7 +78,7 @@ const UserDetailPage = () => {
 
           <div className="bg-[#2F343B] p-4 rounded-xl">
             <p className="text-gray-400 text-sm">Role</p>
-            <p className="text-lg font-medium">{user.role || "—"}</p>
+            <p className="text-lg font-medium capitalize">{user.role || "—"}</p>
           </div>
 
           <div className="bg-[#2F343B] p-4 rounded-xl">
