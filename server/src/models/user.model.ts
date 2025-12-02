@@ -45,7 +45,13 @@ const userSchema = new Schema<IUser>(
     phone: { type: String },
     gender: { type: String, lowercase: true, enum: ["male", "female"] },
   },
+
   {
+    timestamps: {
+      createdAt: "created_at",
+      updatedAt: "updated_at",
+    },
+
     toJSON: {
       virtuals: true,
       transform: (doc, ret) => {

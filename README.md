@@ -219,11 +219,17 @@
 
 ### 93. Add "deleteUser" logic in "Users page"
 
-### 94. 
+### 94. Add "viewUser" logic in "Users page" by create "userDetails" Page
+
+## Back to server
+
+### 95. Add "timestamps" in 'user.model' to add createdAt and updatedAt fields
 
 ---
 
 ### use axios or fetch
+
+### use confirm message before delete
 
 ### 70. How to handle password field in 'Add User' page
 

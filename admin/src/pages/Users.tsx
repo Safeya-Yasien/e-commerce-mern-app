@@ -1,4 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useNavigate } from "react-router";
 
 const BASE_URI = `${import.meta.env.VITE_API_URI}/api/users`;
 
@@ -11,6 +12,7 @@ interface IUser {
 
 const Users = () => {
   const queryClient = useQueryClient();
+  const navigate = useNavigate();
 
   const { data, isLoading, isError } = useQuery({
     queryKey: ["users"],
@@ -36,6 +38,12 @@ const Users = () => {
       await queryClient.invalidateQueries({ queryKey: ["users"] });
     },
   });
+
+  const viewUser = (_id: string) => {
+    setTimeout(() => {
+      navigate(`/users/${_id}`);
+    }, 2000);
+  };
 
   if (isLoading) return <p className="text-gray-400">Loading users...</p>;
   if (isError) return <p className="text-red-400">Error loading users</p>;
@@ -77,7 +85,10 @@ const Users = () => {
                   >
                     Delete
                   </button>
-                  <button className="cursor-pointer px-3 py-1 bg-green-600 rounded-md text-white text-sm hover:bg-green-500 flex items-center gap-1">
+                  <button
+                    onClick={() => viewUser(user._id)}
+                    className="cursor-pointer px-3 py-1 bg-green-600 rounded-md text-white text-sm hover:bg-green-500 flex items-center gap-1"
+                  >
                     View
                   </button>
                 </td>

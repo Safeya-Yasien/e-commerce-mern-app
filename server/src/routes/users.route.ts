@@ -13,11 +13,11 @@ import {
 
 router.post("/signup", signup);
 router.post("/login", login);
+router.get("/", getUsers);
 router.post("/add", addUser);
 router.put("/update/:id", updateUser);
-router.delete("/delete/:id", deleteUser);
-router.get("/", getUsers);
 router.get("/:id", getUserById);
+router.delete("/delete/:id", deleteUser);
 router.delete("/", deleteAllUsers);
 
 export default router;

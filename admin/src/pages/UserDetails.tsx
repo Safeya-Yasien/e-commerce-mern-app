@@ -2,9 +2,9 @@ import { useQuery } from "@tanstack/react-query";
 import { useParams, useNavigate } from "react-router";
 import { ArrowLeft } from "lucide-react";
 
-const BASE_URL = `${import.meta.env.VITE_API_URL}`;
+const BASE_URI = `${import.meta.env.VITE_API_URI}/api/users`;
 
-const UserPage = () => {
+const UserDetailPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -15,7 +15,7 @@ const UserPage = () => {
   } = useQuery({
     queryKey: ["user", id],
     queryFn: async () => {
-      const res = await fetch(`${BASE_URL}/user/${id}`);
+      const res = await fetch(`${BASE_URI}/${id}`);
       return await res.json();
     },
   });
@@ -77,14 +77,14 @@ const UserPage = () => {
           </div>
 
           <div className="bg-[#2F343B] p-4 rounded-xl">
-            <p className="text-gray-400 text-sm">Age</p>
-            <p className="text-lg font-medium">{user.age || "—"}</p>
+            <p className="text-gray-400 text-sm">Role</p>
+            <p className="text-lg font-medium">{user.role || "—"}</p>
           </div>
 
           <div className="bg-[#2F343B] p-4 rounded-xl">
             <p className="text-gray-400 text-sm">Joined At</p>
             <p className="text-lg font-medium">
-              {new Date(user.createdAt).toLocaleDateString()}
+              {new Date(user.created_at).toLocaleDateString()}
             </p>
           </div>
         </div>
@@ -102,4 +102,4 @@ const UserPage = () => {
   );
 };
 
-export default UserPage;
+export default UserDetailPage;
