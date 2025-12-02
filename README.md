@@ -241,7 +241,11 @@
 
 ### 100. Then active view product button
 
-### 101.
+### 101. AFter i add 'optional()' to \_id in productSchema.ts file i faced a problem in "ProductsList" page because i use "\_id" in all actions
+
+    i solved it by adding interface IProduct in "ProductsList" page instead of IProductForm
+
+### 102. Handle Edit event in "ProductsList" page
 
 ---
 

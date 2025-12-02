@@ -14,24 +14,25 @@ const Home = () => {
   });
 
   // products
-  // const { data: productsData, isLoading: productsLoading } = useQuery({
-  //   queryKey: ["products"],
-  //   enabled: !!token,
-  //   queryFn: async () => {
-  //     const token = localStorage.getItem("JWT");
-  //     const res = await fetch(`${BASE_URL}/products`, {
-  //       headers: { Authorization: `Bearer ${token}` },
-  //     });
-  //     const json = await res.json();
-  //     return json.data;
-  //   },
-  // });
+  const { data: productsData, isLoading: productsLoading } = useQuery({
+    queryKey: ["products"],
+    queryFn: async () => {
+      const token = localStorage.getItem("JWT");
+      const res = await fetch(`${BASE_URL}/products`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      const json = await res.json();
+      return json.data;
+    },
+  });
 
   if (usersLoading)
-    // if (usersLoading || productsLoading)
-    return (
-      <div className="text-center text-gray-400 mt-10">Loading summary...</div>
-    );
+    if (usersLoading || productsLoading)
+      return (
+        <div className="text-center text-gray-400 mt-10">
+          Loading summary...
+        </div>
+      );
 
   return (
     <div className="min-h-screen text-white p-8">
@@ -48,14 +49,14 @@ const Home = () => {
         </div>
 
         {/* products */}
-        {/* <div className="bg-white/10 p-6 rounded-2xl shadow-lg text-center">
+        <div className="bg-white/10 p-6 rounded-2xl shadow-lg text-center">
           <h2 className="text-lg font-medium text-gray-300 mb-2">
             Total Products
           </h2>
           <p className="text-4xl font-bold text-green-400">
             {productsData?.length || 0}
           </p>
-        </div> */}
+        </div>
       </div>
     </div>
   );
