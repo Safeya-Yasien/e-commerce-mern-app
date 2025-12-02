@@ -1,8 +1,17 @@
-import type { IProductForm } from "@/schemas/productSchema";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router";
 
 const BASE_URL = `${import.meta.env.VITE_API_URI}/api/products`;
+
+interface IProduct {
+  _id: string;
+  name: string;
+  category: string;
+  price: number;
+  image: string;
+  description: string;
+  inStock: boolean;
+}
 
 const ProductsList = () => {
   const queryClient = useQueryClient();
@@ -61,7 +70,7 @@ const ProductsList = () => {
         </thead>
 
         <tbody>
-          {products?.data.map((product: IProductForm, index: number) => (
+          {products?.data.map((product: IProduct, index: number) => (
             <tr
               key={product._id}
               className="text-gray-200 border-b border-gray-700 hover:bg-[#2F343B] transition"
