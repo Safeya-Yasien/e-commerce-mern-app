@@ -279,7 +279,14 @@
 
 ### 116. Add "SummaryCard" component for "Dashboard"
 
+### 117. Add Responsive for dashboard
 
+    - First install "sheet" from "shadcn"
+    - add menu icon in "header"
+    - swap "search" with "profile" in "header"
+    - add "mobileSidebar" in "header"
+
+### 118.
 
 ---
 

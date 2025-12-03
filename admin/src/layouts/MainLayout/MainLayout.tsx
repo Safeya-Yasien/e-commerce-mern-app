@@ -5,7 +5,7 @@ const MainLayout = () => {
   return (
     <div className="bg-[#1C2024] h-screen flex p-4 gap-4">
       {/* Sidebar */}
-      <aside className="bg-[#181B1F] p-4 rounded-2xl w-[250px]">
+      <aside className="bg-[#181B1F] p-4 rounded-2xl w-[250px] hidden lg:flex">
         <Sidebar />
       </aside>
 

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { User } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import SearchBar from "../SearchBar";
+import MobileSidebar from "./MobileSidebar";
 
 const BASE_URL = `${import.meta.env.VITE_API_URL}`;
 
@@ -43,6 +44,15 @@ const Header = () => {
 
   return (
     <header className="text-white flex items-center justify-between relative bg-[#181B1F] rounded-2xl p-4">
+      {/* search + menu */}
+      <div className="flex items-center gap-4">
+        <div className="lg:hidden">
+          <MobileSidebar />
+        </div>
+        <SearchBar />
+      </div>
+
+      {/* profile */}
       <div className="flex items-center gap-2 relative">
         {token && (
           <div className="relative">
@@ -63,10 +73,6 @@ const Header = () => {
             )}
           </div>
         )}
-      </div>
-
-      <div className="flex items-center">
-        <SearchBar />
       </div>
     </header>
   );
