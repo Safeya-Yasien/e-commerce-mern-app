@@ -31,6 +31,7 @@ const router = createBrowserRouter([
         ),
       },
 
+      // products route
       {
         path: "products",
         element: (
@@ -50,6 +51,15 @@ const router = createBrowserRouter([
       },
 
       {
+        path: "products/update/:id",
+        element: (
+          <ProtectedRoute>
+            <AddProductPage />
+          </ProtectedRoute>
+        ),
+      },
+
+      {
         path: "products/:id",
         element: (
           <ProtectedRoute>
@@ -58,6 +68,7 @@ const router = createBrowserRouter([
         ),
       },
 
+      // users route
       {
         path: "users",
         element: (
@@ -69,6 +80,15 @@ const router = createBrowserRouter([
 
       {
         path: "users/add-user",
+        element: (
+          <ProtectedRoute>
+            <AddUserPage />
+          </ProtectedRoute>
+        ),
+      },
+
+      {
+        path: "users/update/:id",
         element: (
           <ProtectedRoute>
             <AddUserPage />

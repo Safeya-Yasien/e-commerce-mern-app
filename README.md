@@ -247,6 +247,20 @@
 
 ### 102. Handle Edit event in "ProductsList" page
 
+## Back to server
+
+### 103. Add "update" route in "products.route.ts
+
+### 104. Add "updateProduct" function in "products.controller.ts"
+
+## Back to admin
+
+### 105. Add "editProduct" function in "ProductsList" and navigate to "AddProductPage"
+
+### 106. Handle "AddProductPage" to contain both cases "Add" and "Update"
+
+### 107. 
+
 ---
 
 ### use axios or fetch

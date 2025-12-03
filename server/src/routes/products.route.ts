@@ -9,9 +9,9 @@ import {
   deleteProduct,
 } from "../controllers/products.controller";
 
+router.get("/", getProducts);
 router.post("/add", addProduct);
 router.put("/update/:id", updateProduct);
-router.get("/", getProducts);
 router.get("/:id", getProductById);
 router.delete("/delete/:id", deleteProduct);
 router.delete("/", deleteAllProducts);

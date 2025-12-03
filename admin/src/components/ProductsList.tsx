@@ -48,7 +48,7 @@ const ProductsList = () => {
   };
 
   const editProduct = (id: string) => {
-    navigate(`/products/edit-product/${id}`);
+    navigate(`/products/update/${id}`);
   };
 
   return (
