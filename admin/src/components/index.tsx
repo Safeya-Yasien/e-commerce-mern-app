@@ -1,3 +1,4 @@
 import InputField from "./InputField";
+import SummaryCard from "./SummaryCard";
 
-export { InputField };
+export { InputField , SummaryCard };

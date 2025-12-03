@@ -277,6 +277,10 @@
 
 ### 115. Now finished the "DeleteButton" for delete product and user with custom confirmation message
 
+### 116. Add "SummaryCard" component for "Dashboard"
+
+
+
 ---
 
 # admin
