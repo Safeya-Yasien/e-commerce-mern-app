@@ -27,13 +27,10 @@ const Home = () => {
     },
   });
 
-  if (usersLoading)
-    if (usersLoading || productsLoading)
-      return (
-        <div className="text-center text-gray-400 mt-10">
-          Loading summary...
-        </div>
-      );
+  if (usersLoading || productsLoading)
+    return (
+      <div className="text-center text-gray-400 mt-10">Loading summary...</div>
+    );
 
   return (
     <div className="min-h-screen text-white p-8">
