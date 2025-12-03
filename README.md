@@ -291,8 +291,6 @@
 
 ### use axios or fetch
 
-### use confirm message before delete
-
 ### 70. How to handle password field in 'Add User' page
 
 # client
