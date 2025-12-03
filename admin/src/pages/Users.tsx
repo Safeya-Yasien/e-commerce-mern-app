@@ -1,4 +1,5 @@
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { DeleteButton } from "@/components/ui";
+import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router";
 
 const BASE_URL = `${import.meta.env.VITE_API_URI}/api/users`;
@@ -11,7 +12,6 @@ interface IUser {
 }
 
 const Users = () => {
-  const queryClient = useQueryClient();
   const navigate = useNavigate();
 
   const { data, isLoading, isError } = useQuery({
@@ -26,16 +26,6 @@ const Users = () => {
         console.error("Token retrieval error:", err);
         throw err;
       }
-    },
-  });
-
-  const deleteUser = useMutation({
-    mutationKey: ["deleteUser"],
-    mutationFn: async (_id: string) => {
-      return await fetch(`${BASE_URL}/delete/${_id}`, { method: "DELETE" });
-    },
-    onSuccess: async () => {
-      await queryClient.invalidateQueries({ queryKey: ["users"] });
     },
   });
 
@@ -79,12 +69,13 @@ const Users = () => {
                   <button className="cursor-pointer px-3 py-1 bg-blue-600 rounded-md text-white text-sm hover:bg-blue-500 flex items-center gap-1">
                     Edit
                   </button>
-                  <button
-                    onClick={() => deleteUser.mutate(user._id)}
-                    className="cursor-pointer px-3 py-1 bg-red-600 rounded-md text-white text-sm hover:bg-red-500 flex items-center gap-1"
-                  >
-                    Delete
-                  </button>
+                  <DeleteButton
+                    id={user._id}
+                    baseUrl={BASE_URL}
+                    label={"user"}
+                    itemName={user.fullName}
+                    queryKey={"users"}
+                  />
                   <button
                     onClick={() => viewUser(user._id)}
                     className="cursor-pointer px-3 py-1 bg-green-600 rounded-md text-white text-sm hover:bg-green-500 flex items-center gap-1"

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { User } from "lucide-react";
-import SearchBar from "./SearchBar";
 import { useQuery } from "@tanstack/react-query";
+import SearchBar from "../SearchBar";
 
 const BASE_URL = `${import.meta.env.VITE_API_URL}`;
 

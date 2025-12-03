@@ -1,5 +1,4 @@
-import Header from "@/components/Header";
-import Sidebar from "@/components/Sidebar";
+import { Header, Sidebar } from "@/components/common";
 import { Outlet } from "react-router";
 
 const MainLayout = () => {
@@ -12,7 +11,7 @@ const MainLayout = () => {
 
       <div className="flex-1 grid grid-rows-[70px_1fr] gap-4">
         {/* Header */}
-          <Header />
+        <Header />
 
         {/* Main content */}
         <main className="bg-[#252A30] rounded-2xl p-6 overflow-auto">

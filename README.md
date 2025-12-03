@@ -259,15 +259,43 @@
 
 ### 106. Handle "AddProductPage" to contain both cases "Add" and "Update"
 
-### 107. 
+### 107. First enhance "ProductsList" page to separate files
+
+### 108. Move IProduct interface into "product.types.ts" into "types" directory
+
+### 109. Add "IProductsResponse" interface into "product.types.ts" into "types" directory and use it in useQuery
+
+### 110. I create "common" folder inside "components" directory and move "Header" and "Sidebar" components into it and create "index.ts" file inside "common" directory
+
+### 111. I create "ui" folder inside "components" directory and create "DeleteButton" inside it and create "index.ts" file inside "ui" directory
+
+### 112. I create "DeleteButton" for delete product and user with custom confirmation message
+
+### 113. Download "ShadCn" to use "AlertDialog"
+
+### 114. Add "compilerOptions" in "tsconfig.json" file
+
+### 115. Now finished the "DeleteButton" for delete product and user with custom confirmation message
 
 ---
+
+# admin
+
+### add skeleton when loading
+
+### add loading, and error message when fetching data
+
+### add not found page
+
+### handle responsive admin which make sidebar close and open
 
 ### use axios or fetch
 
 ### use confirm message before delete
 
 ### 70. How to handle password field in 'Add User' page
+
+# client
 
 ### 35. Use Timer to show the countdown
 

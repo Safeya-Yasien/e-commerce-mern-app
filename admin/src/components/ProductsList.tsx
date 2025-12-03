@@ -1,23 +1,14 @@
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import type { IProduct, IProductsResponse } from "@/types/product.types";
+import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router";
+import { DeleteButton } from "./ui";
 
 const BASE_URL = `${import.meta.env.VITE_API_URI}/api/products`;
 
-interface IProduct {
-  _id: string;
-  name: string;
-  category: string;
-  price: number;
-  image: string;
-  description: string;
-  inStock: boolean;
-}
-
 const ProductsList = () => {
-  const queryClient = useQueryClient();
   const navigate = useNavigate();
 
-  const { data: products } = useQuery({
+  const { data: products } = useQuery<IProductsResponse>({
     queryKey: ["product"],
     queryFn: async () => {
       try {
@@ -31,15 +22,6 @@ const ProductsList = () => {
         console.error("Fetch products failed:", err);
         throw err;
       }
-    },
-  });
-
-  const deleteProduct = useMutation({
-    mutationFn: async (_id: string) => {
-      return await fetch(`${BASE_URL}/delete/${_id}`, { method: "DELETE" });
-    },
-    onSuccess: async () => {
-      await queryClient.invalidateQueries({ queryKey: ["product"] });
     },
   });
 
@@ -90,12 +72,14 @@ const ProductsList = () => {
                 >
                   Edit
                 </button>
-                <button
-                  onClick={() => deleteProduct.mutate(product._id)}
-                  className="cursor-pointer px-3 py-1 bg-red-600 rounded-md text-white text-sm hover:bg-red-500 flex items-center gap-1"
-                >
-                  Delete
-                </button>
+
+                <DeleteButton
+                  id={product._id}
+                  baseUrl={BASE_URL}
+                  label={"product"}
+                  itemName={product.name}
+                  queryKey={"product"}
+                />
                 <button
                   onClick={() => viewProduct(product._id)}
                   className="cursor-pointer px-3 py-1 bg-green-600 rounded-md text-white text-sm hover:bg-green-500 flex items-center gap-1"
