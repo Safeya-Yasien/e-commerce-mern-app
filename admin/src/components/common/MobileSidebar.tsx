@@ -10,7 +10,7 @@ const MobileSidebar = () => {
       </SheetTrigger>
       <SheetContent
         side="left"
-        className="bg-[#181B1F] text-white py-8 px-4 w-80 border-r-0"
+        className="bg-[#181B1F] text-white py-8 px-4 w-60 border-r-0"
       >
         <Sidebar />
       </SheetContent>
