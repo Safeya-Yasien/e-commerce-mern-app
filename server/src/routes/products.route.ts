@@ -8,10 +8,11 @@ import {
   updateProduct,
   deleteProduct,
 } from "../controllers/products.controller";
+import multerMiddleware from "../middlewares/multerMiddleware";
 
 router.get("/", getProducts);
-router.post("/add", addProduct);
-router.put("/update/:id", updateProduct);
+router.post("/add", multerMiddleware, addProduct);
+router.put("/update/:id", multerMiddleware, updateProduct);
 router.get("/:id", getProductById);
 router.delete("/delete/:id", deleteProduct);
 router.delete("/", deleteAllProducts);

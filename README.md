@@ -302,10 +302,26 @@
     8- So for now because "cloudinary url" is not working I will use separate api key, api secret and cloud name in ".env" file
     9- and now it working successfully
 
-
 ### 119. install "multer" for uploading files
-    1-  install "multer" using npm
-    - add 
+
+    1- install "multer" using npm
+    2- add storage in "index.ts" file and use "memoryStorage()" to store the files in memory in RAM and i didn't use "diskStorage()" because i want to use cloudinary for uploading files and i don't want to save the files in the disk
+    3- create "cloudinary.ts" file in "lib" directory and remove  "cloudinary.config" from index.ts in it
+    4- create 'multerMiddleware.ts' file in "middlewares" directory to recieve the file from the form and save it in the database and we define type of the file in the middleware "single('image')"
+    5- add "multerMiddleware" in "products.route.ts" file to use the middleware
+    6- edit addProduct function in "products.controller.ts" file to use the middleware and add the image to the product
+
+### 120. Just questions what lib and utils folders means?
+
+    - فولدر ال lib ده الل بنحط فيه الخدمات الأساسية الل بنربط بيها خدمات خارجيه أو أنظمه جوا المشروع زى db connection, stripe setup, cloudinary setup, etc.
+    - فولدر ال utlis ده لل functions الصغيره الل بستخدمها أكتر من مرة
+
+### 121. just flow of add image in product
+
+    1- Express م بيعرف يستقبل ملفات لو بعتله صوره هتوصله بصيغه multipart/form-data و express م فاهمها ف بنستخدم multer library ويفكه
+    2- استخدمنا memory storage نحظ الصوره على الرام على شكل buffer وبعدين نرفعها على cloudinary
+
+### 122. now i can upload image in product
 
 ---
 

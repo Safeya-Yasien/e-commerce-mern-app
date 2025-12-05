@@ -1,3 +1,4 @@
+import cloudinary from "../lib/cloudinary";
 import Product from "../models/product.model";
 
 const getProducts = async (req: any, res: any) => {
@@ -12,7 +13,26 @@ const getProducts = async (req: any, res: any) => {
 const addProduct = async (req: any, res: any) => {
   try {
     const productData = req.body;
-    const product = new Product(productData);
+
+    let image = null;
+
+    if (req.file) {
+      const uploadedImage: any = await new Promise((resolve, reject) => {
+        const stream = cloudinary.uploader.upload_stream(
+          {
+            folder: "products",
+          },
+          (err, result) => {
+            if (err) reject(err);
+            else resolve(result);
+          }
+        );
+        stream.end(req.file.buffer);
+      });
+      image = uploadedImage.secure_url;
+    }
+
+    const product = new Product({ ...productData, image });
     await product.save();
 
     res.status(201).json({
@@ -21,6 +41,7 @@ const addProduct = async (req: any, res: any) => {
       success: true,
     });
   } catch (err) {
+    console.error("Add product error:", err);
     res.status(500).json({ msg: "error", data: err, success: false });
   }
 };
