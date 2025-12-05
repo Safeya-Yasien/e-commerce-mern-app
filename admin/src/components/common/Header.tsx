@@ -65,8 +65,8 @@ const Header = () => {
             </button>
 
             {menuOpen && (
-              <div className="absolute left-0 mt-2 w-48 bg-gray-800 rounded-lg shadow-lg p-3 text-sm z-10">
-                <p className="text-gray-300">
+              <div className="absolute -right-3 mt-2 w-48 bg-gray-800 rounded-lg shadow-lg p-3 text-sm z-10">
+                <p className="text-gray-300 ">
                   {data?.data?.email || "user@email.com"}
                 </p>
               </div>
