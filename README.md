@@ -285,20 +285,45 @@
     - add menu icon in "header"
     - swap "search" with "profile" in "header"
     - add "mobileSidebar" in "header"
+    - make pages responsive
+    - starts with "Home" page
 
-### 118.
+## Back to server
+
+### 118. Add Image in product using "Cloudinary"
+
+    1- login to cloudinary
+    2- install "cloudinary" using npm
+    3- add 'cloudinary cloud_name', 'cloudinary api_key', 'cloudinary api_secret' in '.env' file
+    4- add "cloudinary.config" in 'index.ts' file with "secure: true" to convert the url to https, and add 'cloud_name', 'api_key', 'api_secret' in "cloudinary.config"
+    5- I found we can use "CLOUDINARY_URL" in .env instead of "cloudinary cloud_name", "cloudinary api_key", "cloudinary api_secret"
+    6- Then just write "cloudinary.config" in "index.ts" without any config and it will work
+    7- test if cloudinary is working by console.log(cloudinary.config()) if print "{}" then it's not working it must print "cloud_name", "api_key", "api_secret"
+    8- So for now because "cloudinary url" is not working I will use separate api key, api secret and cloud name in ".env" file
+    9- and now it working successfully
+
+
+### 119. install "multer" for uploading files
+    1-  install "multer" using npm
+    - add 
 
 ---
 
+# server
+
+### test if cloudinary is working by console.log(cloudinary.config()) using cloudinary url
+
 # admin
+
+### There is a problem in responsive in main layout
+
+### add dark mode in dashboard
 
 ### add skeleton when loading
 
 ### add loading, and error message when fetching data
 
 ### add not found page
-
-### handle responsive admin which make sidebar close and open
 
 ### use axios or fetch
 
