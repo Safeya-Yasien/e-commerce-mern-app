@@ -17,6 +17,7 @@ const ProductsList = () => {
         if (!response.ok) {
           throw new Error(`Server responded with ${response.status}`);
         }
+
         return await response.json();
       } catch (err) {
         console.error("Fetch products failed:", err);
@@ -32,6 +33,8 @@ const ProductsList = () => {
   const editProduct = (id: string) => {
     navigate(`/products/update/${id}`);
   };
+
+  console.log("products", products);
 
   return (
     <div className="bg-[#252A30] rounded-2xl p-6 overflow-auto h-full">
@@ -61,31 +64,39 @@ const ProductsList = () => {
               <td className="p-3">{product.name}</td>
               <td className="p-3">{product.category}</td>
               <td className="p-3">{product.price}</td>
-              <td className="p-3">{product.image}</td>
+              <td className="p-3">
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  className="w-24 max-h-12 object-cover rounded-md"
+                />
+              </td>
               <td className="p-3">{product.description}</td>
               <td className="p-3">{product.inStock ? "Yes" : "No"}</td>
 
-              <td className="p-3 flex space-x-2">
-                <button
-                  onClick={() => editProduct(product._id)}
-                  className="cursor-pointer px-3 py-1 bg-blue-600 rounded-md text-white text-sm hover:bg-blue-500 flex items-center gap-1"
-                >
-                  Edit
-                </button>
+              <td className="p-3 ">
+                <div className="flex items-center gap-2 ">
+                  <button
+                    onClick={() => editProduct(product._id)}
+                    className="cursor-pointer px-3 py-1 bg-blue-600 rounded-md text-white text-sm hover:bg-blue-500 flex items-center gap-1"
+                  >
+                    Edit
+                  </button>
 
-                <DeleteButton
-                  id={product._id}
-                  baseUrl={BASE_URL}
-                  label={"product"}
-                  itemName={product.name}
-                  queryKey={"product"}
-                />
-                <button
-                  onClick={() => viewProduct(product._id)}
-                  className="cursor-pointer px-3 py-1 bg-green-600 rounded-md text-white text-sm hover:bg-green-500 flex items-center gap-1"
-                >
-                  View
-                </button>
+                  <DeleteButton
+                    id={product._id}
+                    baseUrl={BASE_URL}
+                    label={"product"}
+                    itemName={product.name}
+                    queryKey={"product"}
+                  />
+                  <button
+                    onClick={() => viewProduct(product._id)}
+                    className="cursor-pointer px-3 py-1 bg-green-600 rounded-md text-white text-sm hover:bg-green-500 flex items-center gap-1"
+                  >
+                    View
+                  </button>
+                </div>
               </td>
             </tr>
           ))}

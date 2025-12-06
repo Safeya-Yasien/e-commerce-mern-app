@@ -337,7 +337,9 @@
 
 ### 127. Use formData to send data to the server instead of json and remove "Content-Type" header
 
-### 128.
+### 128. Handle display image in "ProductsList" page
+
+### 129.
 
 ---
 
