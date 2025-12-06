@@ -323,6 +323,22 @@
 
 ### 122. now i can upload image in product
 
+## Back to client Admin
+
+### 123. in "AddProductForm" in "AddProduct" page change input type="file"
+
+### 124. Change "image" type in "productSchema.ts" file to "file()" and add strict validation for image size and image type
+
+### 125. i faced an error in "productSchema.ts" when i define type of "image" as file() in zod schema this error "Invalid input: expected file, received FileList"
+
+    I solved it by adding "any()" in zod schema temporarily
+
+### 126. Add files.length === 1 validation in "productSchema.ts" file to make image required
+
+### 127. Use formData to send data to the server instead of json and remove "Content-Type" header
+
+### 128.
+
 ---
 
 # server

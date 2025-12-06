@@ -1,8 +1,4 @@
-import {
-  ProductSchema,
-  type IProductForm,
-  type IProductFormInput,
-} from "@/schemas/productSchema";
+import { ProductSchema, type IProductFormInput } from "@/schemas/productSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
@@ -21,13 +17,10 @@ const AddProductForm = () => {
   });
 
   const mutation = useMutation({
-    mutationFn: async (formData: IProductForm) => {
+    mutationFn: async (formData: FormData) => {
       return await fetch(`${BASE_URL}/add`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
+        body: formData,
       });
     },
     onSuccess: () => {
@@ -41,7 +34,16 @@ const AddProductForm = () => {
   });
   const onSubmit = async (data: IProductFormInput) => {
     const parsed = ProductSchema.parse(data);
-    mutation.mutate(parsed);
+
+    const formData = new FormData();
+    formData.append("name", parsed.name);
+    formData.append("category", parsed.category);
+    formData.append("price", parsed.price.toString());
+    formData.append("description", parsed.description);
+    formData.append("inStock", parsed.inStock.toString());
+    formData.append("image", parsed.image[0]);
+
+    mutation.mutate(formData);
   };
 
   return (
@@ -120,12 +122,12 @@ const AddProductForm = () => {
         <div>
           <label className="text-gray-300 mb-1 block">Image</label>
           <input
-            type="text"
+            type="file"
             {...register("image")}
-            placeholder="Enter product image"
             className="w-full px-4 py-2 rounded-md bg-[#1C2024] text-white border border-gray-600 focus:outline-none focus:border-blue-500"
           />
-          {errors && <p className="text-red-500">{errors.image?.message}</p>}
+
+          {errors && <p className="text-red-500">{errors.image?.message?.toString()}</p>}
         </div>
 
         {/* inStock */}
