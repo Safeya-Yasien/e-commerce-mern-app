@@ -339,7 +339,11 @@
 
 ### 128. Handle display image in "ProductsList" page
 
-### 129.
+## Back to server
+
+### 129. Display product image in productDetails page
+
+### 130. Handle Edit product because i forget
 
 ---
 

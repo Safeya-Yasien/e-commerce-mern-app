@@ -30,7 +30,6 @@ const ProductDetailsPage = () => {
       </div>
     );
 
-  // 3. Error State (or data not found)
   if (error || !response?.data)
     return (
       <div className="flex justify-center items-center h-screen bg-[#1C1F24] text-red-500">
@@ -54,16 +53,16 @@ const ProductDetailsPage = () => {
       {/* Product Details Card */}
       <div className="max-w-4xl mx-auto bg-[#252A30] rounded-2xl p-8 shadow-xl border border-gray-700">
         <h2 className="text-3xl font-semibold mb-6 text-center text-white border-b border-gray-700 pb-4">
-          {product.name} {/* Assuming the product has a 'name' field */}
+          {product.name}
         </h2>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Column 1: Image Placeholder */}
           <div className="lg:col-span-1 bg-[#2F343B] p-4 rounded-xl flex items-center justify-center h-full">
-            <div className="text-gray-400 text-xl text-center p-8">
-              [Image of {product.name}]
-            </div>
-            {/* You would replace this div with an actual <img> tag */}
+            <img
+              src={product.image}
+              alt={product.name}
+              className="w-full h-full object-cover rounded-lg"
+            />
           </div>
 
           {/* Column 2 & 3: Details */}
