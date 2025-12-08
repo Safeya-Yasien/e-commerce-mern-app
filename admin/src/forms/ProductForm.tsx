@@ -1,12 +1,15 @@
 import { ProductSchema, type IProductFormInput } from "@/schemas/productSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
+import { useParams } from "react-router";
 import { toast } from "react-toastify";
 
 const BASE_URL = `${import.meta.env.VITE_API_URI}/api/products`;
 
-const AddProductForm = () => {
+const ProductForm = () => {
+  const { id } = useParams();
+
   const {
     register,
     handleSubmit,
@@ -16,15 +19,39 @@ const AddProductForm = () => {
     resolver: zodResolver(ProductSchema),
   });
 
+  const { isLoading } = useQuery({
+    queryKey: ["product", id],
+    queryFn: async () => {
+      const res = await fetch(`${BASE_URL}/${id}`);
+      const data = await res.json();
+      return data.data;
+    },
+    enabled: !!id,
+    onSuccess: (data) => {
+      reset({
+        name: data.name,
+        category: data.category,
+        price: data.price,
+        description: data.description,
+        inStock: data.inStock.toString(),
+      });
+    },
+  });
+
   const mutation = useMutation({
+    mutationKey: ["product", id],
+
     mutationFn: async (formData: FormData) => {
-      return await fetch(`${BASE_URL}/add`, {
-        method: "POST",
+      const url = id ? `${BASE_URL}/update/${id}` : `${BASE_URL}/add`;
+      const method = id ? "PUT" : "POST";
+
+      return await fetch(url, {
+        method,
         body: formData,
       });
     },
     onSuccess: () => {
-      toast.success(`Product added  successfully!`);
+      toast.success(`Product ${id ? "updated" : "added"}  successfully!`);
       reset();
     },
 
@@ -32,6 +59,7 @@ const AddProductForm = () => {
       toast.error(error.message);
     },
   });
+
   const onSubmit = async (data: IProductFormInput) => {
     const parsed = ProductSchema.parse(data);
 
@@ -43,9 +71,13 @@ const AddProductForm = () => {
     formData.append("inStock", parsed.inStock.toString());
     formData.append("image", parsed.image[0]);
 
+    console.log("Form Data:", formData);
     mutation.mutate(formData);
   };
 
+  if (isLoading) {
+    return <p className="text-white">Loading product...</p>;
+  }
   return (
     <form className="grid grid-cols-2 gap-6" onSubmit={handleSubmit(onSubmit)}>
       {/* Left Column */}
@@ -94,7 +126,7 @@ const AddProductForm = () => {
             type="submit"
             className="cursor-pointer w-full bg-blue-600 hover:bg-blue-500 text-white py-2 rounded-md font-semibold transition"
           >
-            Add Product
+            {id ? "Update" : "Add"} Product
           </button>
         </div>
       </div>
@@ -127,7 +159,9 @@ const AddProductForm = () => {
             className="w-full px-4 py-2 rounded-md bg-[#1C2024] text-white border border-gray-600 focus:outline-none focus:border-blue-500"
           />
 
-          {errors && <p className="text-red-500">{errors.image?.message?.toString()}</p>}
+          {errors && (
+            <p className="text-red-500">{errors.image?.message?.toString()}</p>
+          )}
         </div>
 
         {/* inStock */}
@@ -147,4 +181,4 @@ const AddProductForm = () => {
     </form>
   );
 };
-export default AddProductForm;
+export default ProductForm;

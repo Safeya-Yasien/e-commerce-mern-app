@@ -345,6 +345,14 @@
 
 ### 130. Handle Edit product because i forget
 
+    - I change "AddProductForm" to "ProductForm"
+    - change text depend on status add or update
+    - handle get product using useQuery in "ProductForm"
+    - use reset to display the data in "ProductForm" which i used react-hook-form will handle the form data without needing to add value
+    - there is a problem in onSuccess of useQuery in "ProductForm" because i use "inStock" in zod schema and it's type is boolean but in "ProductForm" i use it as string
+
+### 131.
+
 ---
 
 # server
@@ -352,6 +360,8 @@
 ### test if cloudinary is working by console.log(cloudinary.config()) using cloudinary url
 
 # admin
+
+### enhance shape of formData in "ProductForm" instead of write each line of formData
 
 ### There is a problem in responsive in main layout
 

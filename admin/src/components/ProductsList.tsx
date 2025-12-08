@@ -34,7 +34,7 @@ const ProductsList = () => {
     navigate(`/products/update/${id}`);
   };
 
-  console.log("products", products);
+
 
   return (
     <div className="bg-[#252A30] rounded-2xl p-6 overflow-auto h-full">
