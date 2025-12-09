@@ -2,7 +2,7 @@
 
 ## Step-by-step Dev Log with client folder first
 
-### 1. Create a new project called `e-commerce-mern-app`
+##### 1. Create a new project called `e-commerce-mern-app`
 
 ### 2. create main directories "client", "server" and "admin"
 
