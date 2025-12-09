@@ -360,6 +360,38 @@
 
 ##### 132. Until now every thing is working fine but i faced a problem with "preview and update" image
 
+    - before i told you how i solved this problem i will ask you a question
+    - How image is stored in the database using cloudinary?
+    - when i send data from frontend as formData to the server until i can send the image in the formData as file because json can't handle file type
+    - so the image sended as file this file contain length and files "image"
+    - so i send the image which is the index 0 because index 1 is the file and length is the length of the file
+    - the server get the image as string contain file name, file type file size and file buffer
+    - then i used cloudinary which take the file buffer and upload it to cloudinary and it handle it and convert it to url
+    - and i send the url to the database
+
+    - now after i send the image to the database i can display it in the frontend
+    - but how i can update it in the database?
+        1- first you will not found the image in req.body because it's a file and it's not in the body of the request
+        2- so if you want the old image of the product you will get the product data of the id and then you will find the image in the data of the product but how you can update it?
+
+##### 133. How can i update the image in the database in "products.controller.ts" file?
+
+    - first i will get old product image from product data
+    - then get the new image from req.file if exist
+    - then use the same function i used in addProduct to upload the image to cloudinary and get the url
+    - then make old image  =  new image
+    - then use findByIdAndUpdate to update the product
+
+## Back to admin
+
+##### 134. I want to preview image in "update" mode
+
+    - first i add state "previewImage" in "ProductForm"
+    - then i use setPreviewImage in useEffect to set the previewImage to the image of the product
+    - but i faced an error when using setPreviewImage direct after reset because i'm trying to change state twice at the same time can cause rerenders and i will get an error
+    - so i use setTimeout to wait for the state to be updated
+    - finally i preview the image using URL.createObjectURL
+
 ---
 
 # server

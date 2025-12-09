@@ -1,7 +1,7 @@
 import { ProductSchema, type IProductFormInput } from "@/schemas/productSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router";
 import { toast } from "react-toastify";
@@ -10,6 +10,7 @@ const BASE_URL = `${import.meta.env.VITE_API_URI}/api/products`;
 
 const ProductForm = () => {
   const { id } = useParams();
+  const [previewImage, setPreviewImage] = useState<string | null>(null);
 
   const {
     register,
@@ -37,11 +38,13 @@ const ProductForm = () => {
         description: product.description,
         price: product.price,
         category: product.category,
-        image: product.image[0],
         inStock: product.inStock,
       });
+
+      setTimeout(() => {
+        setPreviewImage(product.image || null);
+      }, 0);
     }
-    reset({});
   }, [id, product, reset]);
 
   const mutation = useMutation({
@@ -155,20 +158,6 @@ const ProductForm = () => {
           {errors && <p className="text-red-500">{errors.category?.message}</p>}
         </div>
 
-        {/* Image */}
-        <div>
-          <label className="text-gray-300 mb-1 block">Image</label>
-          <input
-            type="file"
-            {...register("image")}
-            className="w-full px-4 py-2 rounded-md bg-[#1C2024] text-white border border-gray-600 focus:outline-none focus:border-blue-500"
-          />
-
-          {errors && (
-            <p className="text-red-500">{errors.image?.message?.toString()}</p>
-          )}
-        </div>
-
         {/* inStock */}
         <div>
           <label className="text-gray-300 mb-1 block">inStock</label>
@@ -181,6 +170,40 @@ const ProductForm = () => {
             <option value="false">No</option>
           </select>
           {errors && <p className="text-red-500">{errors.inStock?.message}</p>}
+        </div>
+
+        {/* Image */}
+        <div>
+          <label className="text-gray-300 mb-1 block">Image</label>
+          <input
+            type="file"
+            {...register("image")}
+            className="w-full px-4 py-2 rounded-md bg-[#1C2024] text-white border border-gray-600 focus:outline-none focus:border-blue-500"
+            onChange={(e) => {
+              const file = e.target.files?.[0];
+              setPreviewImage(URL.createObjectURL(file!));
+            }}
+          />
+
+          {errors && (
+            <p className="text-red-500">{errors.image?.message?.toString()}</p>
+          )}
+
+          {previewImage && (
+            <div className="mt-2 flex justify-end">
+              <label
+                className="text-gray-300 mb-1 block sr-only"
+                htmlFor="image"
+              >
+                Preview Image
+              </label>
+              <img
+                src={previewImage}
+                alt={"preview image"}
+                className="w-32 h-32 object-cover rounded-md border border-gray-600"
+              />
+            </div>
+          )}
         </div>
       </div>
     </form>

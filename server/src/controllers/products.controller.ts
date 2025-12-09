@@ -56,11 +56,7 @@ const updateProduct = async (req: any, res: any) => {
       return;
     }
 
-    // const product = await Product.findByIdAndUpdate(id, req.body);
-    const product = await Product.findByIdAndUpdate(id, req.body, {
-      new: true,
-      runValidators: true,
-    });
+    const product = await Product.findById(id);
 
     if (!product) {
       res
@@ -69,7 +65,33 @@ const updateProduct = async (req: any, res: any) => {
       return;
     }
 
-    res.status(200).json({ msg: "success", data: product, success: true });
+    let image = product.image;
+
+    if (req.file) {
+      const uploadedImage: any = await new Promise((resolve, reject) => {
+        const stream = cloudinary.uploader.upload_stream(
+          {
+            folder: "products",
+          },
+          (err, result) => {
+            if (err) reject(err);
+            else resolve(result);
+          }
+        );
+        stream.end(req.file.buffer);
+      });
+      image = uploadedImage.secure_url;
+    }
+
+    const updatedProduct = await Product.findByIdAndUpdate(
+      id,
+      { ...req.body, image },
+      { new: true, runValidators: true }
+    );
+
+    res
+      .status(200)
+      .json({ msg: "success", data: updatedProduct, success: true });
   } catch (err) {
     res.status(500).send(err);
   }
