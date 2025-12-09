@@ -400,6 +400,8 @@
 
 # admin
 
+### add delete all product and users in "Users" page and "Products" page
+
 ### enhance shape of formData in "ProductForm" instead of write each line of formData
 
 ### There is a problem in responsive in main layout

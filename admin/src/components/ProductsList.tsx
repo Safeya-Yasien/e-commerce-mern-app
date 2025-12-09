@@ -34,8 +34,6 @@ const ProductsList = () => {
     navigate(`/products/update/${id}`);
   };
 
-
-
   return (
     <div className="bg-[#252A30] rounded-2xl p-6 overflow-auto h-full">
       <h2 className="text-white text-xl font-semibold mb-4">Products</h2>
@@ -83,6 +81,13 @@ const ProductsList = () => {
                     Edit
                   </button>
 
+                  <button
+                    onClick={() => viewProduct(product._id)}
+                    className="cursor-pointer px-3 py-1 bg-green-600 rounded-md text-white text-sm hover:bg-green-500 flex items-center gap-1"
+                  >
+                    View
+                  </button>
+
                   <DeleteButton
                     id={product._id}
                     baseUrl={BASE_URL}
@@ -90,12 +95,6 @@ const ProductsList = () => {
                     itemName={product.name}
                     queryKey={"product"}
                   />
-                  <button
-                    onClick={() => viewProduct(product._id)}
-                    className="cursor-pointer px-3 py-1 bg-green-600 rounded-md text-white text-sm hover:bg-green-500 flex items-center gap-1"
-                  >
-                    View
-                  </button>
                 </div>
               </td>
             </tr>

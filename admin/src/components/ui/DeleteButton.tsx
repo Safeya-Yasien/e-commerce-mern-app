@@ -9,7 +9,6 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { Button } from "./button";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 
@@ -48,9 +47,9 @@ const DeleteButton = ({
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild className="">
-        <Button className="cursor-pointer px-3 py-1 bg-red-600 rounded-md text-white text-sm hover:bg-red-500 flex items-center gap-1">
+        <button className="cursor-pointer px-3 py-1 bg-red-600 rounded-md text-white text-sm hover:bg-red-500 flex items-center gap-1">
           Delete
-        </Button>
+        </button>
       </AlertDialogTrigger>
       <AlertDialogContent className="bg-[#1F2328] text-white">
         <AlertDialogHeader>
