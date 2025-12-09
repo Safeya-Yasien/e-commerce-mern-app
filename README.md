@@ -343,15 +343,22 @@
 
 ### 129. Display product image in productDetails page
 
+## Back to client Admin
+
 ### 130. Handle Edit product because i forget
 
     - I change "AddProductForm" to "ProductForm"
     - change text depend on status add or update
     - handle get product using useQuery in "ProductForm"
     - use reset to display the data in "ProductForm" which i used react-hook-form will handle the form data without needing to add value
-    - there is a problem in onSuccess of useQuery in "ProductForm" because i use "inStock" in zod schema and it's type is boolean but in "ProductForm" i use it as string
+    - there is a problem in onSuccess of useQuery in "ProductForm" because in new versions of react-query it will removed because what i found that "useQuery is meant to deal with data, not with the fetch process" so it was causes alot of problems because if the data updated or get from cache it will not work
+    - so i used "useEffect" to handle the data after i fetch it
 
-### 131.
+## Back to server
+
+### 131. fix "editProduct" controller in "products.controller.ts" file by using "new:true" to display the old data before editing and "validators:true" to data validation in schema in "findByIdAndUpdate" method
+
+### 132. Until now every thing is working fine but i faced a problem with "preview and update" image
 
 ---
 

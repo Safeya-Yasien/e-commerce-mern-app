@@ -1,6 +1,7 @@
 import { ProductSchema, type IProductFormInput } from "@/schemas/productSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQuery } from "@tanstack/react-query";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router";
 import { toast } from "react-toastify";
@@ -19,7 +20,7 @@ const ProductForm = () => {
     resolver: zodResolver(ProductSchema),
   });
 
-  const { isLoading } = useQuery({
+  const { data: product, isLoading } = useQuery({
     queryKey: ["product", id],
     queryFn: async () => {
       const res = await fetch(`${BASE_URL}/${id}`);
@@ -27,16 +28,21 @@ const ProductForm = () => {
       return data.data;
     },
     enabled: !!id,
-    onSuccess: (data) => {
-      reset({
-        name: data.name,
-        category: data.category,
-        price: data.price,
-        description: data.description,
-        inStock: data.inStock.toString(),
-      });
-    },
   });
+
+  useEffect(() => {
+    if (product) {
+      reset({
+        name: product.name,
+        description: product.description,
+        price: product.price,
+        category: product.category,
+        image: product.image[0],
+        inStock: product.inStock,
+      });
+    }
+    reset({});
+  }, [id, product, reset]);
 
   const mutation = useMutation({
     mutationKey: ["product", id],
@@ -71,7 +77,6 @@ const ProductForm = () => {
     formData.append("inStock", parsed.inStock.toString());
     formData.append("image", parsed.image[0]);
 
-    console.log("Form Data:", formData);
     mutation.mutate(formData);
   };
 

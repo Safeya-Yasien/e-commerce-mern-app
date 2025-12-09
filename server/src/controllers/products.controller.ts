@@ -56,7 +56,11 @@ const updateProduct = async (req: any, res: any) => {
       return;
     }
 
-    const product = await Product.findByIdAndUpdate(id);
+    // const product = await Product.findByIdAndUpdate(id, req.body);
+    const product = await Product.findByIdAndUpdate(id, req.body, {
+      new: true,
+      runValidators: true,
+    });
 
     if (!product) {
       res
@@ -65,7 +69,7 @@ const updateProduct = async (req: any, res: any) => {
       return;
     }
 
-    res.status(200).json({ msg: "success", data: null, success: true });
+    res.status(200).json({ msg: "success", data: product, success: true });
   } catch (err) {
     res.status(500).send(err);
   }
