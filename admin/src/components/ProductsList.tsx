@@ -36,8 +36,6 @@ const ProductsList = () => {
 
   return (
     <div className="bg-[#252A30] rounded-2xl p-6 overflow-auto h-full">
-      <h2 className="text-white text-xl font-semibold mb-4">Products</h2>
-
       <table className="min-w-full border-collapse">
         <thead>
           <tr className="text-gray-300 text-left border-b border-gray-700">

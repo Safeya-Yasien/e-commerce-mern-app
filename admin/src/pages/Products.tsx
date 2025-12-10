@@ -1,8 +1,10 @@
+import { PageTitle } from "@/components/common";
 import ProductsList from "@/components/ProductsList";
 
 const ProductsPage = () => {
   return (
-    <div>
+    <div className="">
+      <PageTitle title="products" />
       <ProductsList />
     </div>
   );

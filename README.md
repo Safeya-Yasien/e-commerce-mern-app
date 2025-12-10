@@ -424,8 +424,12 @@
     - so i use setTimeout to wait for the state to be updated
     - finally i preview the image using URL.createObjectURL
 
-##### 135. Handle Edit User
+##### 135. Enhance "Users Page"
 
+    - create "PageTitle" component in "common" folder to handle the title of the page
+    - create "UsersList" component and move table from "users.tsx" to "UsersList" component
+
+##### 136. Handle Edit User
 
 ---
 
@@ -434,6 +438,8 @@
 ### test if cloudinary is working by console.log(cloudinary.config()) using cloudinary url
 
 # admin
+
+### should i move "DeleteButton" from "ui" to "components" folder?
 
 ### add delete all product and users in "Users" page and "Products" page
 
