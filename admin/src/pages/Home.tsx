@@ -1,4 +1,5 @@
 import { SummaryCard } from "@/components";
+import { PageTitle } from "@/components/common";
 import { useQuery } from "@tanstack/react-query";
 
 const BASE_URL = `${import.meta.env.VITE_API_URI}/api`;
@@ -33,10 +34,10 @@ const Home = () => {
     );
 
   return (
-    <div className="min-h-screen text-white p-8">
-      <h1 className="text-3xl font-bold mb-8">Dashboard Summary</h1>
+    <div className="min-h-screen text-white">
+      <PageTitle title="Dashboard Summary" />
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6  p-8">
         <SummaryCard title={"Total Users"} length={usersData?.length || 0} />
 
         {/* products */}
