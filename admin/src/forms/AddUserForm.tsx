@@ -72,12 +72,11 @@ const AddUserForm = () => {
 
   return (
     <form
-      className="grid grid-cols-2 gap-6 p-8"
+      className="grid grid-cols-1 md:grid-cols-2 gap-6 p-4 md:p-8"
       onSubmit={handleSubmit(onSubmit)}
     >
       {/* Left Column */}
       <div className="space-y-4">
-        {/* First Name */}
         <InputField
           register={register}
           name="firstName"
@@ -86,11 +85,10 @@ const AddUserForm = () => {
           error={errors.firstName}
         />
 
-        {/* Gender */}
         <div>
           <label className="text-gray-300 mb-1 block">Gender</label>
           <select
-            className={`w-full px-4 py-2 rounded-md bg-[#1C2024] text-white border border-gray-600 focus:outline-none focus:border-blue-500`}
+            className="w-full px-4 py-2 rounded-md bg-[#1C2024] text-white border border-gray-600 focus:outline-none focus:border-blue-500"
             {...register("gender", { required: true })}
           >
             <option value="">Select gender</option>
@@ -99,7 +97,6 @@ const AddUserForm = () => {
           </select>
         </div>
 
-        {/* Email */}
         <InputField
           register={register}
           name="email"
@@ -109,11 +106,10 @@ const AddUserForm = () => {
           error={errors.email}
         />
 
-        {/* role */}
         <div>
           <label className="text-gray-300 mb-1 block">Role</label>
           <select
-            className={`w-full px-4 py-2 rounded-md bg-[#1C2024] text-white border border-gray-600 focus:outline-none focus:border-blue-500`}
+            className="w-full px-4 py-2 rounded-md bg-[#1C2024] text-white border border-gray-600 focus:outline-none focus:border-blue-500"
             {...register("role", { required: true })}
           >
             <option value="">Select role</option>
@@ -126,7 +122,6 @@ const AddUserForm = () => {
 
       {/* Right Column */}
       <div className="space-y-4">
-        {/* Last Name */}
         <InputField
           register={register}
           name="lastName"
@@ -135,7 +130,6 @@ const AddUserForm = () => {
           error={errors.lastName}
         />
 
-        {/* Country */}
         <InputField
           register={register}
           name="country"
@@ -144,7 +138,6 @@ const AddUserForm = () => {
           error={errors.country}
         />
 
-        {/* Phone */}
         <InputField
           register={register}
           name="phone"
@@ -154,7 +147,7 @@ const AddUserForm = () => {
         />
 
         {/* Submit Button */}
-        <div className="flex items-end mt-11">
+        <div className="flex items-end mt-4 md:mt-11">
           <button
             type="submit"
             className="cursor-pointer w-full bg-blue-600 hover:bg-blue-500 text-white py-2 rounded-md font-semibold transition"
