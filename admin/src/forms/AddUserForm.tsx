@@ -1,13 +1,17 @@
 import { InputField } from "@/components";
 import { UserSchema, type IUserForm } from "@/schemas/userSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { useParams } from "react-router";
 import { toast } from "react-toastify";
 
 const BASE_URL = `${import.meta.env.VITE_API_URI}/api/users`;
 
 const AddUserForm = () => {
+  const { id } = useParams();
+
   const {
     register,
     handleSubmit,
@@ -19,8 +23,10 @@ const AddUserForm = () => {
 
   const mutation = useMutation({
     mutationFn: async (formData: IUserForm) => {
-      return await fetch(`${BASE_URL}/add`, {
-        method: "POST",
+      const url = id ? `${BASE_URL}/update/${id}` : `${BASE_URL}/add`;
+      const method = id ? "PUT" : "POST";
+      return await fetch(url, {
+        method,
         headers: {
           "Content-Type": "application/json",
         },
@@ -28,7 +34,7 @@ const AddUserForm = () => {
       });
     },
     onSuccess: () => {
-      toast.success(`User added  successfully!`);
+      toast.success(`User ${id ? "updated" : "added"} successfully`);
       reset();
     },
 
@@ -40,8 +46,35 @@ const AddUserForm = () => {
     mutation.mutate(data);
   };
 
+  const { data: user } = useQuery({
+    queryKey: ["user", id],
+    queryFn: async () => {
+      const res = await fetch(`${BASE_URL}/${id}`);
+      const data = await res.json();
+      return data.data;
+    },
+    enabled: !!id,
+  });
+
+  useEffect(() => {
+    if (user) {
+      reset({
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        role: user.role,
+        country: user.country,
+        phone: user.phone,
+        gender: user.gender,
+      });
+    }
+  }, [id, user, reset]);
+
   return (
-    <form className="grid grid-cols-2 gap-6" onSubmit={handleSubmit(onSubmit)}>
+    <form
+      className="grid grid-cols-2 gap-6 p-8"
+      onSubmit={handleSubmit(onSubmit)}
+    >
       {/* Left Column */}
       <div className="space-y-4">
         {/* First Name */}
@@ -61,8 +94,8 @@ const AddUserForm = () => {
             {...register("gender", { required: true })}
           >
             <option value="">Select gender</option>
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
           </select>
         </div>
 
@@ -126,7 +159,7 @@ const AddUserForm = () => {
             type="submit"
             className="cursor-pointer w-full bg-blue-600 hover:bg-blue-500 text-white py-2 rounded-md font-semibold transition"
           >
-            Add User
+            {id ? "Update" : "Add"} User
           </button>
         </div>
       </div>
