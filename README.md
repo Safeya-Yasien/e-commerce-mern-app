@@ -1,5 +1,37 @@
 # E-commerce MERN Project
 
+## Tech Stack
+
+### Frontend
+
+- React
+- React-router
+- React-query or tanstack (for data fetching)
+- TailwindCSS
+- TypeScript
+- react-toastify
+- shadcn
+- lucide-react
+- react-hook-form
+- zod
+
+### Backend
+
+- Node.js
+- Express
+- MongoDB
+- Mongoose
+- TypeScript
+- cors
+- bycrypt
+- dotenv
+- jsonwebtoken
+- express-validator
+- nodemon
+- multer
+- cloudinary
+-
+
 ## Step-by-step Dev Log with client folder first
 
 ##### 1. Create a new project called `e-commerce-mern-app`
@@ -391,6 +423,9 @@
     - but i faced an error when using setPreviewImage direct after reset because i'm trying to change state twice at the same time can cause rerenders and i will get an error
     - so i use setTimeout to wait for the state to be updated
     - finally i preview the image using URL.createObjectURL
+
+##### 135. Handle Edit User
+
 
 ---
 
