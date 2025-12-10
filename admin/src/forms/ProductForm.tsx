@@ -87,7 +87,10 @@ const ProductForm = () => {
     return <p className="text-white">Loading product...</p>;
   }
   return (
-    <form className="grid grid-cols-2 gap-6" onSubmit={handleSubmit(onSubmit)}>
+    <form
+      className="grid grid-cols-2 gap-6 p-8"
+      onSubmit={handleSubmit(onSubmit)}
+    >
       {/* Left Column */}
       <div className="space-y-4">
         {/* Name */}
