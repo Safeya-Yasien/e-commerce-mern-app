@@ -54,25 +54,21 @@ const Header = () => {
 
       {/* profile */}
       <div className="flex items-center gap-2 relative">
-        {token && (
-          <div className="relative">
-            <button
-              onClick={() => setMenuOpen((prev) => !prev)}
-              className="cursor-pointer flex items-center gap-2 hover:text-indigo-400 transition"
-            >
-              <User className="w-6 h-6" />
-              <span className="hidden sm:inline">Profile</span>
-            </button>
-
-            {menuOpen && (
-              <div className="absolute -right-3 mt-2 w-48 bg-gray-800 rounded-lg shadow-lg p-3 text-sm z-10">
-                <p className="text-gray-300 ">
-                  {data?.data?.email || "user@email.com"}
-                </p>
-              </div>
-            )}
-          </div>
-        )}
+        <div className="relative">
+          <button
+            onClick={() => setMenuOpen((prev) => !prev)}
+            className="cursor-pointer flex items-center gap-2 hover:text-indigo-400 transition"
+          >
+            <User className="w-6 h-6" />
+          </button>
+          {token && menuOpen && (
+            <div className="absolute -right-3 mt-2 w-48 bg-gray-800 rounded-lg shadow-lg p-3 text-sm z-10">
+              <p className="text-gray-300 ">
+                {data?.data?.email || "user@email.com"}
+              </p>
+            </div>
+          )}
+        </div>
       </div>
     </header>
   );
