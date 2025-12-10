@@ -8,6 +8,7 @@ export interface IProduct {
   image: string;
   description: string;
   inStock: boolean;
+  quantity: number;
 }
 
 const productSchema = new Schema<IProduct>(
@@ -38,11 +39,27 @@ const productSchema = new Schema<IProduct>(
       type: Boolean,
       default: true,
     },
+    quantity: {
+      type: Number,
+      required: [true, "Please enter stock quantity"],
+      default: 1,
+    },
   },
   {
     timestamps: {
       createdAt: "created_at",
       updatedAt: "updated_at",
+    },
+
+    toJSON: {
+      virtuals: true,
+      transform: (doc, ret) => {
+        delete (ret as any)._id;
+        return ret;
+      },
+    },
+    toObject: {
+      virtuals: true,
     },
   }
 );

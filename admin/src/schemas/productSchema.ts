@@ -21,6 +21,7 @@ export const ProductSchema = z.object({
     .nonempty("Description is required")
     .min(2, "Too Short"),
   inStock: z.coerce.boolean(),
+  quantity: z.coerce.number().min(1, "Quantity must be greater than 0"),
 });
 
 export type IProductFormInput = z.input<typeof ProductSchema>;

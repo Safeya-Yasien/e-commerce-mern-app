@@ -46,6 +46,7 @@ const ProductsList = () => {
             <th className="p-3">Image</th>
             <th className="p-3">Description</th>
             <th className="p-3">inStock</th>
+            <th className="p-3">Stock Quantity</th>
             <th className="p-3">Actions</th>
           </tr>
         </thead>
@@ -69,6 +70,7 @@ const ProductsList = () => {
               </td>
               <td className="p-3">{product.description}</td>
               <td className="p-3">{product.inStock ? "Yes" : "No"}</td>
+              <td className="p-3 ">{product.quantity}</td>
 
               <td className="p-3 ">
                 <div className="flex items-center gap-2 ">

@@ -30,9 +30,7 @@ const UsersList = () => {
   });
 
   const viewUser = (id: string) => {
-    setTimeout(() => {
-      navigate(`/users/${id}`);
-    }, 2000);
+    navigate(`/users/${id}`);
   };
 
   const editUser = (id: string) => {

@@ -39,6 +39,7 @@ const ProductForm = () => {
         price: product.price,
         category: product.category,
         inStock: product.inStock,
+        quantity: product.quantity,
       });
 
       setTimeout(() => {
@@ -78,6 +79,7 @@ const ProductForm = () => {
     formData.append("price", parsed.price.toString());
     formData.append("description", parsed.description);
     formData.append("inStock", parsed.inStock.toString());
+    formData.append("quantity", parsed.quantity.toString());
     formData.append("image", parsed.image[0]);
 
     mutation.mutate(formData);
@@ -129,6 +131,18 @@ const ProductForm = () => {
             className="w-full px-4 py-2 rounded-md bg-[#1C2024] text-white border border-gray-600 focus:outline-none focus:border-blue-500"
           />
           {errors && <p className="text-red-500">{errors.price?.message}</p>}
+        </div>
+
+        {/* Quantity */}
+        <div>
+          <label className="text-gray-300 mb-1 block">Quantity</label>
+          <input
+            type="number"
+            {...register("quantity")}
+            placeholder="Enter product quantity"
+            className="w-full px-4 py-2 rounded-md bg-[#1C2024] text-white border border-gray-600 focus:outline-none focus:border-blue-500"
+          />
+          {errors && <p className="text-red-500">{errors.quantity?.message}</p>}
         </div>
 
         {/* Submit Button */}

@@ -6,6 +6,7 @@ export interface IProduct {
   image: string;
   description: string;
   inStock: boolean;
+  quantity: number;
 }
 
 export interface IProductsResponse {
