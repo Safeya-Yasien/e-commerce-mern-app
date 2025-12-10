@@ -5,7 +5,7 @@ import { useNavigate } from "react-router";
 const BASE_URL = `${import.meta.env.VITE_API_URI}/api/users`;
 
 interface IUser {
-  _id: string;
+  id: string;
   fullName: string;
   email: string;
   role: string;
@@ -29,10 +29,15 @@ const UsersList = () => {
     },
   });
 
-  const viewUser = (_id: string) => {
+  const viewUser = (id: string) => {
     setTimeout(() => {
-      navigate(`/users/${_id}`);
+      navigate(`/users/${id}`);
     }, 2000);
+  };
+
+  const editUser = (id: string) => {
+    console.log("Edit user with ID:", id);
+    navigate("/users/update/" + id);
   };
 
   if (isLoading) return <p className="text-gray-400">Loading users...</p>;
@@ -57,29 +62,34 @@ const UsersList = () => {
           <tbody>
             {users.map((user: IUser) => (
               <tr
-                key={user._id}
+                key={user.id}
                 className="border-t border-gray-700 hover:bg-gray-800 transition"
               >
                 <td className="p-3">{user.fullName}</td>
                 <td className="p-3">{user.email}</td>
                 <td className="p-3 capitalize">{user.role}</td>
                 <td className="p-3 flex space-x-2 justify-center">
-                  <button className="cursor-pointer px-3 py-1 bg-blue-600 rounded-md text-white text-sm hover:bg-blue-500 flex items-center gap-1">
+                  <button
+                    onClick={() => viewUser(user.id)}
+                    className="cursor-pointer px-3 py-1 bg-green-600 rounded-md text-white text-sm hover:bg-green-500 flex items-center gap-1"
+                  >
+                    View
+                  </button>
+
+                  <button
+                    onClick={() => editUser(user.id)}
+                    className="cursor-pointer px-3 py-1 bg-blue-600 rounded-md text-white text-sm hover:bg-blue-500 flex items-center gap-1"
+                  >
                     Edit
                   </button>
+
                   <DeleteButton
-                    id={user._id}
+                    id={user.id}
                     baseUrl={BASE_URL}
                     label={"user"}
                     itemName={user.fullName}
                     queryKey={"users"}
                   />
-                  <button
-                    onClick={() => viewUser(user._id)}
-                    className="cursor-pointer px-3 py-1 bg-green-600 rounded-md text-white text-sm hover:bg-green-500 flex items-center gap-1"
-                  >
-                    View
-                  </button>
                 </td>
               </tr>
             ))}

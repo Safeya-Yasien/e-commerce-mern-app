@@ -53,7 +53,7 @@ const ProductsList = () => {
         <tbody>
           {products?.data.map((product: IProduct, index: number) => (
             <tr
-              key={product._id}
+              key={product.id}
               className="text-gray-200 border-b border-gray-700 hover:bg-[#2F343B] transition"
             >
               <td className="p-3">{index + 1}</td>
@@ -73,21 +73,21 @@ const ProductsList = () => {
               <td className="p-3 ">
                 <div className="flex items-center gap-2 ">
                   <button
-                    onClick={() => editProduct(product._id)}
+                    onClick={() => editProduct(product.id)}
                     className="cursor-pointer px-3 py-1 bg-blue-600 rounded-md text-white text-sm hover:bg-blue-500 flex items-center gap-1"
                   >
                     Edit
                   </button>
 
                   <button
-                    onClick={() => viewProduct(product._id)}
+                    onClick={() => viewProduct(product.id)}
                     className="cursor-pointer px-3 py-1 bg-green-600 rounded-md text-white text-sm hover:bg-green-500 flex items-center gap-1"
                   >
                     View
                   </button>
 
                   <DeleteButton
-                    id={product._id}
+                    id={product.id}
                     baseUrl={BASE_URL}
                     label={"product"}
                     itemName={product.name}

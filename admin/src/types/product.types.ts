@@ -1,5 +1,5 @@
 export interface IProduct {
-  _id: string;
+  id: string;
   name: string;
   category: string;
   price: number;

@@ -68,6 +68,10 @@ userSchema.virtual("fullName").get(function () {
   return this.firstName + " " + this.lastName;
 });
 
+userSchema.virtual("id").get(function () {
+  return this._id.toHexString();
+});
+
 const User = mongoose.model("User", userSchema);
 
 export default User;
