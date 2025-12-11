@@ -441,6 +441,11 @@
 
 ##### 139. Handle Responsive problems
 
+##### 140. Handle long description in "product details"
+
+    - adding specific width to td and line-clamp-2 to div
+    - you will find a problem if you add line-clamp-2 to "td" so the solution is to add "line-clamp-2" to "div" container of description in "td"
+
 ---
 
 # server

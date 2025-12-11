@@ -68,7 +68,9 @@ const ProductsList = () => {
                   className="w-24 max-h-12 object-cover rounded-md"
                 />
               </td>
-              <td className="p-3">{product.description}</td>
+              <td className="p-3 w-48 overflow-hidden">
+                <div className=" line-clamp-2 ">{product.description}</div>
+              </td>
               <td className="p-3">{product.inStock ? "Yes" : "No"}</td>
               <td className="p-3 ">{product.quantity}</td>
 

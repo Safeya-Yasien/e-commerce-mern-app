@@ -40,62 +40,63 @@ const ProductDetailsPage = () => {
   const product = response.data;
 
   return (
-    <div className="min-h-screen bg-[#1C1F24] text-white p-8">
+    <div className="min-h-screen bg-[#1C1F24] text-white p-4 sm:p-8">
       {/* Back button */}
       <button
         onClick={() => navigate(-1)}
-        className="cursor-pointer flex items-center gap-2 text-gray-300 hover:text-white mb-6 transition"
+        className="cursor-pointer flex items-center gap-2 text-gray-300 hover:text-white mb-4 sm:mb-6 transition"
       >
         <ArrowLeft className="w-4 h-4" />
         Back
       </button>
 
       {/* Product Details Card */}
-      <div className="max-w-4xl mx-auto bg-[#252A30] rounded-2xl p-8 shadow-xl border border-gray-700">
-        <h2 className="text-3xl font-semibold mb-6 text-center text-white border-b border-gray-700 pb-4">
+      <div className="max-w-4xl mx-auto bg-[#252A30] rounded-2xl p-4 sm:p-8 shadow-xl border border-gray-700">
+        <h2 className="text-2xl sm:text-3xl font-semibold mb-4 sm:mb-6 text-center text-white border-b border-gray-700 pb-2 sm:pb-4">
           {product.name}
         </h2>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <div className="lg:col-span-1 bg-[#2F343B] p-4 rounded-xl flex items-center justify-center h-full">
+        <div className="flex flex-col lg:flex-row gap-4 lg:gap-8">
+          {/* Image */}
+          <div className="lg:w-1/3 bg-[#2F343B] p-2 sm:p-4 rounded-xl flex items-center justify-center">
             <img
               src={product.image}
               alt={product.name}
-              className="w-full h-full object-cover rounded-lg"
+              className="w-full h-auto max-h-80 object-cover rounded-lg"
             />
           </div>
 
-          {/* Column 2 & 3: Details */}
-          <div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-[#2F343B] p-4 rounded-xl md:col-span-2">
+          {/* Details */}
+          <div className="lg:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="bg-[#2F343B] p-2 sm:p-4 rounded-xl md:col-span-2 break-words">
               <p className="text-gray-400 text-sm">Description</p>
               <p className="text-lg font-medium">
                 {product.description || "No description provided."}
               </p>
             </div>
 
-            <div className="bg-[#2F343B] p-4 rounded-xl">
+            <div className="bg-[#2F343B] p-2 sm:p-4 rounded-xl">
               <p className="text-gray-400 text-sm">Price</p>
               <p className="text-lg font-medium text-green-400">
-                ${product.price ? product.price.toFixed(2) : "—"}
+                ${product.price?.toFixed(2) || "—"}
               </p>
             </div>
 
-            <div className="bg-[#2F343B] p-4 rounded-xl">
+            <div className="bg-[#2F343B] p-2 sm:p-4 rounded-xl break-words">
               <p className="text-gray-400 text-sm">Category</p>
               <p className="text-lg font-medium capitalize">
                 {product.category || "—"}
               </p>
             </div>
 
-            <div className="bg-[#2F343B] p-4 rounded-xl">
+            <div className="bg-[#2F343B] p-2 sm:p-4 rounded-xl">
               <p className="text-gray-400 text-sm">Stock Quantity</p>
               <p className="text-lg font-medium">
                 {product.stockQuantity || "0"}
               </p>
             </div>
 
-            <div className="bg-[#2F343B] p-4 rounded-xl">
+            <div className="bg-[#2F343B] p-2 sm:p-4 rounded-xl">
               <p className="text-gray-400 text-sm">Created At</p>
               <p className="text-lg font-medium">
                 {product.created_at
@@ -107,10 +108,10 @@ const ProductDetailsPage = () => {
         </div>
 
         {/* Action Button */}
-        <div className="mt-8 flex justify-center">
+        <div className="mt-6 sm:mt-8 flex justify-center">
           <button
             onClick={() => navigate(`/products/update/${product.id}`)}
-            className="cursor-pointer bg-blue-600 hover:bg-blue-500 px-6 py-2 rounded-lg text-white font-medium transition"
+            className="cursor-pointer bg-blue-600 hover:bg-blue-500 px-4 sm:px-6 py-2 sm:py-3 rounded-lg text-white font-medium transition"
           >
             Edit Product
           </button>
