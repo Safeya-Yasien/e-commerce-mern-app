@@ -1,15 +1,18 @@
 import mongoose, { Schema } from "mongoose";
 import validator from "validator";
 
+type TUserRole = "admin" | "viewer";
+type TGender = "male" | "female";
+
 interface IUser {
   firstName: string;
   lastName: string;
   email: string;
   password: string;
-  role: "admin" | "user";
+  role: TUserRole;
   country?: string;
   phone: string;
-  gender?: "Male" | "Female";
+  gender?: TGender;
 }
 
 const userSchema = new Schema<IUser>(
@@ -43,7 +46,10 @@ const userSchema = new Schema<IUser>(
     },
     country: { type: String },
     phone: { type: String },
-    gender: { type: String, lowercase: true, enum: ["male", "female"] },
+    gender: {
+      type: String,
+      lowercase: true,
+    },
   },
 
   {

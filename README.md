@@ -446,6 +446,26 @@
     - adding specific width to td and line-clamp-2 to div
     - you will find a problem if you add line-clamp-2 to "td" so the solution is to add "line-clamp-2" to "div" container of description in "td"
 
+## Back to server
+
+##### 141. Register
+
+    - I asked question what is teh best name for register is "register or signup" and "login or signin"?
+    - I found that "register and login" is the best names for routes
+    - and "signup and signin" for ux maybe cause confusion for user so the best is "login and signup" or "register and signin"
+    - update "user.model" change name of role user to "viewer" this is the best approach for now
+    - so I have now ["admin", "viewer"] in "user.model"
+    - admin: can read, create, update, delete
+    - viewer: read only
+    -
+    - the second question is how the admin can register at the first time as admin because we make default role is "viewer"?
+        - after i searched i found two solutions:
+            - first add fixed mail and password for admin and make role admin
+            - second add userCount which is the number of users and if userCount === 0 this means this is the first one who register then make role admin after that new users follow the normal logic
+            - I choose the second one because it's more secure and I think it's the best approach
+
+    -
+
 ---
 
 # server

@@ -5,6 +5,7 @@ import connectDB from "./src/lib/db";
 import cors from "cors";
 import userRouter from "./src/routes/users.route";
 import productRouter from "./src/routes/products.route";
+import authRouter from "./src/routes/auth.route";
 
 const corsOptions = {
   origin: "http://localhost:5173",
@@ -22,6 +23,7 @@ connectDB(dbURI || "");
 
 app.use("/api/users", userRouter);
 app.use("/api/products", productRouter);
+app.use("/api/auth", authRouter);
 
 app.listen(port, () => {
   console.log(`Example app listening on port http://localhost:${port}`);
