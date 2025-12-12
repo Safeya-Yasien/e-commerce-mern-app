@@ -37,23 +37,49 @@ const login = async (req: any, res: any) => {
 };
 
 const register = async (req: any, res: any) => {
-  const { fullName, email, password, role } = req.body;
-
   try {
+    const { firstName, lastName, email, password, role } = req.body;
+
+    if (!firstName || !lastName || !email || !password || !role) {
+      return res.status(400).json({
+        msg: "Please provide all the required fields",
+        data: null,
+        success: false,
+      });
+    }
+
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({
+        msg: "User already exists",
+        data: null,
+        success: false,
+      });
+    }
+
+    const userCount = await User.countDocuments();
+    let assignedRole: "admin" | "viewer";
+
+    if (userCount === 0) assignedRole = "admin";
+    else assignedRole = "viewer";
+
     const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = new User({
-      fullName,
+      firstName,
+      lastName,
       email,
       password: hashedPassword,
-      role,
+      role: assignedRole,
     });
     await newUser.save();
+
     res.status(201).json({
       msg: "User registered successfully",
       data: newUser,
       success: true,
     });
   } catch (err) {
+    console.error("REGISTER ERROR =>", err);
     res.status(500).json({ msg: "error", data: err, success: false });
   }
 };

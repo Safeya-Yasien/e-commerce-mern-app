@@ -464,7 +464,10 @@
             - second add userCount which is the number of users and if userCount === 0 this means this is the first one who register then make role admin after that new users follow the normal logic
             - I choose the second one because it's more secure and I think it's the best approach
 
-    -
+            - I use User model .countDocuments() function from mongoose to get the userCount because each user is a new document in the database
+            -
+
+##### 142. Login
 
 ---
 
