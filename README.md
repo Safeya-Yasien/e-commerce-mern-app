@@ -505,7 +505,10 @@
 
         - name: Path<T> معناه إن ال name لازم يبقى واحد من دول
 
-##### 145.
+##### 145. Enhance components names and structure
+
+##### 146. Handle errors in "ProductForm" with type number and understand what FieldErrors<T>[Path<T>]; means
+
 
 ---
 

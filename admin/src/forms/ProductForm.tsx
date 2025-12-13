@@ -1,3 +1,4 @@
+import { AddInputFiled } from "@/components";
 import { ProductSchema, type IProductFormInput } from "@/schemas/productSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQuery } from "@tanstack/react-query";
@@ -96,18 +97,13 @@ const ProductForm = () => {
       {/* Left Column */}
       <div className="space-y-4">
         {/* Name */}
-        <div>
-          <label className="text-gray-300 mb-1 block">Name</label>
-          <input
-            type="text"
-            {...register("name")}
-            placeholder="Enter product name"
-            className="w-full px-4 py-2 rounded-md bg-[#1C2024] text-white border border-gray-600 focus:outline-none focus:border-blue-500"
-          />
-          {errors?.name && (
-            <p className="text-red-500">{errors.name.message}</p>
-          )}
-        </div>
+        <AddInputFiled
+          name="name"
+          placeholder="Enter product name"
+          label="Name"
+          register={register}
+          error={errors.name}
+        />
 
         {/* Description */}
         <div>
@@ -124,32 +120,24 @@ const ProductForm = () => {
         </div>
 
         {/* Price */}
-        <div>
-          <label className="text-gray-300 mb-1 block">Price</label>
-          <input
-            type="number"
-            {...register("price")}
-            placeholder="Enter product price"
-            className="w-full px-4 py-2 rounded-md bg-[#1C2024] text-white border border-gray-600 focus:outline-none focus:border-blue-500"
-          />
-          {errors?.price && (
-            <p className="text-red-500">{errors.price.message}</p>
-          )}
-        </div>
+        <AddInputFiled
+          type="number"
+          name="price"
+          placeholder="Enter product price"
+          label="Price"
+          register={register}
+          error={errors.price}
+        />
 
         {/* Quantity */}
-        <div>
-          <label className="text-gray-300 mb-1 block">Quantity</label>
-          <input
-            type="number"
-            {...register("quantity")}
-            placeholder="Enter product quantity"
-            className="w-full px-4 py-2 rounded-md bg-[#1C2024] text-white border border-gray-600 focus:outline-none focus:border-blue-500"
-          />
-          {errors?.quantity && (
-            <p className="text-red-500">{errors.quantity.message}</p>
-          )}
-        </div>
+        <AddInputFiled
+          type="number"
+          name="quantity"
+          placeholder="Enter product quantity"
+          label="Quantity"
+          register={register}
+          error={errors.quantity}
+        />
       </div>
 
       {/* Right Column */}

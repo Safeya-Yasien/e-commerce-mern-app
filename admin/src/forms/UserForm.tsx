@@ -1,4 +1,4 @@
-import { InputField } from "@/components";
+import { AddInputFiled } from "@/components";
 import { UserSchema, type IUserForm } from "@/schemas/userSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQuery } from "@tanstack/react-query";
@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
 
 const BASE_URL = `${import.meta.env.VITE_API_URI}/api/users`;
 
-const AddUserForm = () => {
+const UserForm = () => {
   const { id } = useParams();
 
   const {
@@ -77,7 +77,7 @@ const AddUserForm = () => {
     >
       {/* Left Column */}
       <div className="space-y-4">
-        <InputField
+        <AddInputFiled
           register={register}
           name="firstName"
           placeholder="Enter first name"
@@ -97,7 +97,7 @@ const AddUserForm = () => {
           </select>
         </div>
 
-        <InputField
+        <AddInputFiled
           register={register}
           name="email"
           placeholder="Enter your email"
@@ -122,7 +122,7 @@ const AddUserForm = () => {
 
       {/* Right Column */}
       <div className="space-y-4">
-        <InputField
+        <AddInputFiled
           register={register}
           name="lastName"
           placeholder="Enter your last name"
@@ -130,7 +130,7 @@ const AddUserForm = () => {
           error={errors.lastName}
         />
 
-        <InputField
+        <AddInputFiled
           register={register}
           name="country"
           placeholder="Enter your country"
@@ -138,7 +138,7 @@ const AddUserForm = () => {
           error={errors.country}
         />
 
-        <InputField
+        <AddInputFiled
           register={register}
           name="phone"
           placeholder="Enter your phone number"
@@ -159,4 +159,4 @@ const AddUserForm = () => {
     </form>
   );
 };
-export default AddUserForm;
+export default UserForm;

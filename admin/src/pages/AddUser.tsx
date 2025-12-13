@@ -1,5 +1,5 @@
 import { PageTitle } from "@/components/common";
-import AddUserForm from "@/forms/AddUserForm";
+import { UserForm } from "@/forms";
 import { useParams } from "react-router";
 
 const AddUserPage = () => {
@@ -9,7 +9,7 @@ const AddUserPage = () => {
     <div className="bg-[#252A30]">
       <PageTitle title={`${id ? "Update" : "Add"} User`} />
 
-      <AddUserForm />
+      <UserForm />
     </div>
   );
 };
