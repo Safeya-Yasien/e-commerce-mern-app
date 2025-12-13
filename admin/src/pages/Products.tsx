@@ -1,5 +1,5 @@
 import { PageTitle } from "@/components/common";
-import ProductsList from "@/components/ProductsList";
+import { ProductsList } from "@/components/products";
 
 const ProductsPage = () => {
   return (

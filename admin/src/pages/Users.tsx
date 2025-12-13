@@ -1,5 +1,5 @@
-import { UsersList } from "@/components";
 import { PageTitle } from "@/components/common";
+import { UsersList } from "@/components/users";
 
 const Users = () => {
   return (

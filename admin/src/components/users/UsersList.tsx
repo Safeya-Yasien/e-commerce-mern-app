@@ -1,4 +1,4 @@
-import { DeleteButton } from "@/components/ui";
+import { DeleteButton } from "@/components/actions";
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router";
 

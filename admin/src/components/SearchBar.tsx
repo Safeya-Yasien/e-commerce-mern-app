@@ -1,17 +1,9 @@
-import { useSearch } from "@/context/useSearchContext";
 import { Search } from "lucide-react";
 
 const SearchBar = () => {
-  const { search, handleChange, handleSubmit } = useSearch();
-
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="flex items-center bg-white/10 backdrop-blur-md rounded-2xl overflow-hidden border border-white/20"
-    >
+    <form className="flex items-center bg-white/10 backdrop-blur-md rounded-2xl overflow-hidden border border-white/20">
       <input
-        onChange={handleChange}
-        value={search}
         type="text"
         placeholder="Search..."
         className="hidden sm:flex px-4 py-2 w-64 bg-transparent text-white placeholder-gray-300 focus:outline-none

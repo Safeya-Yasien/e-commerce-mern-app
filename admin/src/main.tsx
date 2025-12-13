@@ -5,22 +5,19 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import AppRouter from "@routes/AppRouter";
 import "./index.css";
 import { ToastContainer } from "react-toastify";
-import { SearchProvider } from "./context/SearchContext";
 
 const queryClient = new QueryClient();
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
-      <SearchProvider>
-        <AppRouter />
-        <ToastContainer
-          position="bottom-right"
-          autoClose={2000}
-          closeOnClick={true}
-        />
-        <ReactQueryDevtools initialIsOpen={false} />
-      </SearchProvider>
+      <AppRouter />
+      <ToastContainer
+        position="bottom-right"
+        autoClose={2000}
+        closeOnClick={true}
+      />
+      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   </StrictMode>
 );

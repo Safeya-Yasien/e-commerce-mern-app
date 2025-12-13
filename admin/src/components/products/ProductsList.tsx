@@ -1,7 +1,7 @@
 import type { IProduct, IProductsResponse } from "@/types/product.types";
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router";
-import { DeleteButton } from "./ui";
+import { DeleteButton } from "../actions";
 
 const BASE_URL = `${import.meta.env.VITE_API_URI}/api/products`;
 
