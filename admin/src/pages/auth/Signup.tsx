@@ -1,126 +1,147 @@
-// import React from "react";
-// import { useForm } from "react-hook-form";
-// import { zodResolver } from "@hookform/resolvers/zod";
-// import { Mail, Lock, User } from "lucide-react";
-// import { signupSchema, type SignupFormData } from "@/schemas/signupSchema";
-// import { Link, useNavigate } from "react-router";
-// import { useMutation } from "@tanstack/react-query";
-// import { toast } from "react-toastify";
-// import { InputField } from "@/components";
+import React from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Mail, Lock, User } from "lucide-react";
+import { Link, useNavigate } from "react-router";
+import { useMutation } from "@tanstack/react-query";
+import { toast } from "react-toastify";
+import { AuthFormInput } from "@/components";
+import { signupSchema, type TSignupFormData } from "@/schemas/signupSchema";
 
-// const BASE_URL = `${import.meta.env.VITE_API_URL}`;
+const BASE_URL = `${import.meta.env.VITE_API_URI}/api/auth`;
 
-// const Signup: React.FC = () => {
-//   const navigate = useNavigate();
-//   const {
-//     register,
-//     handleSubmit,
-//     formState: { errors, isSubmitting },
-//   } = useForm<SignupFormData>({
-//     resolver: zodResolver(signupSchema),
-//   });
+const Signup: React.FC = () => {
+  const navigate = useNavigate();
 
-//   const onSubmit = (data: SignupFormData) => {
-//     Mutation.mutate(data);
-//   };
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<TSignupFormData>({
+    resolver: zodResolver(signupSchema),
+  });
 
-//   const Mutation = useMutation({
-//     mutationKey: ["signup"],
-//     mutationFn: async (data: SignupFormData) => {
-//       const response = await fetch(`${BASE_URL}/users/signup`, {
-//         method: "POST",
-//         headers: {
-//           "Content-Type": "application/json",
-//         },
-//         body: JSON.stringify({
-//           fullName: data.fullName,
-//           email: data.email,
-//           password: data.password,
-//         }),
-//       });
+  const mutation = useMutation({
+    mutationKey: ["signup"],
+    mutationFn: async (data: TSignupFormData) => {
+      console.log("Signup data :", data);
+      const res = await fetch(`${BASE_URL}/register`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          firstName: data.firstName,
+          lastName: data.lastName,
+          email: data.email,
+          password: data.password,
+        }),
+      });
 
-//       return await response.json();
-//     },
-//     onSuccess: () => {
-//       toast.success("Account created successfully! Please log in.", {
-//         onClose: () => {
-//           navigate("/auth/login");
-//         },
-//       });
-//     },
-//     onError: (error) => {
-//       console.error("Signup error:", error);
-//     },
-//   });
+      if (!res.ok) {
+        throw new Error("Failed to create account");
+      }
 
-//   return (
-//     <>
-//       <h1 className="text-4xl font-bold text-white mb-8 text-center">
-//         Get Started
-//       </h1>
+      console.log("Signup response :", res);
 
-//       <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
-//         <InputField
-//           icon={User}
-//           placeholder="Full Name"
-//           register={register}
-//           error={errors.fullName}
-//         />
-//         <InputField
-//           icon={Mail}
-//           placeholder="Email"
-//           register={register}
-//           error={errors.email}
-//         />
-//         <InputField
-//           icon={Lock}
-//           placeholder="Password"
-//           type="password"
-//           register={register}
-//           error={errors.password}
-//         />
-//         <InputField
-//           icon={Lock}
-//           placeholder="Confirm Password"
-//           type="password"
-//           register={register}
-//           error={errors.confirmPassword}
-//         />
+      return res.json();
+    },
+    onSuccess: () => {
+      toast.success("Account created successfully", {
+        onClose: () => navigate("/auth/login"),
+      });
+    },
 
-//         <button
-//           type="submit"
-//           disabled={isSubmitting}
-//           className={`cursor-pointer w-full py-3 rounded-xl text-white font-semibold transition duration-200 ${
-//             isSubmitting
-//               ? "bg-gray-600 cursor-not-allowed"
-//               : "bg-indigo-500 hover:bg-indigo-600"
-//           }`}
-//         >
-//           {isSubmitting ? "Creating Account..." : "Create Account"}
-//         </button>
-//       </form>
+    onError: (err) => {
+      toast.error(err.message);
+    },
+  });
 
-//       <div className="mt-8 text-center">
-//         <p className="text-sm text-gray-400">
-//           Already have an account?{" "}
-//           <Link
-//             to="/auth/login"
-//             className="font-semibold text-indigo-500 hover:text-indigo-400 transition duration-150"
-//           >
-//             Sign In
-//           </Link>
-//         </p>
-//       </div>
-//     </>
-//   );
-// };
-
-// export default Signup;
-
-
-const Signup = () => {
   return (
-    <div>Signup</div>
-  )
-}
-export default Signup
+    <>
+      <h1 className="text-3xl font-bold text-white mb-2 text-center">
+        Create account
+      </h1>
+      <p className="text-gray-400 text-sm mb-6 text-center">
+        Start building your journey
+      </p>
+
+      <form
+        onSubmit={handleSubmit((data) => mutation.mutate(data))}
+        className="space-y-5"
+      >
+        {/* first + last name */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <AuthFormInput
+            name="firstName"
+            label="First name"
+            placeholder="John"
+            icon={User}
+            register={register}
+            error={errors.firstName}
+          />
+          <AuthFormInput
+            name="lastName"
+            label="Last name"
+            placeholder="Doe"
+            icon={User}
+            register={register}
+            error={errors.lastName}
+          />
+        </div>
+
+        <AuthFormInput
+          name="email"
+          label="Email"
+          placeholder="you@example.com"
+          icon={Mail}
+          register={register}
+          error={errors.email}
+        />
+
+        <AuthFormInput
+          name="password"
+          label="Password"
+          placeholder="••••••••"
+          icon={Lock}
+          type="password"
+          register={register}
+          error={errors.password}
+        />
+
+        <AuthFormInput
+          name="confirmPassword"
+          label="Confirm password"
+          placeholder="••••••••"
+          icon={Lock}
+          type="password"
+          register={register}
+          error={errors.confirmPassword}
+        />
+
+        <button
+          type="submit"
+          disabled={isSubmitting}
+          className={`cursor-pointer w-full py-2.5 rounded-xl font-semibold text-white transition
+            ${
+              isSubmitting
+                ? "bg-gray-600 cursor-not-allowed"
+                : "bg-indigo-500 hover:bg-indigo-600"
+            }`}
+        >
+          {isSubmitting ? "Creating account..." : "Create account"}
+        </button>
+      </form>
+
+      <p className="text-sm text-gray-400 mt-6 text-center">
+        Already have an account?{" "}
+        <Link
+          to="/auth/login"
+          className="text-indigo-500 font-semibold hover:text-indigo-400"
+        >
+          Sign in
+        </Link>
+      </p>
+    </>
+  );
+};
+
+export default Signup;

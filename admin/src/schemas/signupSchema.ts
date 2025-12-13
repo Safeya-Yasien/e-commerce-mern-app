@@ -2,7 +2,8 @@ import { z } from "zod";
 
 export const signupSchema = z
   .object({
-    fullName: z.string().min(2, { message: "Full name is required" }),
+    firstName: z.string().min(2, { message: "First name is required" }),
+    lastName: z.string().min(2, { message: "Last name is required" }),
     email: z.string().email({ message: "Invalid email address" }),
     password: z
       .string()
@@ -16,4 +17,4 @@ export const signupSchema = z
     path: ["confirmPassword"],
   });
 
-export type SignupFormData = z.infer<typeof signupSchema>;
+export type TSignupFormData = z.infer<typeof signupSchema>;
