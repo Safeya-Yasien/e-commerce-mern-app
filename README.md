@@ -473,6 +473,40 @@
 
 ##### 143. Add "Signup" page
 
+##### 144. Add "login" page
+
+    - I faced a problem when using AuthFormInput component in "login" page because I was using ISingupFormData type for register and name and all fields so i faced errors with type in login because i have to use TLoginFormData type and these will make me create repeated components
+
+    - I used generic instead of specific type:
+        - first what is generic type?
+            - generic type is a type that can be used in many different places means أنا م عارف نوع الداتا دلوقت بس الل هيستخدمنى هيقولى النوع زى متغير x in math
+        - T is the type of data like x in math  variable name
+        - FieldValues it's type in react-hook-form  means أى object يمثل form مفاتيحه strings وقيمته اى حاجه
+        FieldValues: {
+            [key: string]: any;
+        }
+        يعنى المفتاح نوعه string لكن النوع أى حاجه
+        so
+        type SignupForm = {
+            firstName: string;
+            lastName: string;
+            email: string;
+            password: string;
+        }
+
+        type LoginForm = {
+            email: string;
+            password: string;
+        }
+
+        all this FieldValues
+        - <T extends FieldValues> معناه إن T لازم يكون object like form بحيث يمنع إنه يكون نوع واحد دايركت بمعنى T = string على طول وده غلط لأن شكل الداتا الل هيتجى من الفورم على شكل اوبجكت وممكن يكون فيه انواع مختلفه {name: string, age: number}
+        يعنى ال generic but work only with form not any data
+
+        - name: Path<T> معناه إن ال name لازم يبقى واحد من دول
+
+##### 145.
+
 ---
 
 # server

@@ -1,20 +1,24 @@
-import type { FieldError, UseFormRegister } from "react-hook-form";
+import type {
+  FieldError,
+  FieldValues,
+  Path,
+  UseFormRegister,
+} from "react-hook-form";
 import { Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
-import type { TSignupFormData } from "@/schemas/signupSchema";
 
-interface IAuthFormInput {
+interface IAuthFormInputProps<T extends FieldValues> {
   type?: string;
-  name: keyof TSignupFormData;
+  name: Path<T>;
   placeholder: string;
   label: string;
-  register: UseFormRegister<TSignupFormData>;
+  register: UseFormRegister<T>;
   error?: FieldError;
   disabled?: boolean;
   icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
 }
 
-const AuthFormInput = ({
+const AuthFormInput = <T extends FieldValues>({
   type = "text",
   name,
   placeholder,
@@ -23,7 +27,7 @@ const AuthFormInput = ({
   error,
   disabled,
   icon: Icon,
-}: IAuthFormInput) => {
+}: IAuthFormInputProps<T>) => {
   const [showPassword, setShowPassword] = useState(false);
   const isPassword = type === "password";
 
