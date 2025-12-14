@@ -21,9 +21,9 @@ const dbURI = process.env.MONGODB_URI;
 
 connectDB(dbURI || "");
 
+app.use("/api/auth", authRouter);
 app.use("/api/users", userRouter);
 app.use("/api/products", productRouter);
-app.use("/api/auth", authRouter);
 
 app.listen(port, () => {
   console.log(`Example app listening on port http://localhost:${port}`);

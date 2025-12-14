@@ -8,12 +8,24 @@ import {
   updateUser,
   deleteUser,
 } from "../controllers/users.controller";
+import roleMiddleware from "../middlewares/roleMiddleware";
+import authMiddleware from "../middlewares/authMiddleware";
 
-router.get("/", getUsers);
-router.post("/add", addUser);
-router.put("/update/:id", updateUser);
-router.get("/:id", getUserById);
-router.delete("/delete/:id", deleteUser);
-router.delete("/", deleteAllUsers);
+router.get("/", authMiddleware, getUsers);
+router.post("/add", authMiddleware, roleMiddleware(["admin"]), addUser);
+router.put(
+  "/update/:id",
+  authMiddleware,
+  roleMiddleware(["admin"]),
+  updateUser
+);
+router.get("/:id", authMiddleware, roleMiddleware(["admin"]), getUserById);
+router.delete(
+  "/delete/:id",
+  authMiddleware,
+  roleMiddleware(["admin"]),
+  deleteUser
+);
+router.delete("/", authMiddleware, roleMiddleware(["admin"]), deleteAllUsers);
 
 export default router;

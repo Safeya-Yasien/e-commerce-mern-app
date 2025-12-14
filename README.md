@@ -509,6 +509,17 @@
 
 ##### 146. Handle errors in "ProductForm" with type number and understand what FieldErrors<T>[Path<T>]; means
 
+## Back to server
+
+##### 147. Handle protected route and not found route
+    - first one will register will be admin
+    - anyone who register after admin will be viewer
+    - admin can add user and make them viewer
+    - viewer can only view the products
+    - admin can make all functions
+
+##### 148.
+
 ---
 
 # server

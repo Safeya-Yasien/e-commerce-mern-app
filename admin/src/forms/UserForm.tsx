@@ -113,7 +113,7 @@ const UserForm = () => {
             {...register("role", { required: true })}
           >
             <option value="">Select role</option>
-            <option value="user">User</option>
+            <option value="user">Viewer</option>
             <option value="admin">Admin</option>
           </select>
           {errors && <p className="text-red-500">{errors.role?.message}</p>}
