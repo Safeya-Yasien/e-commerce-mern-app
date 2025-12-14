@@ -11,7 +11,7 @@ import {
 import roleMiddleware from "../middlewares/roleMiddleware";
 import authMiddleware from "../middlewares/authMiddleware";
 
-router.get("/", authMiddleware, getUsers);
+router.get("/", authMiddleware, roleMiddleware(["admin"]), getUsers);
 router.post("/add", authMiddleware, roleMiddleware(["admin"]), addUser);
 router.put(
   "/update/:id",
