@@ -1,13 +1,13 @@
-import type { JSX } from "react";
-// import { Navigate } from "react-router";
+import { isAuthenticated } from "@/utils";
+import { Navigate, Outlet } from "react-router";
 
-const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
-  // const token = localStorage.getItem("token");
+const ProtectedRoute = () => {
+  const isUserAuthenticated = isAuthenticated();
 
-  // if (!token) {
-  //   return <Navigate to="/auth/login" replace />;
-  // }
+  if (isUserAuthenticated) {
+    return <Outlet />;
+  }
 
-  return <>{children}</>;
+  return <Navigate to="/auth/login" replace />;
 };
 export default ProtectedRoute;

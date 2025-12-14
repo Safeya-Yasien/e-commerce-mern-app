@@ -23,86 +23,52 @@ const router = createBrowserRouter([
     element: <MainLayout />,
     children: [
       {
-        index: true,
-        element: (
-          <ProtectedRoute>
-            <Home />
-          </ProtectedRoute>
-        ),
-      },
+        element: <ProtectedRoute />,
+        children: [
+          {
+            index: true,
+            element: <Home />,
+          },
+          // products route
+          {
+            path: "products",
+            element: <ProductsPage />,
+          },
+          {
+            path: "products/add-product",
+            element: <AddProductPage />,
+          },
 
-      // products route
-      {
-        path: "products",
-        element: (
-          <ProtectedRoute>
-            <ProductsPage />
-          </ProtectedRoute>
-        ),
-      },
+          {
+            path: "products/update/:id",
+            element: <AddProductPage />,
+          },
 
-      {
-        path: "products/add-product",
-        element: (
-          <ProtectedRoute>
-            <AddProductPage />
-          </ProtectedRoute>
-        ),
-      },
+          {
+            path: "products/:id",
+            element: <ProductDetailsPage />,
+          },
 
-      {
-        path: "products/update/:id",
-        element: (
-          <ProtectedRoute>
-            <AddProductPage />
-          </ProtectedRoute>
-        ),
-      },
+          // users route
+          {
+            path: "users",
+            element: <UsersPage />,
+          },
 
-      {
-        path: "products/:id",
-        element: (
-          <ProtectedRoute>
-            <ProductDetailsPage />
-          </ProtectedRoute>
-        ),
-      },
+          {
+            path: "users/add-user",
+            element: <AddUserPage />,
+          },
 
-      // users route
-      {
-        path: "users",
-        element: (
-          <ProtectedRoute>
-            <UsersPage />
-          </ProtectedRoute>
-        ),
-      },
-
-      {
-        path: "users/add-user",
-        element: (
-          <ProtectedRoute>
-            <AddUserPage />
-          </ProtectedRoute>
-        ),
-      },
-
-      {
-        path: "users/update/:id",
-        element: (
-          <ProtectedRoute>
-            <AddUserPage />
-          </ProtectedRoute>
-        ),
-      },
-
-      {
-        path: "users/:id",
-        element: (
-          <ProtectedRoute>
-            <UserDetailPage />
-          </ProtectedRoute>
-        ),
+          {
+            path: "users/update/:id",
+            element: <AddUserPage />,
+          },
+          {
+            path: "users/:id",
+            element: <UserDetailPage />,
+          },
+        ],
       },
     ],
   },

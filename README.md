@@ -512,13 +512,20 @@
 ## Back to server
 
 ##### 147. Handle protected route and not found route
+
     - first one will register will be admin
     - anyone who register after admin will be viewer
     - admin can add user and make them viewer
     - viewer can only view the products
     - admin can make all functions
 
-##### 148.
+##### 148. Adding not found route using "{0,}" in server/index.ts file because old way "\*" in v3 but in v4 by using this way
+
+## Back to client Admin
+
+##### 149. Make dashboard protected only who logged in can see it
+
+##### 150.
 
 ---
 
@@ -561,81 +568,3 @@
 ### 23 Make title of sections dynamic
 
 ## Future features
-
-1. تسجيل الدخول
-
-عندك حالياً نوعين يقدروا يعملوا تسجيل دخول:
-
-الـ Admin
-إيميل وباسورد ثابتين عندك (أو مخزّنين في الداتا ب role = admin).
-لو دخلهم → يروح للـ dashboard.
-
-الـ User العادي
-لو دخل الإيميل والباسورد بتوعه اللي عمل بيهم حساب → يروح للـ home page لأن ماعندوش أي صلاحيات.
-
-وده الطبيعي… لأن الـ dashboard مش مكان عام، ده مكان إدارة وسيستم داخلي.
-
-2. حماية الـ Dashboard
-
-طبعاً لازم تمنع الوصول:
-
-أي حد مش عامل login.
-
-أي حد عامل login بس role = "user".
-
-بس تسمح لللي role = "admin".
-
-ودي هتحصل غالباً عن طريق middleware أو auth guard (على حسب Next.js App Router ولا Pages Router)، الفكرة إنك تعمل check قبل ما يفتح الصفحة.
-
-3. إدارة اليوزرز من الداش
-
-ده معناه إن الـ admin يقدر:
-
-يشوف كل الـ users.
-
-يحذف.
-
-يعدّل.
-
-يغيّر role لو محتاج.
-
-وده طبيعي جداً في أي لوحة تحكّم.
-
-4. إضافة يوزر من الداش مع role
-
-دي خطوة كويسة جداً، لأنها تخليك تضيف admins جداد من غير ما كل شوية تغيّر كود أو تعمل hardcoding للإيميل الأساسي.
-
-السيناريو المنطقي:
-
-عندك form في الـ dashboard → Add User.
-
-تختار role: user أو admin.
-
-يتسجّل في الداتا.
-
-لو admin يقدر يدخل الداش زيه.
-
-5. اللي بيحصل في الحقيقة فعلاً
-
-اللي بتحاول تعمله ده نفس الـ pattern المستخدم في:
-
-Shopify admin panel
-
-WooCommerce dashboard
-
-أي سيستم فيه roles
-
-المنطق العامل هو:
-
-Authentication
-هل الشخص ده مسجّل دخول ولا لأ.
-
-Authorization
-هل الشخص ده عنده الصلاحية إنه يشوف الصفحة دي ولا لأ.
-
-Role-based access
-الـ admin عنده صلاحيات أكتر من اليوزر.
-
-Session / JWT / Cookies
-لو الشخص أدمن → نحتفظ بجلسته ونسمح له يدخل dashboard.
-لو مش أدمن → نرميه على الواجهة الأساسية.
