@@ -72,7 +72,7 @@ const ProductDetailsPage = () => {
 
           {/* Details */}
           <div className="lg:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="bg-[#2F343B] p-2 sm:p-4 rounded-xl md:col-span-2 break-words">
+            <div className="bg-[#2F343B] p-2 sm:p-4 rounded-xl md:col-span-2 wrap-break-word">
               <p className="text-gray-400 text-sm">Description</p>
               <p className="text-lg font-medium">
                 {product.description || "No description provided."}
@@ -86,7 +86,7 @@ const ProductDetailsPage = () => {
               </p>
             </div>
 
-            <div className="bg-[#2F343B] p-2 sm:p-4 rounded-xl break-words">
+            <div className="bg-[#2F343B] p-2 sm:p-4 rounded-xl wrap-break-word">
               <p className="text-gray-400 text-sm">Category</p>
               <p className="text-lg font-medium capitalize">
                 {product.category || "—"}
