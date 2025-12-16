@@ -136,7 +136,7 @@
 
 ##### 49. Run "npm start" to start the server
 
-## Back to client Admin
+## Back to Admin
 
 ##### 50. Get the code of customer management dashboard from my previous project "customer-management-react-node"
 
@@ -355,7 +355,7 @@
 
 ##### 122. now i can upload image in product
 
-## Back to client Admin
+## Back to Admin
 
 ##### 123. in "AddProductForm" in "AddProduct" page change input type="file"
 
@@ -375,7 +375,7 @@
 
 ##### 129. Display product image in productDetails page
 
-## Back to client Admin
+## Back to Admin
 
 ##### 130. Handle Edit product because i forget
 
@@ -437,7 +437,7 @@
 
 ##### 138. Add quantity stock to product
 
-## Back to client Admin
+## Back to Admin
 
 ##### 139. Handle Responsive problems
 
@@ -469,7 +469,7 @@
 
 ##### 142. Login
 
-## Back to client Admin
+## Back to Admin
 
 ##### 143. Add "Signup" page
 
@@ -521,7 +521,7 @@
 
 ##### 148. Adding not found route using "{0,}" in server/index.ts file because old way "\*" in v3 but in v4 by using this way
 
-## Back to client Admin
+## Back to Admin
 
 ##### 149. Make dashboard protected only who logged in can see it
 
@@ -542,6 +542,10 @@
 ## Back to server
 
 ##### 1512. add count routes for both products and users to return the count of products and users
+
+## Back to admin
+
+##### 1513. Add "productsCount" and "usersCount" in "Home" page
 
 ---
 

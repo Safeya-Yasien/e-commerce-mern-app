@@ -13,7 +13,7 @@ import roleMiddleware from "../middlewares/roleMiddleware";
 import authMiddleware from "../middlewares/authMiddleware";
 
 router.get("/", authMiddleware, roleMiddleware(["admin"]), getUsers);
-router.get("/count", authMiddleware,  getUsersCount);
+router.get("/count", authMiddleware, getUsersCount);
 router.post("/add", authMiddleware, roleMiddleware(["admin"]), addUser);
 router.put(
   "/update/:id",

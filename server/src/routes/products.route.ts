@@ -14,7 +14,7 @@ import authMiddleware from "../middlewares/authMiddleware";
 import roleMiddleware from "../middlewares/roleMiddleware";
 
 router.get("/", authMiddleware, getProducts);
-router.get("/", authMiddleware, getProductsCount);
+router.get("/count", authMiddleware, getProductsCount);
 router.post(
   "/add",
   authMiddleware,
