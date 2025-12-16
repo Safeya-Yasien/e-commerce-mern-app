@@ -541,7 +541,7 @@
 
 ## Back to server
 
-##### 1512. add count routes for both products and users to return the count of products and users
+##### 1512. add count routes for both products and users to return the count of products and users using "countDocuments"
 
 ## Back to admin
 
@@ -549,7 +549,7 @@
 
 ## Back to server
 
-##### 1514. add "me" route in "users.route" to get accessible user data for both viewer and admin include "fullName", "email", "role"
+##### 1514. add "me" route in "users.route" to get accessible user data for both viewer and admin include only "fullName", "email", "role" using "select" after findById
 
 ## Back to admin
 
