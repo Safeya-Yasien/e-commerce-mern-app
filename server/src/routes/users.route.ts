@@ -4,6 +4,7 @@ import {
   deleteAllUsers,
   getUsers,
   getUsersCount,
+  getCurrentUser,
   getUserById,
   addUser,
   updateUser,
@@ -14,6 +15,7 @@ import authMiddleware from "../middlewares/authMiddleware";
 
 router.get("/", authMiddleware, roleMiddleware(["admin"]), getUsers);
 router.get("/count", authMiddleware, getUsersCount);
+router.get("/me", authMiddleware, getCurrentUser);
 router.post("/add", authMiddleware, roleMiddleware(["admin"]), addUser);
 router.put(
   "/update/:id",

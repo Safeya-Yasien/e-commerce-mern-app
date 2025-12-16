@@ -1,46 +1,26 @@
-import { useState } from "react";
 import { User } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import SearchBar from "../SearchBar";
 import MobileSidebar from "./MobileSidebar";
+import { useState } from "react";
 
 const BASE_URL = `${import.meta.env.VITE_API_URI}/api/users`;
 
-type JWTPayload = {
-  id: string;
-  role: string;
-  iat?: number;
-  exp?: number;
-};
-
 const Header = () => {
-  const token = localStorage.getItem("token");
   const [menuOpen, setMenuOpen] = useState(false);
-
-  let payload: JWTPayload | null = null;
-
-  if (token) {
-    try {
-      payload = JSON.parse(atob(token.split(".")[1] || "{}"));
-    } catch (err) {
-      console.error("Invalid token:", err);
-    }
-  }
-
-  const id = payload?.id;
-
   const { data } = useQuery({
-    queryKey: ["user", id],
+    queryKey: ["me"],
     queryFn: async () => {
-      const response = await fetch(`${BASE_URL}/${id}`, {
-        headers: { Authorization: `Bearer ${token}` },
+      const response = await fetch(`${BASE_URL}/me`, {
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
       if (!response.ok)
         throw new Error(`Server responded with ${response.status}`);
       return response.json();
     },
-    enabled: !!id,
   });
+
+  console.log("data", data);
 
   return (
     <header className="text-white flex items-center justify-between relative bg-[#181B1F] rounded-2xl p-4">
@@ -61,10 +41,13 @@ const Header = () => {
           >
             <User className="w-6 h-6" />
           </button>
-          {token && menuOpen && (
-            <div className="absolute -right-3 mt-2 w-48 bg-gray-800 rounded-lg shadow-lg p-3 text-sm z-10">
+          {menuOpen && data && (
+            <div className="absolute -right-3 mt-2 w-48 bg-gray-800 rounded-lg shadow-lg p-3 text-sm z-10 flex flex-col gap-1">
               <p className="text-gray-300 ">
                 {data?.data?.email || "user@email.com"}
+              </p>
+              <p className="text-xs text-gray-400 capitalize mt-1">
+                {data?.data?.role}
               </p>
             </div>
           )}

@@ -112,6 +112,29 @@ const getUsersCount = async (req: any, res: any) => {
   }
 };
 
+const getCurrentUser = async (req: any, res: any) => {
+  try {
+    const user = await User.findById(req.user.id).select(
+      "firstName email role"
+    );
+
+    console.log("Current User:", user);
+
+    if (!user) {
+      res
+        .status(404)
+        .json({ msg: "User not found", data: null, success: false });
+      return;
+    }
+
+    res.status(200).json({ msg: "success", data: user, success: true });
+  } catch (err) {
+    res
+      .status(500)
+      .json({ msg: "Error getting current user", data: err, success: false });
+  }
+};
+
 const deleteAllUsers = async (req: any, res: any) => {
   try {
     await User.deleteMany({});
@@ -125,6 +148,7 @@ export {
   getUsers,
   getUsersCount,
   getUserById,
+  getCurrentUser,
   addUser,
   updateUser,
   deleteUser,

@@ -547,6 +547,16 @@
 
 ##### 1513. Add "productsCount" and "usersCount" in "Home" page
 
+## Back to server
+
+##### 1514. add "me" route in "users.route" to get accessible user data for both viewer and admin include "fullName", "email", "role"
+
+## Back to admin
+
+##### 1515. Display user data "email", "role" in Header profile menu
+
+##### 1516.
+
 ---
 
 # server
