@@ -18,7 +18,12 @@ const UsersList = () => {
     queryKey: ["users"],
     queryFn: async () => {
       try {
-        const res = await fetch(`${BASE_URL}`, {});
+        const res = await fetch(`${BASE_URL}`, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        });
 
         if (!res.ok) throw new Error("Failed to fetch users");
         return res.json();

@@ -8,10 +8,17 @@ const Home = () => {
   const { data: usersData, isLoading: usersLoading } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
-      const res = await fetch(`${BASE_URL}/users`, {});
-
-      const json = await res.json();
-      return json.data;
+      try {
+        const token = localStorage.getItem("token") || "";
+        const res = await fetch(`${BASE_URL}/users`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        const json = await res.json();
+        return json.data;
+      } catch (err) {
+        console.error("Fetch users failed:", err);
+        throw err;
+      }
     },
   });
 
@@ -19,12 +26,17 @@ const Home = () => {
   const { data: productsData, isLoading: productsLoading } = useQuery({
     queryKey: ["products"],
     queryFn: async () => {
-      const token = localStorage.getItem("JWT");
-      const res = await fetch(`${BASE_URL}/products`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      const json = await res.json();
-      return json.data;
+      try {
+        const token = localStorage.getItem("token") || "";
+        const res = await fetch(`${BASE_URL}/products`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        const json = await res.json();
+        return json.data;
+      } catch (err) {
+        console.error("Fetch products failed:", err);
+        throw err;
+      }
     },
   });
 

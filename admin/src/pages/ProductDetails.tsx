@@ -15,7 +15,11 @@ const ProductDetailsPage = () => {
   } = useQuery({
     queryKey: ["product", id],
     queryFn: async () => {
-      const res = await fetch(`${BASE_URL}/${id}`);
+      const res = await fetch(`${BASE_URL}/${id}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
       if (!res.ok) {
         throw new Error(`Failed to fetch product with ID: ${id}`);
       }

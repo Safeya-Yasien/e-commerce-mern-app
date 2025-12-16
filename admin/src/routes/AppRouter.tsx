@@ -1,7 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router";
 import { lazy } from "react";
 
-import ProtectedRoute from "@/components/ProtectedRoute";
+import { ProtectedRoute, RoleProtectedRoute } from "@/components";
 
 const Login = lazy(() => import("@/pages/auth/Login"));
 const Signup = lazy(() => import("@/pages/auth/Signup"));
@@ -29,19 +29,10 @@ const router = createBrowserRouter([
             index: true,
             element: <Home />,
           },
-          // products route
+
           {
             path: "products",
             element: <ProductsPage />,
-          },
-          {
-            path: "products/add-product",
-            element: <AddProductPage />,
-          },
-
-          {
-            path: "products/update/:id",
-            element: <AddProductPage />,
           },
 
           {
@@ -49,24 +40,39 @@ const router = createBrowserRouter([
             element: <ProductDetailsPage />,
           },
 
-          // users route
           {
-            path: "users",
-            element: <UsersPage />,
-          },
+            element: <RoleProtectedRoute />,
+            children: [
+              // admin users route
+              {
+                path: "users",
+                element: <UsersPage />,
+              },
+              {
+                path: "users/add-user",
+                element: <AddUserPage />,
+              },
 
-          {
-            path: "users/add-user",
-            element: <AddUserPage />,
-          },
+              {
+                path: "users/update/:id",
+                element: <AddUserPage />,
+              },
+              {
+                path: "users/:id",
+                element: <UserDetailPage />,
+              },
 
-          {
-            path: "users/update/:id",
-            element: <AddUserPage />,
-          },
-          {
-            path: "users/:id",
-            element: <UserDetailPage />,
+              // admin products route
+              {
+                path: "products/add-product",
+                element: <AddProductPage />,
+              },
+
+              {
+                path: "products/update/:id",
+                element: <AddProductPage />,
+              },
+            ],
           },
         ],
       },

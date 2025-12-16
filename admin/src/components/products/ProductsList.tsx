@@ -12,7 +12,11 @@ const ProductsList = () => {
     queryKey: ["product"],
     queryFn: async () => {
       try {
-        const response = await fetch(`${BASE_URL}`);
+        const response = await fetch(`${BASE_URL}`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        });
 
         if (!response.ok) {
           throw new Error(`Server responded with ${response.status}`);

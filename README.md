@@ -525,7 +525,21 @@
 
 ##### 149. Make dashboard protected only who logged in can see it
 
-##### 150.
+    - i add protected route in "AppRouter.tsx" file
+    - i create 'isAuthenticated' function in "utils" folder which check if the token is in local storage
+
+##### 1510. Add header in 'Home' page to add auth with every request
+
+    - which login != permission which protected route proves someone is logged in not they are allowed to see the page
+    - so i add " headers: { Authorization: `Bearer ${token}` }," in fetch request in "Home.tsx" file
+
+##### 1511. ِHandle all routes with "admin" role
+
+    - first i create "getRoleFromToken" function in "utils" folder to get the role from the token using "atob"
+    - then i create "RoleProtectedRoute" component in "components" folder to check if the role is admin or not
+    - add "RoleProtectedRoute" in "AppRouter.tsx" file to all admin roles
+
+##### 1512.
 
 ---
 
@@ -534,6 +548,8 @@
 ### test if cloudinary is working by console.log(cloudinary.config()) using cloudinary url
 
 # admin
+
+##### 150. Enhance "AppRouter.tsx" to prevent repetition of code
 
 ### should i move "DeleteButton" from "ui" to "components" folder?
 

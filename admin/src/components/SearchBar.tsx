@@ -11,6 +11,7 @@ const SearchBar = () => {
       />
       <button
         type="submit"
+        onClick={(e) => e.preventDefault()}
         className="cursor-pointer bg-blue-500 hover:bg-blue-600 transition-colors px-4 py-2 text-white font-medium"
       >
         <Search className="w-4 h-4 text-white sm:hidden" />
