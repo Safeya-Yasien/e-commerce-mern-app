@@ -10,6 +10,17 @@ const getProducts = async (req: any, res: any) => {
   }
 };
 
+const getProductsCount = async (req: any, res: any) => {
+  try {
+    const count = await Product.countDocuments();
+    res.status(200).json({ msg: "success", data: count, success: true });
+  } catch (err) {
+    res
+      .status(500)
+      .json({ msg: "Error getting users count", data: err, success: false });
+  }
+};
+
 const addProduct = async (req: any, res: any) => {
   try {
     const productData = req.body;
@@ -154,6 +165,7 @@ const deleteAllProducts = async (req: any, res: any) => {
 
 export {
   getProducts,
+  getProductsCount,
   deleteAllProducts,
   addProduct,
   updateProduct,

@@ -3,6 +3,7 @@ const router = express.Router();
 import {
   deleteAllProducts,
   getProducts,
+  getProductsCount,
   getProductById,
   addProduct,
   updateProduct,
@@ -13,6 +14,7 @@ import authMiddleware from "../middlewares/authMiddleware";
 import roleMiddleware from "../middlewares/roleMiddleware";
 
 router.get("/", authMiddleware, getProducts);
+router.get("/", authMiddleware, getProductsCount);
 router.post(
   "/add",
   authMiddleware,
@@ -27,7 +29,7 @@ router.put(
   multerMiddleware,
   updateProduct
 );
-router.get("/:id", authMiddleware, roleMiddleware(["admin"]), getProductById);
+router.get("/:id", authMiddleware, getProductById);
 router.delete(
   "/delete/:id",
   authMiddleware,

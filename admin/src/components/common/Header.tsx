@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import SearchBar from "../SearchBar";
 import MobileSidebar from "./MobileSidebar";
 
-const BASE_URL = `${import.meta.env.VITE_API_URL}`;
+const BASE_URL = `${import.meta.env.VITE_API_URI}/api/users`;
 
 type JWTPayload = {
   id: string;
@@ -32,7 +32,7 @@ const Header = () => {
   const { data } = useQuery({
     queryKey: ["user", id],
     queryFn: async () => {
-      const response = await fetch(`${BASE_URL}/users/${id}`, {
+      const response = await fetch(`${BASE_URL}/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (!response.ok)

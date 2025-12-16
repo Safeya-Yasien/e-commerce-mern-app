@@ -539,7 +539,9 @@
     - then i create "RoleProtectedRoute" component in "components" folder to check if the role is admin or not
     - add "RoleProtectedRoute" in "AppRouter.tsx" file to all admin roles
 
-##### 1512.
+## Back to server
+
+##### 1512. add count routes for both products and users to return the count of products and users
 
 ---
 
@@ -548,6 +550,8 @@
 ### test if cloudinary is working by console.log(cloudinary.config()) using cloudinary url
 
 # admin
+
+##### handle profile icon styles and display mail
 
 ##### 150. Enhance "AppRouter.tsx" to prevent repetition of code
 

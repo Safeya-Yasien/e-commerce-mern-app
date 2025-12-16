@@ -101,6 +101,17 @@ const getUserById = async (req: any, res: any) => {
   }
 };
 
+const getUsersCount = async (req: any, res: any) => {
+  try {
+    const count = await User.countDocuments();
+    res.status(200).json({ msg: "success", data: count, success: true });
+  } catch (err) {
+    res
+      .status(500)
+      .json({ msg: "Error getting users count", data: err, success: false });
+  }
+};
+
 const deleteAllUsers = async (req: any, res: any) => {
   try {
     await User.deleteMany({});
@@ -112,6 +123,7 @@ const deleteAllUsers = async (req: any, res: any) => {
 
 export {
   getUsers,
+  getUsersCount,
   getUserById,
   addUser,
   updateUser,
