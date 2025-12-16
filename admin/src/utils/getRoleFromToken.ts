@@ -8,7 +8,6 @@ export const getRoleFromToken = () => {
   try {
     const payload = JSON.parse(atob(token.split(".")[1]));
 
-    console.log("User role from token:", payload.role);
     return payload.role;
   } catch {
     return false;

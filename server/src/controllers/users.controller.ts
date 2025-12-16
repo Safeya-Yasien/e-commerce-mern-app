@@ -5,7 +5,6 @@ import crypto from "crypto";
 const addUser = async (req: any, res: any) => {
   try {
     const tempPassword = "use_" + crypto.randomBytes(2).toString("hex");
-    console.log("Temporary Password: ", tempPassword);
     const hashedPassword = await bcrypt.hash(tempPassword, 10);
 
     const userData = req.body;
@@ -118,7 +117,6 @@ const getCurrentUser = async (req: any, res: any) => {
       "firstName email role"
     );
 
-    console.log("Current User:", user);
 
     if (!user) {
       res

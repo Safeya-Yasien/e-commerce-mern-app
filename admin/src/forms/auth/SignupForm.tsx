@@ -23,7 +23,6 @@ const SignupForm = () => {
   const mutation = useMutation({
     mutationKey: ["signup"],
     mutationFn: async (data: TSignupFormData) => {
-      console.log("Signup data :", data);
       const res = await fetch(`${BASE_URL}/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -39,7 +38,6 @@ const SignupForm = () => {
         throw new Error("Failed to create account");
       }
 
-      console.log("Signup response :", res);
 
       return res.json();
     },

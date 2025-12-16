@@ -20,7 +20,6 @@ const Header = () => {
     },
   });
 
-  console.log("data", data);
 
   return (
     <header className="text-white flex items-center justify-between relative bg-[#181B1F] rounded-2xl p-4">
