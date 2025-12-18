@@ -8,6 +8,17 @@ import {
   Users,
 } from "lucide-react";
 import { NavLink, useNavigate } from "react-router";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "../ui/alert-dialog";
 
 const Sidebar = () => {
   const navigate = useNavigate();
@@ -15,6 +26,7 @@ const Sidebar = () => {
 
   const handleLogout = () => {
     localStorage.removeItem("token");
+
     navigate("/auth/login");
   };
 
@@ -111,13 +123,35 @@ const Sidebar = () => {
           </li>
         )}
         <li>
-          <button
-            onClick={handleLogout}
-            className="cursor-pointer flex items-center gap-3 px-4 py-2 rounded-lg text-gray-400 hover:text-white hover:bg-[#2A2F36] w-full text-left transition-all duration-200"
-          >
-            <LogOut className="w-4 h-4" />
-            Logout
-          </button>
+          <AlertDialog>
+            <AlertDialogTrigger asChild className="">
+              <button className="cursor-pointer flex items-center gap-3 px-4 py-2 rounded-lg text-gray-400 hover:text-white hover:bg-[#2A2F36] w-full text-left transition-all duration-200">
+                <LogOut className="w-4 h-4" />
+                Logout
+              </button>
+            </AlertDialogTrigger>
+            <AlertDialogContent className="bg-[#1F2328] text-white">
+              <AlertDialogHeader>
+                <AlertDialogTitle>
+                  Are you sure you want to logout?
+                </AlertDialogTitle>
+              </AlertDialogHeader>
+              <AlertDialogDescription className="text-gray-300 sr-only">
+                This action will log you out of the admin dashboard.
+              </AlertDialogDescription>
+              <AlertDialogFooter>
+                <AlertDialogCancel className="cursor-pointer bg-gray-700 text-gray-200 hover:bg-gray-600 ">
+                  Cancel
+                </AlertDialogCancel>
+                <AlertDialogAction
+                  onClick={handleLogout}
+                  className="cursor-pointer bg-red-600 hover:bg-red-500 text-white"
+                >
+                  Continue
+                </AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
         </li>
       </ul>
     </div>

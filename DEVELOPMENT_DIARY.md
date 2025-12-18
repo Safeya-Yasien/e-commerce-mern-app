@@ -559,7 +559,7 @@
 
 ##### 1517. create "Development_diary.md" file to keep track of the development diary and make Readme for main points
 
-##### 1518.
+##### 1518. Confirm message before logout "logout" on sidebar using "AlertDialog"
 
 ---
 
