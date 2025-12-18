@@ -555,7 +555,9 @@
 
 ##### 1515. Display user data "email", "role" in Header profile menu
 
-##### 1516.
+##### 1516. i handle edit, delete buttons as not allowed for viewer to use them and sidebar to prevent "viewer" to see "users, add user" pages
+
+##### 1517.
 
 ---
 

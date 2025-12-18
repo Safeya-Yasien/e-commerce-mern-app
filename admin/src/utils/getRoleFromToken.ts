@@ -14,4 +14,4 @@ export const getRoleFromToken = () => {
   }
 };
 
-
+export const isAdmin = () => getRoleFromToken() === "admin";

@@ -2,11 +2,14 @@ import type { IProduct, IProductsResponse } from "@/types/product.types";
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router";
 import { DeleteButton } from "../actions";
+import { isAdmin } from "@/utils";
+import { toast } from "react-toastify";
 
 const BASE_URL = `${import.meta.env.VITE_API_URI}/api/products`;
 
 const ProductsList = () => {
   const navigate = useNavigate();
+  const admin = isAdmin();
 
   const { data: products } = useQuery<IProductsResponse>({
     queryKey: ["product"],
@@ -80,12 +83,23 @@ const ProductsList = () => {
 
               <td className="p-3 ">
                 <div className="flex items-center gap-2 ">
-                  <button
-                    onClick={() => editProduct(product.id)}
-                    className="cursor-pointer px-3 py-1 bg-blue-600 rounded-md text-white text-sm hover:bg-blue-500 flex items-center gap-1"
-                  >
-                    Edit
-                  </button>
+                  {admin ? (
+                    <button
+                      onClick={() => editProduct(product.id)}
+                      className="cursor-pointer px-3 py-1 bg-blue-600 rounded-md text-white text-sm hover:bg-blue-500 flex items-center gap-1"
+                    >
+                      Edit
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() =>
+                        toast.error("You are not authorized to edit this item")
+                      }
+                      className="cursor-not-allowed px-3 py-1 bg-gray-600 rounded-md text-white text-sm"
+                    >
+                      Edit
+                    </button>
+                  )}
 
                   <button
                     onClick={() => viewProduct(product.id)}

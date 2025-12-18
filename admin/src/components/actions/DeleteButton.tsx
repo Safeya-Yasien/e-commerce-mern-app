@@ -9,6 +9,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import { isAdmin } from "@/utils";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 
@@ -28,11 +29,16 @@ const DeleteButton = ({
   queryKey,
 }: IDeleteButtonProps) => {
   const queryClient = useQueryClient();
+  const admin = isAdmin();
 
   const handleDelete = useMutation({
     mutationFn: async (id: string) => {
       return await fetch(`${baseUrl}/delete/${id}`, {
         method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
       });
     },
     onSuccess: async () => {
@@ -43,6 +49,19 @@ const DeleteButton = ({
       toast.error(`${label} deletion failed`);
     },
   });
+
+  if (!admin) {
+    return (
+      <button
+        onClick={() =>
+          toast.error("You are not authorized to delete this item")
+        }
+        className="cursor-not-allowed px-3 py-1 bg-gray-600 rounded-md text-white text-sm"
+      >
+        Delete
+      </button>
+    );
+  }
 
   return (
     <AlertDialog>

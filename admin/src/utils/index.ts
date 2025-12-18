@@ -1,4 +1,4 @@
 import isAuthenticated from "./isAuthenticated";
-import { getRoleFromToken } from "./getRoleFromToken";
+import { isAdmin, getRoleFromToken } from "./getRoleFromToken";
 
-export { isAuthenticated, getRoleFromToken };
+export { isAuthenticated, isAdmin, getRoleFromToken };
