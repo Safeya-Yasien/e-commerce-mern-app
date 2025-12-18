@@ -8,7 +8,8 @@
 
 ▶️ Running the Application
 
-🔑 Testing & Demo Credentials
-Admin:
-nawapykeha@mailinator.com
-Pa$$w0rd!
+🔑 Testing & Demo Credentials<br>
+
+Admin:<br>
+nawapykeha@mailinator.com <br>
+Pa$$w0rd!<br>
