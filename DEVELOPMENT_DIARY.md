@@ -574,7 +574,8 @@
         - then check if the error is "RouteErrorResponse" using "isRouteErrorResponse" which means the error from the server such "401 Unauthorized", "404 Not Found", "403 forbidden" and etc
         - then else if the error not from the server use "instanceof Error" when the error from the code itself or unexpected error such "nul", "undefined", "NaN" and etc such delete "data" from "useQuery" in "ProductsList" page for example
     - add "ErrorBoundary" in "AppRouter.tsx" file in "errorElement" attribute
-    -
+
+##### 1521.
 
 ---
 

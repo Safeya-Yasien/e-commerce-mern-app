@@ -39,7 +39,6 @@ const UsersList = () => {
   };
 
   const editUser = (id: string) => {
-    console.log("Edit user with ID:", id);
     navigate("/users/update/" + id);
   };
 

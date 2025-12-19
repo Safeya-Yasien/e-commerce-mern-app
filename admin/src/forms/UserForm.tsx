@@ -50,7 +50,12 @@ const UserForm = () => {
   const { data: user } = useQuery({
     queryKey: ["user", id],
     queryFn: async () => {
-      const res = await fetch(`${BASE_URL}/${id}`);
+      const res = await fetch(`${BASE_URL}/${id}`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
       const data = await res.json();
       return data.data;
     },
