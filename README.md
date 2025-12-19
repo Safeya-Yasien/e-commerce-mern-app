@@ -13,3 +13,8 @@
 Admin:<br>
 nawapykeha@mailinator.com <br>
 Pa$$w0rd!<br>
+
+## viewer
+
+test@gmail.com <br>
+123456

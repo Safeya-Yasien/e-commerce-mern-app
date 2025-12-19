@@ -561,6 +561,21 @@
 
 ##### 1518. Confirm message before logout "logout" on sidebar using "AlertDialog"
 
+##### 1519. Enhance "AppRouter.tsx" to prevent repetition of code
+
+    - create "routePaths.ts" file in "routes" folder to store all routes
+    - import "routePaths" in "AppRouter.tsx" file and use it in "path" attribute
+
+##### 1520. Add "ErrorElement" in "AppRouter.tsx" file to display error message when write wrong path or route
+
+    - create "ErrorBoundary" component in "components" folder
+        - create "error" variable = useRouteError()
+        - create "errorMessage" variable empty and add it's type string
+        - then check if the error is "RouteErrorResponse" using "isRouteErrorResponse" which means the error from the server such "401 Unauthorized", "404 Not Found", "403 forbidden" and etc
+        - then else if the error not from the server use "instanceof Error" when the error from the code itself or unexpected error such "nul", "undefined", "NaN" and etc such delete "data" from "useQuery" in "ProductsList" page for example
+    - add "ErrorBoundary" in "AppRouter.tsx" file in "errorElement" attribute
+    -
+
 ---
 
 # server

@@ -1,7 +1,8 @@
 import { createBrowserRouter, RouterProvider } from "react-router";
 import { lazy } from "react";
 
-import { ProtectedRoute, RoleProtectedRoute } from "@/components";
+import { ErrorBoundary, ProtectedRoute, RoleProtectedRoute } from "@/components";
+import { ROUTE_PATHS } from "./routePaths";
 
 const Login = lazy(() => import("@/pages/auth/Login"));
 const Signup = lazy(() => import("@/pages/auth/Signup"));
@@ -19,8 +20,9 @@ const AuthLayout = lazy(() => import("@/layouts/AuthLayout/AuthLayout"));
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: ROUTE_PATHS.HOME,
     element: <MainLayout />,
+    errorElement:<ErrorBoundary/>,
     children: [
       {
         element: <ProtectedRoute />,
@@ -31,12 +33,12 @@ const router = createBrowserRouter([
           },
 
           {
-            path: "products",
+            path: ROUTE_PATHS.PRODUCTS,
             element: <ProductsPage />,
           },
 
           {
-            path: "products/:id",
+            path: ROUTE_PATHS.PRODUCT_DETAILS,
             element: <ProductDetailsPage />,
           },
 
@@ -45,31 +47,31 @@ const router = createBrowserRouter([
             children: [
               // admin users route
               {
-                path: "users",
+                path: ROUTE_PATHS.ADMIN_USERS,
                 element: <UsersPage />,
               },
               {
-                path: "users/add-user",
+                path: ROUTE_PATHS.ADMIN_ADD_USER,
                 element: <AddUserPage />,
               },
 
               {
-                path: "users/update/:id",
+                path: ROUTE_PATHS.ADMIN_UPDATE_USER,
                 element: <AddUserPage />,
               },
               {
-                path: "users/:id",
+                path: ROUTE_PATHS.ADMIN_USER_DETAILS,
                 element: <UserDetailPage />,
               },
 
               // admin products route
               {
-                path: "products/add-product",
+                path: ROUTE_PATHS.ADMIN_ADD_PRODUCT,
                 element: <AddProductPage />,
               },
 
               {
-                path: "products/update/:id",
+                path: ROUTE_PATHS.ADMIN_UPDATE_PRODUCT,
                 element: <AddProductPage />,
               },
             ],
