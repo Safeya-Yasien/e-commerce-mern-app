@@ -5,6 +5,7 @@ const ProductsPage = () => {
   return (
     <div className="">
       <PageTitle title="products" />
+
       <ProductsList />
     </div>
   );

@@ -565,6 +565,9 @@
 
     - create "routePaths.ts" file in "routes" folder to store all routes
     - import "routePaths" in "AppRouter.tsx" file and use it in "path" attribute
+    - create "adminRoutes.ts" file in "routes" folder to store all admin routes
+    - create "authRoutes.ts" file in "routes" folder to store all auth routes
+    - import "routePaths" and "adminRoutes" in "AppRouter.tsx" file and use it in "path" attribute
 
 ##### 1520. Add "ErrorElement" in "AppRouter.tsx" file to display error message when write wrong path or route
 
