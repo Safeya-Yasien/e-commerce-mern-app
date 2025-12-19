@@ -1,7 +1,11 @@
 import { createBrowserRouter, RouterProvider } from "react-router";
 import { lazy } from "react";
 
-import { ErrorBoundary, ProtectedRoute, RoleProtectedRoute } from "@/components";
+import {
+  ErrorBoundary,
+  ProtectedRoute,
+  RoleProtectedRoute,
+} from "@/components";
 import { ROUTE_PATHS } from "./routePaths";
 
 const Login = lazy(() => import("@/pages/auth/Login"));
@@ -22,7 +26,7 @@ const router = createBrowserRouter([
   {
     path: ROUTE_PATHS.HOME,
     element: <MainLayout />,
-    errorElement:<ErrorBoundary/>,
+    errorElement: <ErrorBoundary />,
     children: [
       {
         element: <ProtectedRoute />,
@@ -81,15 +85,15 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/auth",
+    path: ROUTE_PATHS.AUTH_LAYOUT,
     element: <AuthLayout />,
     children: [
       {
-        path: "signup",
+        path: ROUTE_PATHS.SIGNUP,
         element: <Signup />,
       },
       {
-        path: "login",
+        path: ROUTE_PATHS.LOGIN,
         element: <Login />,
       },
     ],
