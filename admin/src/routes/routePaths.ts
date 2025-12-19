@@ -5,6 +5,7 @@ export const ROUTE_PATHS = {
   SIGNUP: "signup",
   PRODUCTS: "products",
   PRODUCT_DETAILS: "products/:id",
+
   ADMIN_USERS: "users",
   ADMIN_ADD_USER: "users/add-user",
   ADMIN_UPDATE_USER: "users/update/:id",
