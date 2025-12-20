@@ -578,7 +578,62 @@
         - then else if the error not from the server use "instanceof Error" when the error from the code itself or unexpected error such "nul", "undefined", "NaN" and etc such delete "data" from "useQuery" in "ProductsList" page for example
     - add "ErrorBoundary" in "AppRouter.tsx" file in "errorElement" attribute
 
-##### 1521.
+##### 1521. What is "ErrorBoundary" component?
+
+    - it's a component that catches errors in the application and displays a fallback UI when an expected error occurs
+    - we use it to wrap the application or specific components that we want to handle errors for
+    - if you wrap specific components with ErrorBoundary, it will display  the fallback UI when an error occurs in that component and display other components as it without effecting the rest of the application
+    -
+    - ErrorBoundary is a class component use [ComponentDidCatch, getDerivedStateFromError] functions lifecycle methods
+    -
+
+<div dir="rtl">
+
+##### 1522. ايه هى ال lifecycle ؟
+
+ال lifecycle هى مراحل حياة ال component
+
+- Render, Update, Unmount
+- أي حاجه بتبدأ ب Component عبارة عن class function ومكانها الطبيعى في class لأنها بداية نشأت ال React
+- لأن ال class has instance, this, internal state
+- الل بيحصل إن react بيكريت instance from the class وينادى ال methods in specific times
+
+##### 1522. ليه ال functional component ملهاش lifecycle ؟
+
+- لأنها زى ما بنقول هى مجرد function بننادى عليها وبتخلص
+- وملهاش instance and this
+  بالتالى مافيش مكان لل lifecycle methods
+
+##### 1522. طب ايه الحل ؟ عملوا ال hooks
+
+- جابوا ال state and side effects like useEffect instead of [ComponentDidMount, ComponentDidUpdate, ComponentWillUnmount]
+- لكن م كل ال lifecycle methods اتحولت ل hooks
+- لأن ال componentDidCatch and getDerivedStateFromError بتشتغل قبل ال render في مرحلة React الداخلية م جوه ال function
+
+=> hooks بتتنادى أثناء ال Render
+=> وال Render لازم يبقى Pure
+=> فلما Error يحصل ال Render بيتكسر
+=> بالتالى ال hook م هيشتغل
+عشان كده بنحتاج حاجه تشتغل برا ال Render وم عندناش hook لكده
+
+##### 1522. عندنا حلين إما
+
+    - استخدام ال ErrorBoundary with class component
+    - او استخدام react-error-boundary library
+
+    and they suggest to use react-error-boundary library
+
+</div>
+
+##### 1523. So we will use "react-error-boundary" library and wrap the whole application with "ErrorBoundary" component
+
+    - install "react-error-boundary" using npm
+    - add "ErrorBoundary" in "AppRouter.tsx" file
+    - this called global error boundary
+    - but you should now it's not catch async errors you have to use "useErrorBoundary" hook inside async function by using "showError" function
+    - and in reactQuery use error and isError and throw error
+
+##### 1524.
 
 ---
 

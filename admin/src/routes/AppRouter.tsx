@@ -1,11 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router";
 import { lazy } from "react";
 
-import {
-  ErrorBoundary,
-  ProtectedRoute,
-  RoleProtectedRoute,
-} from "@/components";
+import { ProtectedRoute, RoleProtectedRoute } from "@/components";
 import { ROUTE_PATHS } from "./routePaths";
 import { ADMIN_ROUTES } from "./adminRoutes";
 import { AUTH_ROUTES } from "./authRoutes";
@@ -21,7 +17,6 @@ const router = createBrowserRouter([
   {
     path: ROUTE_PATHS.HOME,
     element: <MainLayout />,
-    errorElement: <ErrorBoundary />,
     children: [
       {
         element: <ProtectedRoute />,

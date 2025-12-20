@@ -14,23 +14,18 @@ interface IUser {
 const UsersList = () => {
   const navigate = useNavigate();
 
-  const { data, isLoading, isError } = useQuery({
+  const { data, isLoading, isError, error } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
-      try {
-        const res = await fetch(`${BASE_URL}`, {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        });
+      const res = await fetch(`${BASE_URL}`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
 
-        if (!res.ok) throw new Error("Failed to fetch users");
-        return res.json();
-      } catch (err) {
-        console.error("Token retrieval error:", err);
-        throw err;
-      }
+      if (!res.ok) throw new Error("Failed to fetch users");
+      return res.json();
     },
   });
 
@@ -43,7 +38,7 @@ const UsersList = () => {
   };
 
   if (isLoading) return <p className="text-gray-400">Loading users...</p>;
-  if (isError) return <p className="text-red-400">Error loading users</p>;
+  if (isError) throw error;
 
   const users = data?.data || [];
 
