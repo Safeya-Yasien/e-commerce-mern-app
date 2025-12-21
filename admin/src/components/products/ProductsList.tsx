@@ -11,25 +11,25 @@ const ProductsList = () => {
   const navigate = useNavigate();
   const admin = isAdmin();
 
-  const { data: products } = useQuery<IProductsResponse>({
+  const {
+    data: products,
+    isLoading,
+    isError,
+    error,
+  } = useQuery<IProductsResponse>({
     queryKey: ["product"],
     queryFn: async () => {
-      try {
-        const response = await fetch(`${BASE_URL}`, {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        });
+      const response = await fetch(`${BASE_URL}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
 
-        if (!response.ok) {
-          throw new Error(`Server responded with ${response.status}`);
-        }
-
-        return await response.json();
-      } catch (err) {
-        console.error("Fetch products failed:", err);
-        throw err;
+      if (!response.ok) {
+        throw new Error(`Server responded with ${response.status}`);
       }
+
+      return await response.json();
     },
   });
 
@@ -40,6 +40,9 @@ const ProductsList = () => {
   const editProduct = (id: string) => {
     navigate(`/products/update/${id}`);
   };
+
+  if (isLoading) return <p className="text-gray-400">Loading products...</p>;
+  if (isError) throw error;
 
   return (
     <div className="bg-[#252A30] rounded-2xl p-6 overflow-auto h-full">

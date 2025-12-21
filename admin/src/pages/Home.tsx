@@ -5,40 +5,56 @@ import { useQuery } from "@tanstack/react-query";
 const BASE_URL = `${import.meta.env.VITE_API_URI}/api`;
 
 const Home = () => {
-  const { data: usersCount, isLoading: usersLoading } = useQuery({
-    queryKey: ["users"],
+  const {
+    data: usersCount,
+    isLoading: usersLoading,
+    isError: IsUsersError,
+    error: usersError,
+  } = useQuery({
+    queryKey: ["users-count"],
     queryFn: async () => {
-      try {
-        const token = localStorage.getItem("token") || "";
-        const res = await fetch(`${BASE_URL}/users/count`, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        const json = await res.json();
-        return json.data;
-      } catch (err) {
-        console.error("Fetch users failed:", err);
-        throw err;
-      }
+      const token = localStorage.getItem("token") || "";
+      const res = await fetch(`${BASE_URL}/users/count`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      if (!res.ok) throw new Error(res.statusText);
+      const json = await res.json();
+      return json.data;
     },
   });
 
+  if (IsUsersError) {
+    const errorMessage = usersError?.message || "Failed to fetch users count.";
+    throw new Error(errorMessage);
+  }
+
   // products
-  const { data: productsCount, isLoading: productsLoading } = useQuery({
-    queryKey: ["products"],
+  const {
+    data: productsCount,
+    isLoading: productsLoading,
+    isError: IsProductsError,
+    error: productsError,
+  } = useQuery({
+    queryKey: ["products-count"],
     queryFn: async () => {
-      try {
-        const token = localStorage.getItem("token") || "";
-        const res = await fetch(`${BASE_URL}/products/count`, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        const json = await res.json();
-        return json.data;
-      } catch (err) {
-        console.error("Fetch products failed:", err);
-        throw err;
-      }
+      const token = localStorage.getItem("token") || "";
+      const res = await fetch(`${BASE_URL}/products/count`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      if (!res.ok) throw new Error(res.statusText);
+
+      const json = await res.json();
+      return json.data;
     },
   });
+
+  if (IsProductsError) {
+    const errorMessage =
+      productsError?.message || "Failed to fetch products count.";
+    throw new Error(errorMessage);
+  }
 
   if (usersLoading || productsLoading)
     return (

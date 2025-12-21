@@ -633,7 +633,18 @@
     - but you should now it's not catch async errors you have to use "useErrorBoundary" hook inside async function by using "showError" function
     - and in reactQuery use error and isError and throw error
 
-##### 1524.
+##### 1524. I faced an error in "Home" page
+
+    - I faced this error "Unexpected Application Error!
+
+Objects are not valid as a React child (found: object with keys {msg, data, success}). If you meant to render a collection of children, use an array instead."
+
+- I found the error comes from "SummaryCard" component in "Home" page
+- first when i console count of products and users i found that he also console users data and senstive data like password
+  I found that i wrote users and products in useQuery in "Home" page
+  so i changed it to "users-count" and "products-count" and it's working fine
+
+##### 1525. 
 
 ---
 
@@ -643,17 +654,13 @@
 
 # admin
 
+##### when ErrorBoundary error component appears i can't test it
+
 ##### handle profile icon styles and display mail
-
-##### 150. Enhance "AppRouter.tsx" to prevent repetition of code
-
-### should i move "DeleteButton" from "ui" to "components" folder?
 
 ### add delete all product and users in "Users" page and "Products" page
 
 ### enhance shape of formData in "ProductForm" instead of write each line of formData
-
-### There is a problem in responsive in main layout
 
 ### add dark mode in dashboard
 

@@ -117,7 +117,6 @@ const getCurrentUser = async (req: any, res: any) => {
       "firstName email role"
     );
 
-
     if (!user) {
       res
         .status(404)
