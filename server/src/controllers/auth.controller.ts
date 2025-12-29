@@ -39,7 +39,7 @@ const login = async (req: any, res: any) => {
 
 const signup = async (req: any, res: any) => {
   try {
-    const { firstName, lastName, email, password, role } = req.body;
+    const { firstName, lastName, email, password } = req.body;
 
     if (!firstName || !lastName || !email || !password) {
       return res.status(400).json({

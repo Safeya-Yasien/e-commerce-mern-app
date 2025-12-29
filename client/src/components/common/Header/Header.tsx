@@ -6,10 +6,12 @@ import {
   Mail,
   Menu,
   ShoppingBasket,
+  User,
   X,
   type LucideIcon,
 } from "lucide-react";
 import { memo } from "react";
+import { useQuery } from "@tanstack/react-query";
 
 interface INavItem {
   path: string;
@@ -24,6 +26,26 @@ const navItems: INavItem[] = [
 ];
 
 const Header = memo(() => {
+  const token = localStorage.getItem("token");
+
+  const { data: client } = useQuery({
+    queryKey: ["client"],
+    queryFn: async () => {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URI}/api/users/me`,
+        {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      const res = await response.json();
+      return res.data;
+    },
+    enabled: !!token,
+  });
+
   return (
     <header className="bg-base-100 text-base-content fixed top-0 left-0 w-full z-50 h-14 border-b border-base-100 shadow-sm">
       <div className="flex items-center justify-between px-4 h-full">
@@ -66,12 +88,19 @@ const Header = memo(() => {
           {/* Cart + Login */}
           <div className="flex items-center gap-4 font-medium">
             <CartIcon />
-            <Link
-              to="auth/login"
-              className="transition bg-primary px-3 py-1 rounded  text-base-100 hover:bg-secondary"
-            >
-              Login
-            </Link>
+
+            {client ? (
+              <Link to="/profile" className="transition  text-base-100 ">
+                <User className="w-6 h-6 text-primary" />
+              </Link>
+            ) : (
+              <Link
+                to="auth/login"
+                className="transition bg-primary px-3 py-1 rounded  text-base-100 hover:bg-secondary"
+              >
+                Login
+              </Link>
+            )}
           </div>
         </div>
       </div>

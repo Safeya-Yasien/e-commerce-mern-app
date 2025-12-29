@@ -114,8 +114,11 @@ const getUsersCount = async (req: any, res: any) => {
 const getCurrentUser = async (req: any, res: any) => {
   try {
     const user = await User.findById(req.user.id).select(
-      "firstName email role"
+      "firstName lastName email role"
     );
+
+    console.log("user", user);
+
 
     if (!user) {
       res

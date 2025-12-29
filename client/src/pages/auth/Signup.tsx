@@ -44,7 +44,7 @@ const Signup = () => {
         throw new Error(res.msg || "Failed to signup");
       }
 
-      return res;
+      return res; 
     },
     onSuccess: () => {
       toast.success("Signup successful");
@@ -72,7 +72,7 @@ const Signup = () => {
       <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
         {/* full name */}
         <AuthInput
-          label="firstName"
+          label="First Name"
           placeholder="John"
           name="firstName"
           type="text"
@@ -82,7 +82,7 @@ const Signup = () => {
 
         {/* lastName */}
         <AuthInput
-          label="lastName"
+          label="Last Name"
           placeholder="Doe"
           name="lastName"
           type="text"

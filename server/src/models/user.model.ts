@@ -60,7 +60,7 @@ const userSchema = new Schema<IUser>(
     toJSON: {
       virtuals: true,
       transform: (doc, ret) => {
-        // delete (ret as any).password;
+        delete (ret as any).password;
         delete (ret as any)._id;
         delete (ret as any)._v;
         return ret;
@@ -73,7 +73,7 @@ const userSchema = new Schema<IUser>(
 );
 
 userSchema.virtual("fullName").get(function () {
-  return this.firstName + " " + this.lastName;
+  return `${this.firstName} ${this.lastName}`;
 });
 
 userSchema.virtual("id").get(function () {
