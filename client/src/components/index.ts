@@ -4,7 +4,8 @@ import ContactUs from "./ContactUs";
 import Categories from "./Categories";
 import LimitedTimeOffers from "./LimitedTimeOffers";
 import CountdownTimer from "./CountdownTimer";
+import AuthInput from "./AuthInput";
 
 export { Hero, Features, ContactUs, Categories, LimitedTimeOffers, CountdownTimer
-    
+    ,AuthInput
  };

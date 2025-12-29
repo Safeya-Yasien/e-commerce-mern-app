@@ -37,7 +37,7 @@ const login = async (req: any, res: any) => {
   }
 };
 
-const register = async (req: any, res: any) => {
+const signup = async (req: any, res: any) => {
   try {
     const { firstName, lastName, email, password, role } = req.body;
 
@@ -85,4 +85,4 @@ const register = async (req: any, res: any) => {
   }
 };
 
-export { login, register };
+export { login, signup };

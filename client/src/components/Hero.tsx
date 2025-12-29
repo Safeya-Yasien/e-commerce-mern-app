@@ -3,7 +3,7 @@ import { ArrowRight, Leaf } from "lucide-react";
 
 const Hero = () => {
   return (
-    <section className="bg-base-100 text-base-content min-h-[calc(100vh-3.5rem)] flex items-center justify-center pt-0 md:pt-14">
+    <section className="bg-base-100 text-base-content  flex items-center justify-center ">
       <div className="w-full max-w-7xl mx-auto px-4 py-16 text-center">
         {/* Highlight Badge */}
         <p className="inline-flex items-center text-xs sm:text-sm font-semibold text-accent bg-neutral px-3 sm:px-4 py-1 rounded-full border border-accent/50 mb-4 tracking-wider">
@@ -29,7 +29,7 @@ const Hero = () => {
           {/* Primary CTA */}
           <Link
             to="/categories"
-            className="flex items-center justify-center bg-primary text-base-100 font-bold py-3 px-8 rounded-lg shadow-lg hover:bg-secondary transition duration-300 sm:w-auto w-full"
+            className="flex items-center justify-center bg-primary text-base-100  font-bold py-3 px-8 rounded-lg shadow-lg hover:bg-secondary transition duration-300 sm:w-auto w-full"
           >
             Shop Now
             <ArrowRight className="w-5 h-5 ml-2" />

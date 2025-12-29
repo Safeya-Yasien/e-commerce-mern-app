@@ -644,15 +644,41 @@ Objects are not valid as a React child (found: object with keys {msg, data, succ
   I found that i wrote users and products in useQuery in "Home" page
   so i changed it to "users-count" and "products-count" and it's working fine
 
-##### 1525. 
+## move to client
+
+##### 1525. design login and sighup page
+
+    - first design login page
+        - create "AuthInput" component in "components" folder for input field
+        - use react-hook-form and zod validation
+        - create "loginSchema" in "schemas" folder for zod validation
+        - use "react-query" for fetching data
+        - add "useMutation" to send data to the server in login
+        - remember we use "useMutation" to send data to the server and "useQuery" to fetch data from the server
+        - add "toast" for displaying success and error message
+        - solve login problem
+    - move to "Signup" page
+        - handle "AuthInput" component to handle both login and signup
+        - add generic type to "AuthInput" component
+            - i used "FieldValues" from "react-hook-form"
+            - i used "Path" from "react-hook-form" for name type
+            - i used "UseFormRegister" from "react-hook-form" for register type
+            - and "FieldError" from "react-hook-form" for error type
+            - in "signup" in backend i get 'firstName' and 'lastName' but in 'signup' page i get 'fullName' so i change 'fullName' to 'firstName' and 'lastName'
 
 ---
+
+# client
+
+### dark theme problems
 
 # server
 
 ### test if cloudinary is working by console.log(cloudinary.config()) using cloudinary url
 
 # admin
+
+##### . Add gloabal fetcher to prevent repeated code
 
 ##### when ErrorBoundary error component appears i can't test it
 

@@ -23,7 +23,7 @@ const SignupForm = () => {
   const mutation = useMutation({
     mutationKey: ["signup"],
     mutationFn: async (data: TSignupFormData) => {
-      const res = await fetch(`${BASE_URL}/register`, {
+      const res = await fetch(`${BASE_URL}/signup`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

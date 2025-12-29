@@ -42,7 +42,7 @@ const Header = memo(() => {
           <nav className="hidden md:flex">
             <ul className="flex items-center gap-6 font-medium">
               {navItems.map(({ path, name, Icon }) => (
-                <li>
+                <li key={name}>
                   <Link
                     to={path}
                     className="flex items-center gap-1 hover:text-accent transition"
@@ -67,8 +67,8 @@ const Header = memo(() => {
           <div className="flex items-center gap-4 font-medium">
             <CartIcon />
             <Link
-              to="/login"
-              className="transition bg-primary px-3 py-1 rounded text-white hover:opacity-85"
+              to="auth/login"
+              className="transition bg-primary px-3 py-1 rounded  text-base-100 hover:bg-secondary"
             >
               Login
             </Link>
@@ -99,7 +99,7 @@ const Header = memo(() => {
 
           <ul className="menu bg-base-200 min-h-full w-80 p-4 pt-12">
             {navItems.map(({ path, name, Icon }) => (
-              <li>
+              <li key={name}>
                 <Link
                   to={path}
                   className="flex items-center gap-1 hover:text-accent transition"
