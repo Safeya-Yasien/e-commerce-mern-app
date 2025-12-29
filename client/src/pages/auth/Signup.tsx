@@ -25,8 +25,6 @@ const Signup = () => {
     resolver: zodResolver(signupSchema),
   });
   const onSubmit = (data: ISignupForm) => {
-    console.log(data);
-
     mutation.mutate(data);
   };
 
@@ -45,9 +43,8 @@ const Signup = () => {
       if (!response.ok) {
         throw new Error(res.msg || "Failed to signup");
       }
-      console.log("signup res", res);
 
-      return res.json();
+      return res;
     },
     onSuccess: () => {
       toast.success("Signup successful");

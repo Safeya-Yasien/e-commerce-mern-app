@@ -23,31 +23,31 @@ const Login = () => {
     resolver: zodResolver(loginSchema),
   });
   const onSubmit: SubmitHandler<ILoginForm> = (data: ILoginForm) => {
-    console.log(data);
     mutation.mutate(data);
   };
 
   const mutation = useMutation({
     mutationKey: ["login"],
-    mutationFn: async () => {
-      const res = await fetch(`${BASE_URL}/login`, {
+    mutationFn: async (data: ILoginForm) => {
+      const response = await fetch(`${BASE_URL}/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
+        body: JSON.stringify(data),
       });
 
-      if (!res.ok) {
-        throw new Error(res.statusText || "Failed to login");
+      if (!response.ok) {
+        throw new Error(response.statusText || "Failed to login");
       }
 
-      console.log("login res", res);
-      return res.json();
+      const res = await response.json();
+      return res.data;
     },
-    onSuccess: () => {
-      localStorage.setItem("token", data.data.token);
+    onSuccess: (data) => {
+      localStorage.setItem("token", data.token);
       toast.success("Login successful");
-      // navigate("/");
+      navigate("/");
     },
     onError: (err) => toast.error(err.message),
   });

@@ -656,7 +656,7 @@ Objects are not valid as a React child (found: object with keys {msg, data, succ
         - add "useMutation" to send data to the server in login
         - remember we use "useMutation" to send data to the server and "useQuery" to fetch data from the server
         - add "toast" for displaying success and error message
-        - solve login problem
+        - solve login problem which i was forget to add body in fetch request
     - move to "Signup" page
         - handle "AuthInput" component to handle both login and signup
         - add generic type to "AuthInput" component
