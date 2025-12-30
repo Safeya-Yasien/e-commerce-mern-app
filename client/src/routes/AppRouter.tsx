@@ -1,9 +1,18 @@
 import { createBrowserRouter, RouterProvider } from "react-router";
-import MainLayout from "@/layouts/MainLayout/MainLayout";
-import AuthLayout from "@/layouts/AuthLayout/AuthLayout";
-import Home from "@/pages/Home";
-import Login from "@/pages/auth/Login";
-import Signup from "@/pages/auth/Signup";
+
+import { lazy } from "react";
+
+// auth
+const Login = lazy(() => import("@/pages/auth/Login"));
+const Signup = lazy(() => import("@/pages/auth/Signup"));
+
+const Home = lazy(() => import("@/pages/Home"));
+const Profile = lazy(() => import("@/pages/Profile"));
+const ProductDetailsPage = lazy(() => import("@/pages/ProductDetails"));
+
+// layouts
+const AuthLayout = lazy(() => import("@/layouts/AuthLayout/AuthLayout"));
+const MainLayout = lazy(() => import("@/layouts/MainLayout/MainLayout"));
 
 const routes = createBrowserRouter([
   {
@@ -13,6 +22,14 @@ const routes = createBrowserRouter([
       {
         index: true,
         element: <Home />,
+      },
+      {
+        path: "profile",
+        element: <Profile />,
+      },
+      {
+        path: "products/:id",
+        element: <ProductDetailsPage />,
       },
     ],
   },

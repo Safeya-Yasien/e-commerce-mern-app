@@ -666,6 +666,41 @@ Objects are not valid as a React child (found: object with keys {msg, data, succ
             - and "FieldError" from "react-hook-form" for error type
             - in "signup" in backend i get 'firstName' and 'lastName' but in 'signup' page i get 'fullName' so i change 'fullName' to 'firstName' and 'lastName'
 
+    - finally add 'user' icon in header if user is logged in
+
+##### 1526. display 'products' in 'categories' section in home page
+
+    - display 'products' in home page and every product will have a link to the product details page
+    - keep simple now and only make this home page and header links will scroll to pages section such as 'categories' and 'contact us' without createing new pages
+    - use 'id' in 'navItems' to make links to scroll to sections and note that 'Link' not work as "a" tag so i will use 'scrollIntoView()' method
+    - as defualt display 3 rows of products as 'all' category
+    - use asiox instance in "Categories.tsx" file and back to "products.rotue.ts" and remove "authMiddleware" from "getProducts" route which can any one see products even not logged in
+    - create "productCard" component to reusable in 'categories' section
+    - create "productDetails" page and add "id" in url
+    - add "productDetails" page in "AppRouter.tsx" file
+    - create 'product.types.ts' file in "types" folder
+    - add "IProduct" interface in "product.types.ts" file
+
+##### 1527. replace fetch with axios
+
+    - why i will use axios instead of fetch?
+        . reponse in axios parse as json by default and i can get the data from the response vice versa fetch we need to parse the data to json()
+        . axios provide eror object as axiosError and we can get the error message from it and this is better for ts
+        . axios have many other features like interceptors, timeout, cancel token, etc
+        . the best thing is "interceptors" which is a function that can be used to intercept the request and response and modify it before sending it to the server and after receiving the response from the server like adding headers, adding cookies, etc and in fetch we need to repeate the code in every request
+        => like this
+            - axios.interceptors.request.use((config) => {
+                config.headers.Authorization = `Bearer ${localStorage.getItem("token")}`;
+                return config;
+            });
+
+    - create "axios.ts" file in "api" folder and add axios instance in it
+    - add "axiosInstance" in "axios.ts" file
+    - add axios interceptors in "axios.ts" file to add authorization header and handle 401 error "request, response"
+    - replace fetch with axios in "Login.tsx" and "Signup.tsx" file
+
+##### 1528.
+
 ---
 
 # client

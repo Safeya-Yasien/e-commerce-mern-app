@@ -1,3 +1,4 @@
+import { axiosInstance } from "@/api/axios";
 import { AuthInput } from "@/components";
 import { loginSchema } from "@/schemas/auth/loginSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -5,8 +6,6 @@ import { useMutation } from "@tanstack/react-query";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { Link, useNavigate } from "react-router";
 import { toast } from "react-toastify";
-
-const BASE_URL = `${import.meta.env.VITE_API_URI}/api/auth`;
 
 export interface ILoginForm {
   email: string;
@@ -29,20 +28,8 @@ const Login = () => {
   const mutation = useMutation({
     mutationKey: ["login"],
     mutationFn: async (data: ILoginForm) => {
-      const response = await fetch(`${BASE_URL}/login`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-
-      if (!response.ok) {
-        throw new Error(response.statusText || "Failed to login");
-      }
-
-      const res = await response.json();
-      return res.data;
+      const response = await axiosInstance.post("/auth/login", data);
+      return response.data.data;
     },
     onSuccess: (data) => {
       localStorage.setItem("token", data.token);

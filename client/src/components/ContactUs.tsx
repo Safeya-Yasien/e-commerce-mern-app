@@ -2,7 +2,7 @@ import { Mail, MapPin, Phone } from "lucide-react";
 
 const ContactUs = () => {
   return (
-    <div className="py-16">
+    <section className="py-16" id="contact">
       <div className="text-center mx-auto mb-12 max-w-7xl">
         <h2 className="text-3xl md:text-5xl font-bold mb-4">
           Contact <span className="text-accent">Us</span>
@@ -65,7 +65,7 @@ const ContactUs = () => {
           </form>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 export default ContactUs;

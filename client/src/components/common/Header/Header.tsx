@@ -21,8 +21,8 @@ interface INavItem {
 
 const navItems: INavItem[] = [
   { path: "/", name: "Home", Icon: Home },
-  { path: "/categories", name: "Categories", Icon: Folders },
-  { path: "/contact", name: "Contact", Icon: Mail },
+  { path: "categories", name: "Categories", Icon: Folders },
+  { path: "contact", name: "Contact", Icon: Mail },
 ];
 
 const Header = memo(() => {
@@ -65,13 +65,20 @@ const Header = memo(() => {
             <ul className="flex items-center gap-6 font-medium">
               {navItems.map(({ path, name, Icon }) => (
                 <li key={name}>
-                  <Link
-                    to={path}
-                    className="flex items-center gap-1 hover:text-accent transition"
+                  {/* <Link */}
+                  {/* to={path} */}
+                  <button
+                    onClick={() =>
+                      document
+                        .getElementById(path)
+                        ?.scrollIntoView({ behavior: "smooth" })
+                    }
+                    className="cursor-pointer flex items-center gap-1 hover:text-accent transition"
                   >
                     <Icon className="h-4 w-4" />
                     {name}
-                  </Link>
+                  </button>
+                  {/* </Link> */}
                 </li>
               ))}
             </ul>

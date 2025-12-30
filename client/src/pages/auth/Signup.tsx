@@ -1,3 +1,4 @@
+import { axiosInstance } from "@/api/axios";
 import { AuthInput } from "@/components";
 import { signupSchema } from "@/schemas/auth/signupSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -6,7 +7,6 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router";
 import { toast } from "react-toastify";
 
-const BASE_URL = `${import.meta.env.VITE_API_URI}/api/auth`;
 interface ISignupForm {
   firstName: string;
   lastName: string;
@@ -31,20 +31,8 @@ const Signup = () => {
   const mutation = useMutation({
     mutationKey: ["signup"],
     mutationFn: async (data: ISignupForm) => {
-      const response = await fetch(`${BASE_URL}/signup`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-      const res = await response.json();
-
-      if (!response.ok) {
-        throw new Error(res.msg || "Failed to signup");
-      }
-
-      return res; 
+      const response = await axiosInstance.post("/auth/signup", data);
+      return response.data;
     },
     onSuccess: () => {
       toast.success("Signup successful");

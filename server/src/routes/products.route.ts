@@ -13,7 +13,7 @@ import multerMiddleware from "../middlewares/multerMiddleware";
 import authMiddleware from "../middlewares/authMiddleware";
 import roleMiddleware from "../middlewares/roleMiddleware";
 
-router.get("/", authMiddleware, getProducts);
+router.get("/", getProducts);
 router.get("/count", authMiddleware, getProductsCount);
 router.post(
   "/add",
