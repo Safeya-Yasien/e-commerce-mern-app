@@ -708,7 +708,10 @@ Objects are not valid as a React child (found: object with keys {msg, data, succ
     if i manage it separately i will need to create a new route for categories and controllers for crud operations and add it in admin dashboard so for now to keep it simple i will use categories route in products route
     - use catgories route in "Categories.tsx" component
     - i convert all capital letters to lower case in categories enum in 'product.model.ts' file and also convert cateogry from user to lowercase before sending it to the database also in "AddProductForm" in "ProductForm.tsx" in "admin" folder
-    
+    - add "useState" in "Categories.tsx" to save the category filter
+    - add "handleFilter" function in "Categories.tsx" to handle the category filter and update the category in the url
+    - the filter was taking alot of time to load filtered product when i choose category so i was forgot to add 'category' key in useQuery in "Categories.tsx" file
+    - now the filter is working fine
 
 ---
 

@@ -12,7 +12,7 @@ const Categories = () => {
     isLoading: isLoadingProducts,
     error: errorProducts,
   } = useQuery({
-    queryKey: ["products"],
+    queryKey: ["products", category],
     queryFn: async () => {
       const response = await axiosInstance(
         `/products?limit=8${category ? "&category=" + category : ""}`
