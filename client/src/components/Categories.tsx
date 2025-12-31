@@ -35,7 +35,6 @@ const Categories = () => {
 
   const handleFilter = (category: string) => {
     setCategory(category.toLowerCase());
-    console.log("category", category);
   };
 
   if (isLoadingProducts) return <p>Loading...</p>;
@@ -51,6 +50,13 @@ const Categories = () => {
       </div>
 
       <div className="mb-14 max-w-7xl text-center mx-auto flex items-center justify-center gap-6 flex-wrap ">
+        <button
+          onClick={() => setCategory(null)}
+          className="btn bg-secondary text-base-100  rounded-lg"
+          key={category}
+        >
+          All
+        </button>
         {categories.data.map((category: string) => (
           <button
             onClick={() => handleFilter(category)}

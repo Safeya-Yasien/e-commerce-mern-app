@@ -712,6 +712,7 @@ Objects are not valid as a React child (found: object with keys {msg, data, succ
     - add "handleFilter" function in "Categories.tsx" to handle the category filter and update the category in the url
     - the filter was taking alot of time to load filtered product when i choose category so i was forgot to add 'category' key in useQuery in "Categories.tsx" file
     - now the filter is working fine
+    - add "All" button in "Categories.tsx" to handle the category filter and add onlcik event to it the value is null and set the category to null
 
 ---
 
