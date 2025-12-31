@@ -680,6 +680,7 @@ Objects are not valid as a React child (found: object with keys {msg, data, succ
     - add "productDetails" page in "AppRouter.tsx" file
     - create 'product.types.ts' file in "types" folder
     - add "IProduct" interface in "product.types.ts" file
+    - add limit to products in "getProducts" route in "products.route.ts" file and same in "categories" section display only 8
 
 ##### 1527. replace fetch with axios
 
@@ -699,11 +700,23 @@ Objects are not valid as a React child (found: object with keys {msg, data, succ
     - add axios interceptors in "axios.ts" file to add authorization header and handle 401 error "request, response"
     - replace fetch with axios in "Login.tsx" and "Signup.tsx" file
 
-##### 1528.
+##### 1528. Add category filter in "categories" section
+
+    - add catgories route in "products.route.ts" file
+    - add "getCategories" function in "products.controller.ts" file use 'distinct' method to get all categories
+    - i create categories route in products route because for now i will use categories without manage it separately
+    if i manage it separately i will need to create a new route for categories and controllers for crud operations and add it in admin dashboard so for now to keep it simple i will use categories route in products route
+    - use catgories route in "Categories.tsx" component
+    - i convert all capital letters to lower case in categories enum in 'product.model.ts' file and also convert cateogry from user to lowercase before sending it to the database also in "AddProductForm" in "ProductForm.tsx" in "admin" folder
+    
 
 ---
 
 # client
+
+### add tag in product card in backend
+
+### add categories route separately
 
 ### dark theme problems
 

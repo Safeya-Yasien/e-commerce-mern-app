@@ -154,11 +154,11 @@ const ProductForm = () => {
             {...register("category")}
           >
             <option value="">Select category</option>
-            <option value="Electronics">Electronics</option>
-            <option value="Toys">Toys</option>
-            <option value="Clothing">Clothing</option>
-            <option value="Books">Books</option>
-            <option value="Sports">Sports</option>
+            <option value="electronics">Electronics</option>
+            <option value="toys">Toys</option>
+            <option value="clothing">Clothing</option>
+            <option value="books">Books</option>
+            <option value="sports">Sports</option>
           </select>
           {errors?.category && (
             <p className="text-red-500">{errors.category.message}</p>

@@ -3,6 +3,7 @@ const router = express.Router();
 import {
   deleteAllProducts,
   getProducts,
+  getCategories,
   getProductsCount,
   getProductById,
   addProduct,
@@ -14,6 +15,7 @@ import authMiddleware from "../middlewares/authMiddleware";
 import roleMiddleware from "../middlewares/roleMiddleware";
 
 router.get("/", getProducts);
+router.get("/categories", getCategories);
 router.get("/count", authMiddleware, getProductsCount);
 router.post(
   "/add",

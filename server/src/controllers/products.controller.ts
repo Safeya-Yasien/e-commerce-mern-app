@@ -3,8 +3,28 @@ import Product from "../models/product.model";
 
 const getProducts = async (req: any, res: any) => {
   try {
-    const allProducts = await Product.find({}, { __v: 0 });
+    const limit = req.query.limit || 4;
+    const category = req.query.category;
+
+    let filter: any = {};
+
+    if (category) {
+      filter.category = category;
+    }
+    const allProducts = await Product.find(filter, { __v: 0 }).limit(limit);
+
     res.status(200).json({ msg: "success", data: allProducts, success: true });
+  } catch (err) {
+    res.status(500).json({ msg: "error", data: err, success: false });
+  }
+};
+
+const getCategories = async (req: any, res: any) => {
+  try {
+    const allCategories = await Product.distinct("category", { __v: 0 });
+    res
+      .status(200)
+      .json({ msg: "success", data: allCategories, success: true });
   } catch (err) {
     res.status(500).json({ msg: "error", data: err, success: false });
   }
@@ -24,6 +44,7 @@ const getProductsCount = async (req: any, res: any) => {
 const addProduct = async (req: any, res: any) => {
   try {
     const productData = req.body;
+    const category = req.body.category?.trim().toLowerCase();
 
     let image = null;
 
@@ -43,7 +64,7 @@ const addProduct = async (req: any, res: any) => {
       image = uploadedImage.secure_url;
     }
 
-    const product = new Product({ ...productData, image });
+    const product = new Product({ ...productData, category, image });
     await product.save();
 
     res.status(201).json({
@@ -165,6 +186,7 @@ const deleteAllProducts = async (req: any, res: any) => {
 
 export {
   getProducts,
+  getCategories,
   getProductsCount,
   deleteAllProducts,
   addProduct,

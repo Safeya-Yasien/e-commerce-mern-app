@@ -2,22 +2,47 @@ import { axiosInstance } from "@/api/axios";
 import { useQuery } from "@tanstack/react-query";
 import ProductCard from "./ProductCard";
 import type { IProduct } from "@/types/product.types";
+import { useState } from "react";
 
 const Categories = () => {
+  const [category, setCategory] = useState<string | null>(null);
+
   const {
     data: products,
-    isLoading,
-    error,
+    isLoading: isLoadingProducts,
+    error: errorProducts,
   } = useQuery({
     queryKey: ["products"],
     queryFn: async () => {
-      const response = await axiosInstance("/products");
+      const response = await axiosInstance(
+        `/products?limit=8${category ? "&category=" + category : ""}`
+      );
       return response.data;
     },
   });
 
-  if (isLoading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
+  const {
+    data: categories,
+    isLoading: isLoadingCategories,
+    error: errorCategories,
+  } = useQuery({
+    queryKey: ["categories"],
+    queryFn: async () => {
+      const response = await axiosInstance("/products/categories");
+      return response.data;
+    },
+  });
+
+  const handleFilter = (category: string) => {
+    setCategory(category.toLowerCase());
+    console.log("category", category);
+  };
+
+  if (isLoadingProducts) return <p>Loading...</p>;
+  if (errorProducts) return <p>Error fetching products</p>;
+
+  if (isLoadingCategories) return <p>Loading...</p>;
+  if (errorCategories) return <p>Error fetching categories</p>;
 
   return (
     <section className="py-20 text-base-content" id="categories">
@@ -26,13 +51,13 @@ const Categories = () => {
       </div>
 
       <div className="mb-14 max-w-7xl text-center mx-auto flex items-center justify-center gap-6 flex-wrap ">
-        {products.data.map((category: IProduct, index: number) => (
+        {categories.data.map((category: string) => (
           <button
+            onClick={() => handleFilter(category)}
             className="btn bg-secondary text-base-100  rounded-lg"
-            // key={category}
-            key={index}
+            key={category}
           >
-            {category.category}
+            {category}
           </button>
         ))}
       </div>
