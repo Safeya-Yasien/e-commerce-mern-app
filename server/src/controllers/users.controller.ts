@@ -132,10 +132,57 @@ const getCurrentUser = async (req: any, res: any) => {
   }
 };
 
+const getProfile = async (req: any, res: any) => {
+  try {
+    const user = await User.findById(req.user.id).select("-password");
+
+    if (!user) {
+      res
+        .status(404)
+        .json({ msg: "User not found", data: null, success: false });
+      return;
+    }
+
+    res.status(200).json({ msg: "success", data: user, success: true });
+  } catch (err) {
+    res
+      .status(500)
+      .json({ msg: "Error getting profile", data: err, success: false });
+  }
+};
+
 const deleteAllUsers = async (req: any, res: any) => {
   try {
     await User.deleteMany({});
     res.status(200).json({ msg: "success", data: null, success: true });
+  } catch (err) {
+    res.status(500).json({ msg: "error", data: err, success: false });
+  }
+};
+
+const editProfile = async (req: any, res: any) => {
+  try {
+    const user = await User.findById(req.user.id);
+
+    if (!user) {
+      res
+        .status(404)
+        .json({ msg: "User not found", data: null, success: false });
+      return;
+    }
+
+    const updatedUser = await User.findByIdAndUpdate(req.user.id, req.body, {
+      new: true,
+    });
+
+    if (!updatedUser) {
+      res
+        .status(404)
+        .json({ msg: "User not found", data: null, success: false });
+      return;
+    }
+
+    res.status(200).json({ msg: "success", data: updatedUser, success: true });
   } catch (err) {
     res.status(500).json({ msg: "error", data: err, success: false });
   }
@@ -146,8 +193,10 @@ export {
   getUsersCount,
   getUserById,
   getCurrentUser,
+  getProfile,
   addUser,
   updateUser,
   deleteUser,
   deleteAllUsers,
+  editProfile,
 };

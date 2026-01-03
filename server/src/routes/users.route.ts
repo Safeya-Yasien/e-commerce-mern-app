@@ -5,10 +5,12 @@ import {
   getUsers,
   getUsersCount,
   getCurrentUser,
+  getProfile,
   getUserById,
   addUser,
   updateUser,
   deleteUser,
+  editProfile,
 } from "../controllers/users.controller";
 import roleMiddleware from "../middlewares/roleMiddleware";
 import authMiddleware from "../middlewares/authMiddleware";
@@ -16,6 +18,8 @@ import authMiddleware from "../middlewares/authMiddleware";
 router.get("/count", authMiddleware, getUsersCount);
 router.get("/", authMiddleware, roleMiddleware(["admin"]), getUsers);
 router.get("/me", authMiddleware, getCurrentUser);
+router.get("/profile", authMiddleware, getProfile);
+router.put("/profile", authMiddleware, editProfile);
 router.post("/add", authMiddleware, roleMiddleware(["admin"]), addUser);
 router.put(
   "/update/:id",
