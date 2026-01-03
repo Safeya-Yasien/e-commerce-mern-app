@@ -20,7 +20,7 @@ interface INavItem {
 }
 
 const navItems: INavItem[] = [
-  { path: "/", name: "Home", Icon: Home },
+  { path: "hero", name: "Home", Icon: Home },
   { path: "categories", name: "Categories", Icon: Folders },
   { path: "contact", name: "Contact", Icon: Mail },
 ];

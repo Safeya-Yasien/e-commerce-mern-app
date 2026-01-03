@@ -714,11 +714,24 @@ Objects are not valid as a React child (found: object with keys {msg, data, succ
     - now the filter is working fine
     - add "All" button in "Categories.tsx" to handle the category filter and add onlcik event to it the value is null and set the category to null
 
+##### 1529. Add 'Profile" page when click on user icon in header after login
+
+    - i create 'Profile" page
+    - move to backend to add profile route and controller
+    - add profile page design and logic
+    - add for now 'random' avatar from 'pvatar.cc' for the first time user loged in and after that he can change it in 'edit profile' page
+    - add 'edit profile' form and logic using "dasyUI" modal
+    - add logic in backend as "editProfile" function in "users.controller.ts" file
+    - add post request type 'profile' route in "users.route.ts" file
+    - in logic editProfile function i use "findByIdAndUpdate" method to update the user in the database i faced a problem in this method "findByIdAndUpdate" method it display the old data before updating it so i used "new: true" to display the new data directly but it actually update the data it's only displaying the old data
+
 ---
 
 # client
 
 ### add tag in product card in backend
+
+### add loading when fetching data
 
 ### add categories route separately
 
