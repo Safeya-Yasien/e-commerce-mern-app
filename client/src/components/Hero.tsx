@@ -3,7 +3,7 @@ import { ArrowRight, Leaf } from "lucide-react";
 
 const Hero = () => {
   return (
-    <section className="bg-base-100 text-base-content  flex items-center justify-center ">
+    <section className="bg-base-100 text-base-content  flex items-center justify-center " id="hero">
       <div className="w-full max-w-7xl mx-auto px-4 py-16 text-center">
         {/* Highlight Badge */}
         <p className="inline-flex items-center text-xs sm:text-sm font-semibold text-accent bg-neutral px-3 sm:px-4 py-1 rounded-full border border-accent/50 mb-4 tracking-wider">
