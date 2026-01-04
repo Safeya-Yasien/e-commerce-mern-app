@@ -725,6 +725,33 @@ Objects are not valid as a React child (found: object with keys {msg, data, succ
     - add post request type 'profile' route in "users.route.ts" file
     - in logic editProfile function i use "findByIdAndUpdate" method to update the user in the database i faced a problem in this method "findByIdAndUpdate" method it display the old data before updating it so i used "new: true" to display the new data directly but it actually update the data it's only displaying the old data
 
+##### 1530. handle header routes when open another page and try to back to home page or any other page
+
+    - f
+
+##### 1531. solve unrefreshed header after logout
+
+    - the problem is when i logout the header is not refreshed and user icon still appears not logged in
+    -
+
+##### 1532. Hnadle refresh auto after logged in to dispaly user icon instead of not logged in button in header
+
+    - I was just checking localStorage—if a token exists, show the user icon; otherwise, show the login button.
+    - But even after logging in, the login button still shows, and I have to refresh manually for the user icon to appear.
+        because localStorage is basically a global key store separate from react's rendering system when writing to it dosent notify react
+
+        because react only re-renders when state/props/context chagne
+
+        So localStorage alone is not enough to make your UI update dynamically.
+
+    - So I need i will make ui depends on client data if it exist then show user icon else show login button
+    - I will use queryClient to fetch data from the server and update the client data
+    - i use 'users/me' route in "Header" component to fetch data from the server
+    - i use 'client' queryKey in "Header" component to fetch data from the server
+    - i use 'enabled: !!token' in "Header" component to fetch data from the server only if token is not null
+
+##### 1533.
+
 ---
 
 # client
