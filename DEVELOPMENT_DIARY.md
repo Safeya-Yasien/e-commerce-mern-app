@@ -754,6 +754,8 @@ Objects are not valid as a React child (found: object with keys {msg, data, succ
         - remove token from localStorage
         - then set client data to null
         - then remove queries with profile key
+            and here i asked question why we remove queries with profile key?
+                - because navagte outside profile page and profile unmounted anyway so why we keep it
         - then navigate to home page
 
     - now logout logic is working fine
