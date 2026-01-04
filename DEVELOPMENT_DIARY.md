@@ -729,12 +729,7 @@ Objects are not valid as a React child (found: object with keys {msg, data, succ
 
     - f
 
-##### 1531. solve unrefreshed header after logout
-
-    - the problem is when i logout the header is not refreshed and user icon still appears not logged in
-    -
-
-##### 1532. Hnadle refresh auto after logged in to dispaly user icon instead of not logged in button in header
+##### 1531. Hnadle refresh auto after logged in to dispaly user icon instead of not logged in button in header
 
     - I was just checking localStorage—if a token exists, show the user icon; otherwise, show the login button.
     - But even after logging in, the login button still shows, and I have to refresh manually for the user icon to appear.
@@ -749,6 +744,24 @@ Objects are not valid as a React child (found: object with keys {msg, data, succ
     - i use 'users/me' route in "Header" component to fetch data from the server
     - i use 'client' queryKey in "Header" component to fetch data from the server
     - i use 'enabled: !!token' in "Header" component to fetch data from the server only if token is not null
+
+##### 1532. solve unrefreshed header after logout
+
+    - the problem is when i logout the header is not refreshed and user icon still appears not logged in
+    - as the same thing in login and update header after login we use react query to rerender the header when the token is not null and the client data is not null
+    - her also we can't remove the token from localStorage and the login button will still appear after logout
+    - so in "Profile" handleLogout function
+        - remove token from localStorage
+        - then set client data to null
+        - then remove queries with profile key
+        - then navigate to home page
+
+    - now logout logic is working fine
+
+    - move to "Header" component
+        - add 'hasToken' variable to check if the token is not null every time the component renders
+        - if the token is not null then display the user icon and cart icon
+        - else display the login button
 
 ##### 1533.
 

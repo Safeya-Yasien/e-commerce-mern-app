@@ -1,6 +1,6 @@
 import { axiosInstance } from "@/api/axios";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router";
@@ -23,6 +23,8 @@ export type IEditProfileForm = z.infer<typeof EditProfileSchema>;
 const Profile = () => {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
+  const queryClient = useQueryClient();
+
   const { data, isLoading, error } = useQuery({
     queryKey: ["profile"],
     queryFn: async () => {
@@ -76,6 +78,10 @@ const Profile = () => {
 
   const handleLogout = () => {
     localStorage.removeItem("token");
+
+    queryClient.setQueryData(["client"], null);
+    queryClient.removeQueries({ queryKey: ["profile"] });
+
     navigate("/");
   };
 

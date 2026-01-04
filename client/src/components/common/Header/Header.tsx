@@ -10,7 +10,6 @@ import {
   X,
   type LucideIcon,
 } from "lucide-react";
-import { memo } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { axiosInstance } from "@/api/axios";
 
@@ -26,16 +25,21 @@ const navItems: INavItem[] = [
   { path: "contact", name: "Contact", Icon: Mail },
 ];
 
-const Header = memo(() => {
-  const token = localStorage.getItem("token");
+const Header = () => {
+  const hasToken = !!localStorage.getItem("token");
+
   const { data: client } = useQuery({
     queryKey: ["client"],
     queryFn: async () => {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        return null;
+      }
       const res = await axiosInstance("/users/me");
       return res.data;
     },
 
-    enabled: !!token,
+    enabled: hasToken,
   });
 
   return (
@@ -142,6 +146,6 @@ const Header = memo(() => {
       </div>
     </header>
   );
-});
+};
 
 export default Header;
