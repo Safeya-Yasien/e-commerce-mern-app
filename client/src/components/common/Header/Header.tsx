@@ -26,9 +26,8 @@ const navItems: INavItem[] = [
   { path: "contact", name: "Contact", Icon: Mail },
 ];
 
-const token = localStorage.getItem("token");
-
 const Header = memo(() => {
+  const token = localStorage.getItem("token");
   const { data: client } = useQuery({
     queryKey: ["client"],
     queryFn: async () => {
