@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { memo } from "react";
 import { useQuery } from "@tanstack/react-query";
+import { axiosInstance } from "@/api/axios";
 
 interface INavItem {
   path: string;
@@ -25,26 +26,20 @@ const navItems: INavItem[] = [
   { path: "contact", name: "Contact", Icon: Mail },
 ];
 
-const Header = memo(() => {
-  const token = localStorage.getItem("token");
+const token = localStorage.getItem("token");
 
+const Header = memo(() => {
   const { data: client } = useQuery({
     queryKey: ["client"],
     queryFn: async () => {
-      const response = await fetch(
-        `${import.meta.env.VITE_API_URI}/api/users/me`,
-        {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      const res = await response.json();
+      const res = await axiosInstance("/users/me");
       return res.data;
     },
+
     enabled: !!token,
   });
+
+  console.log("client", client);
 
   return (
     <header className="bg-base-100 text-base-content fixed top-0 left-0 w-full z-50 h-14 border-b border-base-100 shadow-sm">
