@@ -54,6 +54,7 @@ const Profile = () => {
     },
     onSuccess: () => {
       toast.success("Profile updated successfully");
+      queryClient.invalidateQueries({ queryKey: ["profile"] });
       setOpen(false);
     },
 

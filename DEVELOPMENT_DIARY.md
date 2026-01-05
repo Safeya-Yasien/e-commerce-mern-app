@@ -765,7 +765,10 @@ Objects are not valid as a React child (found: object with keys {msg, data, succ
         - if the token is not null then display the user icon and cart icon
         - else display the login button
 
-##### 1533.
+##### 1533. Edit profile not updated momently when udpate profile first and last name in "Profile" page
+
+    - i faced a problem in "Profile" page when i update the first and last name in the form the data is not udpated in UI
+    - i found method called "invalidateQueries" in "useQueryClient" which is used to mark data as stale and refetch it need to be refetched from the server to ensure that the data is up to date
 
 ---
 
