@@ -1,5 +1,5 @@
 import { Footer, Header } from "@/components/common";
-import ThemeSwitcher from "@/components/themeSwitcher";
+import ThemeSwitcher from "@/components/ThemeSwitcher";
 import { Outlet } from "react-router";
 
 const MainLayout = () => {
@@ -12,7 +12,9 @@ const MainLayout = () => {
       </main>
 
       <Footer />
-      <ThemeSwitcher />
+      <div className="hidden">
+        <ThemeSwitcher />
+      </div>
     </div>
   );
 };
