@@ -727,7 +727,12 @@ Objects are not valid as a React child (found: object with keys {msg, data, succ
 
 ##### 1530. handle header routes when open another page and try to back to home page or any other page
 
-    - f
+    - remove button and onclick event in "Header" component nav items
+    - use "Link" instead of "button"
+    - add '/#' to path in navItems to redirect to home page
+    - extract "hash" from "useLocation" to get "id" of sections
+    - add "useEffect" to setTimeout to scroll to the section with smooth way
+
 
 ##### 1531. Hnadle refresh auto after logged in to dispaly user icon instead of not logged in button in header
 

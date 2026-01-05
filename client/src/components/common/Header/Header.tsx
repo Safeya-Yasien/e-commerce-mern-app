@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { Link, useLocation } from "react-router";
 import CartIcon from "./CartIcon";
 import {
   Folders,
@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { axiosInstance } from "@/api/axios";
+import { useEffect } from "react";
 
 interface INavItem {
   path: string;
@@ -20,13 +21,22 @@ interface INavItem {
 }
 
 const navItems: INavItem[] = [
-  { path: "hero", name: "Home", Icon: Home },
-  { path: "categories", name: "Categories", Icon: Folders },
-  { path: "contact", name: "Contact", Icon: Mail },
+  { path: "/#hero", name: "Home", Icon: Home },
+  { path: "/#categories", name: "Categories", Icon: Folders },
+  { path: "/#contact", name: "Contact", Icon: Mail },
 ];
 
 const Header = () => {
   const hasToken = !!localStorage.getItem("token");
+  const { hash } = useLocation();
+  useEffect(() => {
+    if (!hash) return;
+    const id = hash.replace("#", "");
+    const section = document.getElementById(id);
+    setTimeout(() => {
+      section?.scrollIntoView({ behavior: "smooth" });
+    }, 50);
+  }, [hash]);
 
   const { data: client } = useQuery({
     queryKey: ["client"],
@@ -61,20 +71,13 @@ const Header = () => {
             <ul className="flex items-center gap-6 font-medium">
               {navItems.map(({ path, name, Icon }) => (
                 <li key={name}>
-                  {/* <Link */}
-                  {/* to={path} */}
-                  <button
-                    onClick={() =>
-                      document
-                        .getElementById(path)
-                        ?.scrollIntoView({ behavior: "smooth" })
-                    }
+                  <Link
+                    to={path}
                     className="cursor-pointer flex items-center gap-1 hover:text-accent transition"
                   >
                     <Icon className="h-4 w-4" />
                     {name}
-                  </button>
-                  {/* </Link> */}
+                  </Link>
                 </li>
               ))}
             </ul>
