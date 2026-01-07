@@ -779,13 +779,9 @@ Objects are not valid as a React child (found: object with keys {msg, data, succ
     - get id from url using "useParams" hook and this is the first time i realize that we can't use hook with async function
     - i use "useQuery" to fetch product data from the server
     - how to hidden arrows in number button for 'input type number' add "input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {-webkit-appearance: none; margin: 0;}" in "index.css" file
-    -
+    - 
 
-##### 1535. Work on enhance colors in both dark and light mode without using daisyUI
-
-    -
-
-##### 1536. stop daisy ui for theme switch
+##### 1535. stop daisy ui for theme switch
 
     - add theme false in daisyUI plugin in 'index.css' file
     - add theme switcher using 'context'
