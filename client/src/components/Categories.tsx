@@ -46,13 +46,15 @@ const Categories = () => {
   return (
     <section className="py-20 text-base-content" id="categories">
       <div className="text-center mx-auto mb-12">
-        <h2 className="text-3xl md:text-5xl font-bold mb-4">Categories</h2>
+        <h2 className="text-3xl md:text-5xl font-bold mb-4 text-sunstone">
+          Categories
+        </h2>
       </div>
 
       <div className="mb-14 max-w-7xl text-center mx-auto flex items-center justify-center gap-6 flex-wrap ">
         <button
           onClick={() => setCategory(null)}
-          className="btn bg-secondary text-base-100  rounded-lg"
+          className="btn bg-primary-dark text-base-light  rounded-lg"
           key={category}
         >
           All
@@ -60,7 +62,7 @@ const Categories = () => {
         {categories.data.map((category: string) => (
           <button
             onClick={() => handleFilter(category)}
-            className="btn bg-secondary text-base-100  rounded-lg"
+            className="btn bg-primary-dark text-base-light rounded-lg"
             key={category}
           >
             {category}

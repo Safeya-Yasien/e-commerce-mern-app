@@ -26,12 +26,13 @@ const featureList = [
 
 const Features = memo(() => {
   return (
-    <section className="py-20 text-base-content">
+    <section className="py-20">
       <div className="max-w-7xl mx-auto text-center mb-12">
         <h2 className="text-3xl md:text-5xl font-bold mb-4">
-          Why Choose <span className="text-accent">Us</span>
+          Why Choose <span className="text-sunstone">Us</span>
         </h2>
-        <p className="text-neutral dark:text-mist-aqua max-w-2xl mx-auto">
+        {/* <p className="text-neutral-light dark:text-mist-aqua-light max-w-2xl mx-auto"> */}
+        <p className="text-neutral-light max-w-2xl mx-auto">
           We’re dedicated to offering products that respect the planet while
           delivering unmatched quality.
         </p>
@@ -42,17 +43,16 @@ const Features = memo(() => {
           <div
             key={i}
             className="bg-base-200 rounded-xl p-6 shadow-md 
-            transition-all duration-300 
+            transition-all duration-500 
             hover:-translate-y-2 hover:scale-[1.03] hover:shadow-xl"
           >
             <div className="flex justify-center mb-4">
-              <Icon className="w-10 h-10 text-primary" />
+              <Icon className="w-10 h-10 text-primary-light" />
             </div>
 
             <h3 className="text-xl font-semibold mb-2">{title}</h3>
-            <p className="text-neutral dark:text-mist-aqua text-sm leading-relaxed">
-              {desc}
-            </p>
+            {/* <p className="text-neutral-light dark:text-mist-aqua-dark text-sm leading-relaxed"> */}
+            <p className="text-neutral-light text-sm leading-relaxed">{desc}</p>
           </div>
         ))}
       </div>

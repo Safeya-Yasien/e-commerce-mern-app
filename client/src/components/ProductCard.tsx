@@ -15,19 +15,25 @@ const ProductCard = ({ product }: { product: IProduct }) => {
           className="w-full h-60 object-cover"
         />
         {product.tag && (
-          <span className="absolute top-3 left-3 bg-accent text-base-100 text-xs font-semibold px-2 py-1 rounded">
+          <span className="absolute top-3 left-3 bg-sunstone text-base-light text-xs font-semibold px-2 py-1 rounded">
             {product.tag}
           </span>
         )}
       </div>
       <div className="p-4 flex flex-col justify-between h-40">
         <div>
-          <h3 className="text-lg font-semibold mb-2">{product.name}</h3>
-          <p className="line-clamp-2 text-sm">{product.description}</p>
+          <h3 className="text-lg font-semibold mb-2 text-primary-light">
+            {product.name}
+          </h3>
+          <p className="line-clamp-2 text-sm text-neutral-light">
+            {product.description}
+          </p>
         </div>
         <div className="flex items-center  justify-between">
-          <p className="text-primary font-bold text-lg ">{product.price}$</p>
-          <button className="cursor-pointer flex items-center gap-1 bg-primary text-base-100 py-1 p-2 rounded-lg font-semibold hover:bg-secondary transition text-sm">
+          <p className="text-primary-light font-bold text-lg ">
+            {product.price}$
+          </p>
+          <button className="cursor-pointer flex items-center gap-1 bg-primary-light text-base-light py-1 p-2 rounded-lg font-semibold hover:bg-primary-dark transition text-sm">
             <ShoppingBag className="w-4 h-4" />
             Add
           </button>

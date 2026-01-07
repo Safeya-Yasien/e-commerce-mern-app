@@ -1,20 +1,21 @@
 import { Footer, Header } from "@/components/common";
 import ThemeSwitcher from "@/components/ThemeSwitcher";
+import { ThemeProvider } from "@/context/themeProvider";
 import { Outlet } from "react-router";
 
 const MainLayout = () => {
   return (
-    <div className="min-h-dvh flex flex-col">
-      <Header />
+    <div className="min-h-dvh flex flex-col relative">
+      <ThemeProvider>
+        <Header />
 
-      <main className=" grow pt-16 ">
-        <Outlet />
-      </main>
+        <main className=" grow pt-16 ">
+          <Outlet />
+        </main>
 
-      <Footer />
-      <div className="hidden">
+        <Footer />
         <ThemeSwitcher />
-      </div>
+      </ThemeProvider>
     </div>
   );
 };

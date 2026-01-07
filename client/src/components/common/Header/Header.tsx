@@ -53,14 +53,14 @@ const Header = () => {
   });
 
   return (
-    <header className="bg-base-100 text-base-content fixed top-0 left-0 w-full z-50 h-14 border-b border-base-100 shadow-sm">
+    <header className="bg-base-light dark:bg-neutral-light/90 text-base-content fixed top-0 left-0 w-full z-50 h-14 border-b border-base-light dark:border-base-dark shadow-sm ">
       <div className="flex items-center justify-between px-4 h-full">
         {/* Logo */}
         <Link
           to="/"
-          className="flex items-center font-bold text-xl text-primary"
+          className="flex items-center font-bold text-xl text-primary-light "
         >
-          <ShoppingBasket className="h-8 w-8 mr-2 text-primary" />
+          <ShoppingBasket className="h-8 w-8 mr-2 " />
           ECO
         </Link>
 
@@ -73,7 +73,7 @@ const Header = () => {
                 <li key={name}>
                   <Link
                     to={path}
-                    className="cursor-pointer flex items-center gap-1 hover:text-accent transition"
+                    className="cursor-pointer flex items-center gap-1 dark:text-base-light hover:text-sunstone transition"
                   >
                     <Icon className="h-4 w-4" />
                     {name}
@@ -96,8 +96,11 @@ const Header = () => {
             <CartIcon />
 
             {client ? (
-              <Link to="/profile" className="transition  text-base-100 ">
-                <User className="w-6 h-6 text-primary" />
+              <Link
+                to="/profile"
+                className="transition text-primary-light dark:text-base-light hover:text-sunstone"
+              >
+                <User className="w-6 h-6 " />
               </Link>
             ) : (
               <Link
