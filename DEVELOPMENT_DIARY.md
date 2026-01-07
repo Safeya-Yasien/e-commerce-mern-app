@@ -733,7 +733,6 @@ Objects are not valid as a React child (found: object with keys {msg, data, succ
     - extract "hash" from "useLocation" to get "id" of sections
     - add "useEffect" to setTimeout to scroll to the section with smooth way
 
-
 ##### 1531. Hnadle refresh auto after logged in to dispaly user icon instead of not logged in button in header
 
     - I was just checking localStorage—if a token exists, show the user icon; otherwise, show the login button.
@@ -775,9 +774,43 @@ Objects are not valid as a React child (found: object with keys {msg, data, succ
     - i faced a problem in "Profile" page when i update the first and last name in the form the data is not udpated in UI
     - i found method called "invalidateQueries" in "useQueryClient" which is used to mark data as stale and refetch it need to be refetched from the server to ensure that the data is up to date
 
+##### 1534. Work on "ProductDetails" page
+
+    - get id from url using "useParams" hook and this is the first time i realize that we can't use hook with async function
+    - i use "useQuery" to fetch product data from the server
+    - how to hidden arrows in number button for 'input type number' add "input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {-webkit-appearance: none; margin: 0;}" in "index.css" file
+    -
+
+##### 1535. Work on enhance colors in both dark and light mode without using daisyUI
+
+    -
+
+##### 1536. stop daisy ui for theme switch
+
+    - add theme false in daisyUI plugin in 'index.css' file
+    - add theme switcher using 'context'
+    - create 'themeContext.ts' and themeProvider.tsx file in 'context' folder
+    - add '@custom-variant dark (&:where(.dark, .dark *));' in 'index.css' file
+
 ---
 
 # client
+
+##### Hero
+
+    - subtitle text color not work netural-light
+
+### add change password logic in "Profile" page
+
+### add limited time offers in "Home" page
+
+### add countdown timer in "Home" page
+
+### add "not found" page
+
+### add "loading" when fetching data
+
+###
 
 ### add tag in product card in backend
 
