@@ -779,7 +779,7 @@ Objects are not valid as a React child (found: object with keys {msg, data, succ
     - get id from url using "useParams" hook and this is the first time i realize that we can't use hook with async function
     - i use "useQuery" to fetch product data from the server
     - how to hidden arrows in number button for 'input type number' add "input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {-webkit-appearance: none; margin: 0;}" in "index.css" file
-    - 
+    -
 
 ##### 1535. stop daisy ui for theme switch
 
@@ -787,6 +787,14 @@ Objects are not valid as a React child (found: object with keys {msg, data, succ
     - add theme switcher using 'context'
     - create 'themeContext.ts' and themeProvider.tsx file in 'context' folder
     - add '@custom-variant dark (&:where(.dark, .dark *));' in 'index.css' file
+
+##### 1536. Enhance "Categories" Section because it very heavy when loading
+
+    - create 'product.ts' in api folder to fetch products
+    - create 'categories.ts' in api folder to fetch categories
+    - enhance 'Categories' page to use 'product.ts' and 'categories.ts' to fetch data
+    - add 'placeholderData' in 'useQuery' to keep previous data when fetching data untill new data is available
+    - create 'CategoriesFilter' component to handle filter in 'Categories' section
 
 ---
 
