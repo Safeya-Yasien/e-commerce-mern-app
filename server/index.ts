@@ -6,6 +6,7 @@ import cors from "cors";
 import userRouter from "./src/routes/users.route";
 import productRouter from "./src/routes/products.route";
 import authRouter from "./src/routes/auth.route";
+import cartRouter from "./src/routes/cart.route";
 
 const corsOptions = {
   origin: "http://localhost:5173",
@@ -24,6 +25,7 @@ connectDB(dbURI || "");
 app.use("/api/auth", authRouter);
 app.use("/api/users", userRouter);
 app.use("/api/products", productRouter);
+app.use("/api/cart", cartRouter);
 
 app.use("{0,}", (req, res) => {
   res.status(404).json({ msg: "Route not found", success: false });

@@ -795,6 +795,58 @@ Objects are not valid as a React child (found: object with keys {msg, data, succ
     - enhance 'Categories' page to use 'product.ts' and 'categories.ts' to fetch data
     - add 'placeholderData' in 'useQuery' to keep previous data when fetching data untill new data is available
     - create 'CategoriesFilter' component to handle filter in 'Categories' section
+    - add 'Suspense' in 'Home' page
+    - add memo to both 'ProductCard' and 'CategoriesFilter' components
+
+##### 1537. Add 'add to cart' logic
+
+    - create 'cart.model'
+        - add 'productId' which reference to 'Product' model
+        - also add 'userId' which reference to 'User' model
+        - add 'quantity' which is the quantity of the product in the cart
+        - i add 'cartItem' interface which contain productId and quantity
+        - after that i add 'ICart' interface which contain userId and items which is an array of 'cartItem'
+        - then in 'cartSchema' i add userId and 'items' which is an array of 'cartItem'
+        - why i didn't add 'price' and 'total' in the model?
+            - because both will be calculated by the server
+    - create 'cart.controller'
+        - add 'getCart' route to get all cart items
+        - add 'addToCart' route to add product to cart
+            - for just now i will only allow add to cart for just logged in user
+            - i will send only 'productId' and 'quantity' in the request body
+            - in 'addToCart' logic i first get 'productId' and 'quantity' from the request body
+            - then i get 'userId' from the request header because i want to add product to cart only for logged in user
+            - then i check if the 'productId' exist
+            - check if there is any product in the cart for the user
+            - if there is no any products then create a new cart for the user by using 'create' method and add 'userId' and 'products' in the cart
+            - why send userId in the cart?
+                - becuase every cart will be assigned to a user
+            - last push the product to the cart
+                - if the product exist in the cart then add the quantity to the product
+                - else push the product to the cart
+            - i faced an error the productId was added to the cart as separate products and the quantity not added to the exist product
+                - after change productId to mongoose.Types.ObjectId i can add the quantity to the exist product
+                - becuase the type of productId in cart.model i set it as mongoose.Types.ObjectId
+                - and productId i get from request body is string so i convert it to mongoose.Types.ObjectId
+                - why i didn't use === '' to compare the productId?
+                    - because rule of js Equality doesn't work with object
+                    - so i use .equals() method to compare between objects
+                    - and this is source https://www.codemzy.com/blog/compare-mongodb-objectid
+
+##### 1529. work on 'removeCartProduct' logic in 'cart.controller.ts' file
+
+    - get userId from request header
+    - get productId from request params
+    - use 'findOneAndDelete' method to remove the product from the cart and don't forget to convert productId to mongoose.Types.ObjectId
+
+##### 1530. work on 'removeCart' logic in 'cart.controller.ts' file
+
+    - get userId from request header
+    - use 'deleteMany' method to remove all cart items for the user
+
+##### 1531. work on 'updateProductCartQuantity' logic in 'cart.controller.ts' file
+
+    -
 
 ---
 
