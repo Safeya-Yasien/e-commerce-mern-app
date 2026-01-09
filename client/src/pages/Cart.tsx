@@ -45,6 +45,11 @@ const Cart = () => {
 
   const items: ICartItem[] = data.data.products;
 
+  const subtotal = items.reduce((total, item) => {
+    if (!item.productId) return total;
+    return total + item.productId.price * item.quantity;
+  }, 0);
+
   return (
     <div className="min-h-screen bg-gray-50 text-neutral-light p-6">
       <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -102,7 +107,7 @@ const Cart = () => {
 
           <div className="flex justify-between mb-2">
             <span>Subtotal</span>
-            {/* <span>${subtotal}</span> */}
+            <span>${subtotal.toFixed(2)}</span>
           </div>
 
           <div className="flex justify-between mb-4">
@@ -112,7 +117,7 @@ const Cart = () => {
 
           <div className="border-t pt-4 flex justify-between font-semibold text-lg">
             <span>Total</span>
-            {/* <span>${subtotal}</span> */}
+            <span>${subtotal}</span>
           </div>
 
           <button className="cursor-pointer w-full mt-6 py-3 rounded-xl bg-primary-light text-white font-medium hover:bg-primary-dark transition">

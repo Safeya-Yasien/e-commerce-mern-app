@@ -868,6 +868,8 @@ Objects are not valid as a React child (found: object with keys {msg, data, succ
         - find return all documents that match the query
 
     - then i use 'populate' method to repalce references stored as ObjectId with actual document they references from another collection
+    - add subtotal and total in 'Cart' page order summary
+        by using reduce method to calculate the subtotal and total
 
 ##### 1534. Add 'ClearCart' in 'Cart' page
 
