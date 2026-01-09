@@ -798,7 +798,7 @@ Objects are not valid as a React child (found: object with keys {msg, data, succ
     - add 'Suspense' in 'Home' page
     - add memo to both 'ProductCard' and 'CategoriesFilter' components
 
-##### 1537. Add 'add to cart' logic
+##### 1537. Add 'add to cart' logic to the server
 
     - create 'cart.model'
         - add 'productId' which reference to 'Product' model
@@ -833,20 +833,48 @@ Objects are not valid as a React child (found: object with keys {msg, data, succ
                     - so i use .equals() method to compare between objects
                     - and this is source https://www.codemzy.com/blog/compare-mongodb-objectid
 
-##### 1529. work on 'removeCartProduct' logic in 'cart.controller.ts' file
+##### 1529. work on 'removeFromCart' logic in 'cart.controller.ts' file
 
     - get userId from request header
     - get productId from request params
     - use 'findOneAndDelete' method to remove the product from the cart and don't forget to convert productId to mongoose.Types.ObjectId
 
-##### 1530. work on 'removeCart' logic in 'cart.controller.ts' file
+##### 1530. work on 'clearCart' logic in 'cart.controller.ts' file
 
-    - get userId from request header
-    - use 'deleteMany' method to remove all cart items for the user
+    - use findOneAndUpdate method to remove all cart items for the user and set products to empty array
+    - and don't forget to use new: true to update the document
 
-##### 1531. work on 'updateProductCartQuantity' logic in 'cart.controller.ts' file
+##### 1531. work on 'updateCartItem' logic in 'cart.controller.ts' file
 
     -
+
+##### 1532. Work on 'productCard' component in 'Categories' section
+
+    - add 'add to cart' logic
+
+##### 1532. work on 'Cart' page in 'Cart.tsx' file
+
+    - display cart items
+    - add ICartItem interface
+    - add ICart interface
+
+##### 1533. back to server 'getCart' logic in 'cart.controller.ts' file
+
+    - i found hard to get the data from the cart in 'Cart' page in front because i was use 'find' method which fetch all data from the cart for different users
+    - so i use 'findOne' return only single document that matches the query if not exist return null
+
+    - what is the difference between 'findOne' and 'find' method?
+        - findOne return only one document that match the query
+        - find return all documents that match the query
+
+    - then i use 'populate' method to repalce references stored as ObjectId with actual document they references from another collection
+
+##### 1534. Add 'ClearCart' in 'Cart' page
+
+    - use mutation to clear the cart
+    - use 'invalidateQueries' to invalidate the cache of the 'cart' query and refetch it to update the cart momentely
+
+##### 1535.
 
 ---
 

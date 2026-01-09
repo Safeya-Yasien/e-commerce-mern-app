@@ -9,6 +9,7 @@ const Signup = lazy(() => import("@/pages/auth/Signup"));
 const Home = lazy(() => import("@/pages/Home"));
 const Profile = lazy(() => import("@/pages/Profile"));
 const ProductDetailsPage = lazy(() => import("@/pages/ProductDetails"));
+const Cart = lazy(() => import("@/pages/Cart"));
 
 // layouts
 const AuthLayout = lazy(() => import("@/layouts/AuthLayout/AuthLayout"));
@@ -30,6 +31,10 @@ const routes = createBrowserRouter([
       {
         path: "products/:id",
         element: <ProductDetailsPage />,
+      },
+      {
+        path: "cart",
+        element: <Cart />,
       },
     ],
   },

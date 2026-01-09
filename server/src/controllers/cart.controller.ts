@@ -3,12 +3,22 @@ import Cart from "../models/cart.model";
 
 const getCart = async (req: any, res: any) => {
   try {
-    const cartItems = await Cart.find({});
-    res.status(200).json({ msg: "success", data: cartItems, success: true });
+    const userId = req.user.id;
+    const cart = await Cart.findOne({ userId }).populate("products.productId");
+
+    if (!cart) {
+      return res
+        .status(404)
+        .json({ msg: "Cart not found", data: null, success: false });
+    }
+
+    res.status(200).json({ msg: "success", data: cart, success: true });
   } catch (err) {
+    console.error("Get cart error:", err);
     res.status(500).json({ msg: "error", data: err, success: false });
   }
 };
+
 const addToCart = async (req: any, res: any) => {
   try {
     const { productId, quantity } = req.body;
@@ -18,10 +28,10 @@ const addToCart = async (req: any, res: any) => {
       return res.status(400).json({ message: "productId required" });
     }
 
-    let cart = await Cart.findOne({ userId });
-
-    const qty = quantity || 1;
+    const qty = Math.max(1, Number(quantity) || 1);
     const productObjectId = new mongoose.Types.ObjectId(productId);
+
+    let cart = await Cart.findOne({ userId });
 
     if (!cart) {
       cart = await Cart.create({
@@ -48,22 +58,18 @@ const addToCart = async (req: any, res: any) => {
   }
 };
 
-const updateProductCartQuantity = async (req: any, res: any) => {
-  try {
-    res.status(200).json({ msg: "success", data: "l", success: true });
-  } catch (err) {
-    res.status(500).json({ msg: "error", data: err, success: false });
-  }
-};
-
-const removeCartProduct = async (req: any, res: any) => {
+const updateCartItem = async (req: any, res: any) => {
   try {
     const userId = req.user.id;
-    const productId = req.params.id;
+    const { productId, quantity } = req.body;
+
+    if (!productId) {
+      return res.status(400).json({ message: "productId required" });
+    }
 
     const productObjectId = new mongoose.Types.ObjectId(productId);
 
-    const cart = await Cart.findOneAndDelete({
+    const cart = await Cart.findOne({
       userId,
       "products.productId": productObjectId,
     });
@@ -75,6 +81,58 @@ const removeCartProduct = async (req: any, res: any) => {
       return;
     }
 
+    const product = cart.products.find((p) =>
+      p.productId.equals(productObjectId)
+    );
+
+    if (!product) {
+      res
+        .status(404)
+        .json({ msg: "Product not found", data: null, success: false });
+      return;
+    }
+
+    product.quantity = quantity;
+    await cart.save();
+
+    res.status(200).json({ msg: "success", data: cart, success: true });
+  } catch (err) {
+    res.status(500).json({ msg: "error", data: err, success: false });
+  }
+};
+
+const removeFromCart = async (req: any, res: any) => {
+  try {
+    const userId = req.user.id;
+    const { productId, quantity } = req.params;
+
+    const productObjectId = new mongoose.Types.ObjectId(productId);
+
+    const cart = await Cart.findOne({
+      userId,
+      "products.productId": productObjectId,
+    });
+
+    if (!cart) {
+      res
+        .status(404)
+        .json({ msg: "Cart not found", data: null, success: false });
+      return;
+    }
+
+    const product = cart.products.find((p) =>
+      p.productId.equals(productObjectId)
+    );
+
+    if (!product) {
+      res
+        .status(404)
+        .json({ msg: "Product not found", data: null, success: false });
+      return;
+    }
+
+    console.log("Removing product:", product);
+
     res.status(200).json({ msg: "success", data: cart, success: true });
   } catch (err) {
     console.error("Remove cart product error:", err);
@@ -82,31 +140,25 @@ const removeCartProduct = async (req: any, res: any) => {
   }
 };
 
-const removeCart = async (req: any, res: any) => {
+const clearCart = async (req: any, res: any) => {
   try {
-    const userId = req.user.id;
+    const cart = await Cart.findOneAndUpdate(
+      { userId: req.user.id },
+      { products: [] },
+      { new: true }
+    );
 
-    const deletedCart = await Cart.deleteMany({ userId });
-
-    if (!deletedCart) {
+    if (!cart) {
       res
         .status(404)
         .json({ msg: "Cart not found", data: null, success: false });
       return;
     }
 
-    res
-      .status(200)
-      .json({ msg: "Cart deleted successfully", data: null, success: true });
+    res.status(200).json({ msg: "success", data: null, success: true });
   } catch (err) {
     res.status(500).json({ msg: "error", data: err, success: false });
   }
 };
 
-export {
-  getCart,
-  updateProductCartQuantity,
-  addToCart,
-  removeCartProduct,
-  removeCart,
-};
+export { getCart, updateCartItem, addToCart, removeFromCart, clearCart };
