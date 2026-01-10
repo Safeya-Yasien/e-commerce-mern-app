@@ -12,85 +12,65 @@ const Footer = memo(() => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-base-100 text-mist-aqua border-t border-neutral mt-auto">
-      <div className="max-w-7xl mx-auto px-4 py-8">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 pb-8 border-b border-deep-slate">
+    <footer className="mt-auto border-t border-neutral/20 text-neutral-light">
+      <div className="max-w-7xl mx-auto px-4 py-12">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-10 pb-8 border-b border-neutral/20">
           {/* 1. Brand/Logo */}
           <div className="col-span-2 md:col-span-1">
             <Link
               to="/"
-              className="flex items-center font-bold text-2xl text-secondary"
+              className="flex items-center font-bold text-2xl text-[#b35a00] hover:text-[#e68815] transition-colors duration-300"
             >
               <ShoppingBasket className="h-6 w-6 mr-2" aria-hidden="true" />
               ECO
             </Link>
-            <p className="mt-2 text-sm max-w-xs text-mist-aqua/70">
+            <p className="mt-3 text-sm max-w-xs text-neutral-light/70">
               Sustainable products for a healthier planet.
             </p>
           </div>
 
           {/* 2. Quick Links */}
           <div>
-            <h3 className="text-accent font-bold mb-3 text-lg">Quick Links</h3>
+            <h3 className="text-[#b35a00] font-bold mb-3 text-lg">Quick Links</h3>
             <ul className="space-y-2 text-sm">
-              <li>
-                <Link to="#" className="hover:text-accent transition">
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link to="#" className="hover:text-accent transition">
-                  Shipping
-                </Link>
-              </li>
-              <li>
-                <Link to="#" className="hover:text-accent transition">
-                  Returns
-                </Link>
-              </li>
-              <li>
-                <Link to="#" className="hover:text-accent transition">
-                  FAQ
-                </Link>
-              </li>
+              {["About Us", "Shipping", "Returns", "FAQ"].map((link) => (
+                <li key={link}>
+                  <Link
+                    to="#"
+                    className="hover:text-[#e68815] transition-colors duration-300 font-medium"
+                  >
+                    {link}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
           {/* 3. Categories */}
           <div>
-            <h3 className="text-accent font-bold mb-3 text-lg">Shop</h3>
+            <h3 className="text-[#b35a00] font-bold mb-3 text-lg">Shop</h3>
             <ul className="space-y-2 text-sm">
-              <li>
-                <Link to="#" className="hover:text-accent transition">
-                  Apparel
-                </Link>
-              </li>
-              <li>
-                <Link to="#" className="hover:text-accent transition">
-                  Home Goods
-                </Link>
-              </li>
-              <li>
-                <Link to="#" className="hover:text-accent transition">
-                  Beauty
-                </Link>
-              </li>
-              <li>
-                <Link to="#" className="hover:text-accent transition">
-                  Sale Items
-                </Link>
-              </li>
+              {["Apparel", "Home Goods", "Beauty", "Sale Items"].map((cat) => (
+                <li key={cat}>
+                  <Link
+                    to="#"
+                    className="hover:text-[#e68815] transition-colors duration-300 font-medium"
+                  >
+                    {cat}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
           {/* 4. Contact/Social */}
           <div>
-            <h3 className="text-accent font-bold mb-3 text-lg">Connect</h3>
+            <h3 className="text-[#b35a00] font-bold mb-3 text-lg">Connect</h3>
             <p className="text-sm">
               Email:{" "}
               <a
                 href="mailto:info@eco.com"
-                className="hover:text-accent transition"
+                className="hover:text-[#e68815] transition-colors duration-300 font-medium"
               >
                 info@eco.com
               </a>
@@ -104,10 +84,10 @@ const Footer = memo(() => {
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-mist-aqua hover:text-crimson-tide transition"
+                  className="flex items-center justify-center w-10 h-10 rounded-full border border-neutral/30 text-neutral-light hover:border-[#e68815] hover:text-[#e68815] transition-all duration-300"
                   aria-label={`Follow us on ${label}`}
                 >
-                  <Icon className="w-6 h-6" aria-hidden="true" />
+                  <Icon className="w-5 h-5" aria-hidden="true" />
                 </a>
               ))}
             </div>
@@ -115,15 +95,18 @@ const Footer = memo(() => {
         </div>
 
         {/* --- Copyright Section --- */}
-        <div className="pt-4 flex flex-col md:flex-row justify-between items-center text-sm text-mist-aqua/50">
+        <div className="pt-6 flex flex-col md:flex-row justify-between items-center text-sm text-neutral-light/50">
           <p>&copy; {currentYear} ECO. All rights reserved.</p>
-          <div className="mt-2 md:mt-0 space-x-4">
-            <Link to="/privacy" className="hover:text-mist-aqua transition">
-              Privacy Policy
-            </Link>
-            <Link to="/terms" className="hover:text-mist-aqua transition">
-              Terms of Service
-            </Link>
+          <div className="mt-3 md:mt-0 flex gap-4">
+            {["Privacy Policy", "Terms of Service"].map((policy) => (
+              <Link
+                key={policy}
+                to={`/${policy.toLowerCase().replace(/ /g, "-")}`}
+                className="hover:text-[#e68815] transition-colors duration-300 font-medium"
+              >
+                {policy}
+              </Link>
+            ))}
           </div>
         </div>
       </div>
