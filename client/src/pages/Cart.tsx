@@ -24,7 +24,7 @@ const Cart = () => {
     },
   });
 
-  const mutation = useMutation({
+  const clearCartMutation = useMutation({
     mutationKey: ["clearCart"],
     mutationFn: async () => {
       const res = await axiosInstance.delete("/cart/clear");
@@ -40,6 +40,22 @@ const Cart = () => {
     },
   });
 
+  const removeItemMutation = useMutation({
+    mutationKey: ["removeFromCart"],
+    mutationFn: async (id: string) => {
+      const res = await axiosInstance.delete(`/cart/remove/${id}`);
+      return res.data;
+    },
+
+    onSuccess: () => {
+      toast.success("Item removed from cart");
+      queryClient.invalidateQueries({ queryKey: ["cart"] });
+    },
+    onError: () => {
+      toast.error("Error removing item from cart");
+    },
+  });
+
   if (isLoading) return <p>Loading cart...</p>;
   if (error) return <p>Error fetching cart</p>;
 
@@ -51,7 +67,7 @@ const Cart = () => {
   }, 0);
 
   return (
-    <div className="min-h-screen bg-gray-50 text-neutral-light p-6">
+    <div className="bg-gray-50 text-neutral-light p-6 py-20">
       <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Cart Items */}
         <div className="lg:col-span-2 space-y-4">
@@ -92,7 +108,10 @@ const Cart = () => {
                   <p className="font-medium">
                     ${(product.price * item.quantity).toFixed(2)}
                   </p>
-                  <button className="cursor-pointer text-sm text-primary-light hover:underline mt-2">
+                  <button
+                    onClick={() => removeItemMutation.mutate(product.id)}
+                    className="cursor-pointer text-sm text-primary-light hover:underline mt-2"
+                  >
                     Remove
                   </button>
                 </div>
@@ -117,7 +136,7 @@ const Cart = () => {
 
           <div className="border-t pt-4 flex justify-between font-semibold text-lg">
             <span>Total</span>
-            <span>${subtotal}</span>
+            <span>${subtotal.toFixed(2)}</span>
           </div>
 
           <button className="cursor-pointer w-full mt-6 py-3 rounded-xl bg-primary-light text-white font-medium hover:bg-primary-dark transition">
@@ -125,7 +144,7 @@ const Cart = () => {
           </button>
 
           <button
-            onClick={() => mutation.mutate()}
+            onClick={() => clearCartMutation.mutate()}
             className="cursor-pointer w-full mt-3 py-2 rounded-xl border border-gray-200 hover:bg-primary-light hover:text-white transition duration-300"
           >
             Clear Cart

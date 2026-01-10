@@ -1,12 +1,13 @@
 import { axiosInstance } from "@/api/axios";
 import type { IProduct } from "@/types/product.types";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { ShoppingBag } from "lucide-react";
 import React from "react";
 import { Link } from "react-router";
 import { toast } from "react-toastify";
 
 const ProductCard = ({ product }: { product: IProduct }) => {
+  const queryClient = useQueryClient();
   const mutation = useMutation({
     mutationKey: ["addToCart", product.id],
     mutationFn: async () => {
@@ -18,6 +19,7 @@ const ProductCard = ({ product }: { product: IProduct }) => {
     },
     onSuccess: () => {
       toast.success("Product added to cart");
+      queryClient.invalidateQueries({ queryKey: ["cartCount"] });
     },
     onError: () => {
       toast.error("Error adding product to cart");

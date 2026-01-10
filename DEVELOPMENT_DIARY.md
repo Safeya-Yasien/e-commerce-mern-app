@@ -838,6 +838,11 @@ Objects are not valid as a React child (found: object with keys {msg, data, succ
     - get userId from request header
     - get productId from request params
     - use 'findOneAndDelete' method to remove the product from the cart and don't forget to convert productId to mongoose.Types.ObjectId
+    - but if you use findOneAndDelete method it will delete the whole cart of this user so
+    - we have to use method only remove clicable product
+    - 'pull' operator is used to remove the item from the array
+    - and now we will use findOneAndUpdate method to update the cart and remove the product from the cart by using 'pull' operator
+    - add 'removeFromCart' mutation in 'Cart' page
 
 ##### 1530. work on 'clearCart' logic in 'cart.controller.ts' file
 
@@ -876,7 +881,27 @@ Objects are not valid as a React child (found: object with keys {msg, data, succ
     - use mutation to clear the cart
     - use 'invalidateQueries' to invalidate the cache of the 'cart' query and refetch it to update the cart momentely
 
-##### 1535.
+##### 1535. Add cart count number in 'Header'
+
+    - server
+        - add 'getCartCount' route
+        - add 'getCartCount' function in 'cart.controller.ts'
+            - use 'findOne' method to get the cart from the database
+            - use 'select' method to get only the products from the cart
+            - then use 'length' method to get the length of the products array
+            - return the count of the products and the items in the cart
+            - which
+                count: is the the sum of the quantity of the products
+                items: is the length of the products array "different products'
+    - client
+        - add useQuery to fetch the cart count
+        - but the number is not updated when the cart is updated
+        - i use invalidateQueries to invalidate the cache of the cartCount query and refetch it to update the cart count momentely but=>
+            but => ال component الل بيعرض data عمره ما يعمل invalidate لنفسه
+            means the component who's display the data will not invalidate the cache of the query by itself
+            - so back to 'add to cart' logic and add 'invalidateQueries' to the 'cart-count' mutation in 'ProductCard' component
+
+##### 1536.
 
 ---
 

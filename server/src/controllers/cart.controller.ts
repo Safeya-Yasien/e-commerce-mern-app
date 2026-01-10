@@ -104,14 +104,15 @@ const updateCartItem = async (req: any, res: any) => {
 const removeFromCart = async (req: any, res: any) => {
   try {
     const userId = req.user.id;
-    const { productId, quantity } = req.params;
+    const { id } = req.params;
 
-    const productObjectId = new mongoose.Types.ObjectId(productId);
+    const productObjectId = new mongoose.Types.ObjectId(id);
 
-    const cart = await Cart.findOne({
-      userId,
-      "products.productId": productObjectId,
-    });
+    const cart = await Cart.findOneAndUpdate(
+      { userId },
+      { $pull: { products: { productId: productObjectId } } },
+      { new: true }
+    );
 
     if (!cart) {
       res
@@ -120,22 +121,32 @@ const removeFromCart = async (req: any, res: any) => {
       return;
     }
 
-    const product = cart.products.find((p) =>
-      p.productId.equals(productObjectId)
-    );
-
-    if (!product) {
-      res
-        .status(404)
-        .json({ msg: "Product not found", data: null, success: false });
-      return;
-    }
-
-    console.log("Removing product:", product);
-
     res.status(200).json({ msg: "success", data: cart, success: true });
   } catch (err) {
     console.error("Remove cart product error:", err);
+    res.status(500).json({ msg: "error", data: err, success: false });
+  }
+};
+
+const getCartCount = async (req: any, res: any) => {
+  try {
+    const cart = await Cart.findOne({ userId: req.user.id }).select("products");
+    if (!cart) {
+      return res.status(404).json({
+        msg: "Cart not found",
+        data: { items: 0, count: 0 },
+        success: false,
+      });
+    }
+
+    const items = cart.products.length;
+    const count = cart.products.reduce((acc, item) => acc + item.quantity, 0);
+
+    res
+      .status(200)
+      .json({ msg: "success", data: { items, count }, success: true });
+  } catch (err) {
+    console.error("Get cart count error:", err);
     res.status(500).json({ msg: "error", data: err, success: false });
   }
 };
@@ -161,4 +172,11 @@ const clearCart = async (req: any, res: any) => {
   }
 };
 
-export { getCart, updateCartItem, addToCart, removeFromCart, clearCart };
+export {
+  getCart,
+  updateCartItem,
+  addToCart,
+  removeFromCart,
+  clearCart,
+  getCartCount,
+};
