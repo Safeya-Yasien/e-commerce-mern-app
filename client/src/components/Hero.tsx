@@ -42,7 +42,7 @@ const Hero = () => {
           {/* Secondary CTA */}
           <Link
             to="/"
-            className="flex items-center justify-center border-2 font-bold py-3 px-8 rounded-lg hover:bg-primary-dark hover:text-base-light dark:border-primary-dark transition duration-300 sm:w-auto w-full"
+            className="flex items-center justify-center border-2 border-primary-dark font-bold py-3 px-8 rounded-lg hover:bg-primary-dark hover:text-base-light dark:border-primary-dark transition duration-300 sm:w-auto w-full"
           >
             Learn More
           </Link>

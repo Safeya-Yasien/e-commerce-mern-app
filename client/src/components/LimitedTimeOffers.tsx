@@ -42,54 +42,63 @@ const LimitedTimeOffers = () => {
   ];
 
   return (
-    <div className="py-20 text-base-content">
-      <div className="text-center mx-auto mb-12">
+    <section className="px-4 py-20 text-neutral-dark dark:text-base-light">
+      {/* Section Header */}
+      <div className="text-center mx-auto mb-12 max-w-7xl">
         <h2 className="text-3xl md:text-5xl font-bold mb-4">
-          Limited <span className="text-accent"> Time </span>Offers
+          Limited <span className="text-sunstone">Time</span> Offers
         </h2>
-        <p className=""> Get 50% off on all products</p>
+        <p className="text-neutral-light dark:text-base-light font-medium">
+          Get 50% off on all products
+        </p>
       </div>
 
+      {/* Countdown */}
       <CountdownTimer />
 
+      {/* Products Grid */}
       <div className="max-w-7xl mx-auto grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
         {products.map((product) => (
-          <Link
-            to={"/"}
+          <div
             key={product.id}
-            className="bg-base-200 rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:scale-[1.03] hover:shadow-xl"
+            className="bg-base-light dark:bg-neutral-dark rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-2xl group"
           >
-            <div className="relative">
+            <Link to={"/"} className="relative overflow-hidden">
               <img
                 src={product.img}
                 alt={product.name}
-                className="w-full h-60 object-cover"
+                className="w-full h-60 object-cover transition-transform duration-300"
               />
               {product.tag && (
-                <span className="absolute top-3 left-3 bg-accent text-base-100 text-xs font-semibold px-2 py-1 rounded">
+                <span className="absolute top-3 left-3 bg-sunstone text-base-light text-xs font-semibold px-2 py-1 rounded shadow-md">
                   {product.tag}
                 </span>
               )}
-            </div>
-            <div className="p-4 flex flex-col justify-between h-40">
+            </Link>
+            <div className="p-4 flex flex-col justify-between h-44">
               <div>
-                <h3 className="text-lg font-semibold mb-2">{product.name}</h3>
-                <p className="line-clamp-2 text-sm">{product.description}</p>
+                <h3 className="text-lg font-semibold mb-2 text-primary-light transition-colors">
+                  {product.name}
+                </h3>
+                <p className="line-clamp-2 text-sm text-neutral-dark dark:text-base-light">
+                  {product.description}
+                </p>
               </div>
-              <div className="flex items-center  justify-between">
-                <p className="text-primary font-bold text-lg ">
+              <div className="flex items-center justify-between mt-2">
+                <p className="text-primary-light font-bold text-lg ">
                   {product.price}
                 </p>
-                <button className="flex items-center gap-1 bg-primary text-base-100 py-1 p-2 rounded-lg font-semibold hover:bg-secondary transition text-sm">
+                <button className="flex items-center gap-1 bg-primary-light cursor-pointer hover:bg-primary-dark text-base-light py-2 px-3 rounded-lg font-semibold transition-colors text-sm shadow-md">
                   <ShoppingBag className="w-4 h-4" />
                   Add
                 </button>
               </div>
             </div>
-          </Link>
+          </div>
         ))}
       </div>
-    </div>
+    </section>
   );
 };
+
 export default LimitedTimeOffers;

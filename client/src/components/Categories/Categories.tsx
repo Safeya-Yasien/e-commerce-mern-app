@@ -32,7 +32,7 @@ const Categories = () => {
   if (errorProducts || errorCategories) return <p>Error fetching categories</p>;
 
   return (
-    <section className="py-20 text-base-content" id="categories">
+    <section className="px-4 py-20 text-base-content" id="categories">
       <div className="text-center mx-auto mb-12">
         <h2 className="text-3xl md:text-5xl font-bold mb-4 text-sunstone">
           Categories
