@@ -14,11 +14,14 @@ const ThemeSwitcher = () => {
   };
 
   return (
-    <button className="fixed right-6 cursor-pointer bottom-8 " onClick={toggle}>
+    <button
+      className="fixed right-6 cursor-pointer bottom-8 bg-base-dark dark:bg-base-light rounded-full w-10 h-10 flex items-center justify-center p-2"
+      onClick={toggle}
+    >
       {theme === "dark" ? (
-        <Sun className="w-6 h-6" />
+        <Sun className="w-6 h-6 " />
       ) : (
-        <Moon className="w-6 h-6" />
+        <Moon className="w-6 h-6 text-base-light" />
       )}
     </button>
   );

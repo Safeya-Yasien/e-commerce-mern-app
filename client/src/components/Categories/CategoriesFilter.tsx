@@ -1,3 +1,5 @@
+import React from "react";
+
 interface CategoriesFilterProps {
   categories: string[];
   active: string | null;
@@ -15,7 +17,7 @@ const CategoriesFilter = ({
         onClick={() => onChange(null)}
         className={`btn rounded-lg ${
           active === null
-            ? "bg-primary-light text-base-light"
+            ? "bg-primary-light text-base-light border-none"
             : "bg-primary-dark text-base-light"
         }`}
       >
@@ -28,8 +30,8 @@ const CategoriesFilter = ({
           onClick={() => onChange(category)}
           className={`btn rounded-lg ${
             active === category
-              ? "bg-primary-light text-base-light"
-              : "bg-primary-dark text-base-light"
+              ? "bg-primary-light text-base-light border-none"
+              : "bg-primary-dark text-base-light hover:bg-primary-light  border-none"
           }`}
         >
           {category}
@@ -39,4 +41,4 @@ const CategoriesFilter = ({
   );
 };
 
-export default CategoriesFilter;
+export default React.memo(CategoriesFilter);

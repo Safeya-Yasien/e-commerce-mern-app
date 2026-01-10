@@ -26,7 +26,8 @@ const featureList = [
 
 const Features = memo(() => {
   return (
-    <section className="px-4 py-20 bg-linear-to-b from-base-light to-mist-aqua-light dark:from-neutral-dark dark:to-mist-aqua-dark text-neutral-dark dark:text-base-light">
+    <section 
+    className="px-4 py-16 bg-linear-to-b from-base-light to-mist-aqua-light dark:from-neutral-dark dark:to-mist-aqua-dark text-neutral-dark dark:text-base-light">
       {/* Section Header */}
       <div className="max-w-7xl mx-auto text-center mb-12">
         <h2 className="text-3xl md:text-5xl font-bold mb-4">

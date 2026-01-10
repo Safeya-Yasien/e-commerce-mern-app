@@ -53,7 +53,7 @@ const Header = () => {
   });
 
   return (
-    <header className="bg-base-light dark:bg-neutral-light/90 text-base-content fixed top-0 left-0 w-full z-50 h-14 border-b border-base-light dark:border-base-dark shadow-sm ">
+    <header className="bg-base-light dark:bg-base-dark text-base-content fixed top-0 left-0 w-full z-50 h-14 border-b border-base-light dark:border-0 shadow-sm ">
       <div className="flex items-center justify-between px-4 h-full">
         {/* Logo */}
         <Link

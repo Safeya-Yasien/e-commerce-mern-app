@@ -28,11 +28,25 @@ const Categories = () => {
     queryFn: () => fetchCategories(),
   });
 
-  if (isLoadingProducts || isLoadingCategories) return <p>Loading...</p>;
-  if (errorProducts || errorCategories) return <p>Error fetching categories</p>;
+  if (isLoadingProducts || isLoadingCategories)
+    return (
+      <p className="text-center py-20 text-neutral-light dark:text-mist-aqua-dark/70">
+        Loading...
+      </p>
+    );
+
+  if (errorProducts || errorCategories)
+    return (
+      <p className="text-center py-20 text-neutral-light dark:text-red-400">
+        Error fetching categories
+      </p>
+    );
 
   return (
-    <section className="px-4 py-20 text-base-content" id="categories">
+    <section
+      className="px-4 py-20 text-base-content dark:text-mist-aqua-dark dark:bg-base-dark"
+      id="categories"
+    >
       <div className="text-center mx-auto mb-12">
         <h2 className="text-3xl md:text-5xl font-bold mb-4 text-sunstone">
           Categories

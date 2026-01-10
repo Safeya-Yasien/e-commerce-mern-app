@@ -42,13 +42,13 @@ const LimitedTimeOffers = () => {
   ];
 
   return (
-    <section className="px-4 py-20 text-neutral-dark dark:text-base-light">
+    <section className="px-4 py-20 text-neutral-dark dark:text-base-light dark:bg-linear-to-r dark:from-[#0f1112] dark:to-[#1a1a1a]">
       {/* Section Header */}
       <div className="text-center mx-auto mb-12 max-w-7xl">
         <h2 className="text-3xl md:text-5xl font-bold mb-4">
           Limited <span className="text-sunstone">Time</span> Offers
         </h2>
-        <p className="text-neutral-light dark:text-base-light font-medium">
+        <p className="text-neutral-light dark:text-[#f0f0f0] font-medium">
           Get 50% off on all products
         </p>
       </div>
@@ -61,13 +61,13 @@ const LimitedTimeOffers = () => {
         {products.map((product) => (
           <div
             key={product.id}
-            className="bg-base-light dark:bg-neutral-dark rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-2xl group"
+            className="bg-base-light dark:bg-[#1a1a1a] rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-2xl group"
           >
             <Link to={"/"} className="relative overflow-hidden">
               <img
                 src={product.img}
                 alt={product.name}
-                className="w-full h-60 object-cover transition-transform duration-300"
+                className="w-full h-60 object-cover transition-transform duration-300 group-hover:scale-105"
               />
               {product.tag && (
                 <span className="absolute top-3 left-3 bg-sunstone text-base-light text-xs font-semibold px-2 py-1 rounded shadow-md">
@@ -77,18 +77,18 @@ const LimitedTimeOffers = () => {
             </Link>
             <div className="p-4 flex flex-col justify-between h-44">
               <div>
-                <h3 className="text-lg font-semibold mb-2 text-primary-light transition-colors">
+                <h3 className="text-lg font-semibold mb-2 text-primary-light dark:text-[#b2288a] transition-colors group-hover:dark:text-sunstone">
                   {product.name}
                 </h3>
-                <p className="line-clamp-2 text-sm text-neutral-dark dark:text-base-light">
+                <p className="line-clamp-2 text-sm text-neutral-dark dark:text-[#dcdcdc] group-hover:dark:text-base-light">
                   {product.description}
                 </p>
               </div>
               <div className="flex items-center justify-between mt-2">
-                <p className="text-primary-light font-bold text-lg ">
+                <p className="text-primary-light dark:text-[#b2288a] font-bold text-lg group-hover:dark:text-sunstone">
                   {product.price}
                 </p>
-                <button className="flex items-center gap-1 bg-primary-light cursor-pointer hover:bg-primary-dark text-base-light py-2 px-3 rounded-lg font-semibold transition-colors text-sm shadow-md">
+                <button className="flex items-center gap-1 bg-primary-light dark:bg-[#b2288a] cursor-pointer hover:bg-primary-dark dark:hover:bg-[#e68815] text-base-light py-2 px-3 rounded-lg font-semibold transition-colors text-sm shadow-md">
                   <ShoppingBag className="w-4 h-4" />
                   Add
                 </button>

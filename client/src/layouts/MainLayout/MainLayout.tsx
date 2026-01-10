@@ -9,7 +9,7 @@ const MainLayout = () => {
       <ThemeProvider>
         <Header />
 
-        <main className=" grow pt-16 ">
+        <main className="grow pt-14">
           <Outlet />
         </main>
 

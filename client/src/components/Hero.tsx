@@ -4,7 +4,7 @@ import { ArrowRight, Leaf } from "lucide-react";
 const Hero = () => {
   return (
     <section
-      className="bg-base-100 text-base-content  flex items-center justify-center "
+      className="bg-base-100 dark:bg-base-dark text-base-content dark:text-mist-aqua-dark flex items-center justify-center "
       id="hero"
     >
       <div className="w-full max-w-7xl mx-auto px-4 py-16 text-center">
@@ -15,15 +15,14 @@ const Hero = () => {
         </p>
 
         {/* Main Title */}
-        <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold leading-tight mb-6">
+        <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold leading-tight mb-6 dark:text-base-light">
           Shop Smarter,
           <br className="hidden sm:inline" /> Live{" "}
           <span className="text-sunstone">Greener</span>
         </h1>
 
         {/* Subtitle */}
-        {/* <p className="text-base- sm:text-lg md:text-xl max-w-2xl mx-auto mb-10 text-neutral-light dark:text-mist-aqua-dark"> */}
-        <p className="text-base- sm:text-lg md:text-xl max-w-2xl mx-auto mb-10 text-neutral-light ">
+        <p className="text-base sm:text-lg md:text-xl max-w-2xl mx-auto mb-10 text-neutral-light dark:text-mist-aqua-dark">
           Discover high-quality, ethically sourced products that are kind to the
           planet and elevate your daily life.
         </p>
@@ -33,7 +32,7 @@ const Hero = () => {
           {/* Primary CTA */}
           <Link
             to="/#categories"
-            className="flex items-center justify-center bg-primary-dark hover:bg-primary-light text-base-light dark:text-base-100-dark  font-bold py-3 px-8 rounded-lg shadow-lg transition duration-300 sm:w-auto w-full"
+            className="flex items-center justify-center bg-primary-dark hover:bg-primary-light text-base-light dark:text-base-light font-bold py-3 px-8 rounded-lg shadow-lg transition duration-300 sm:w-auto w-full"
           >
             Shop Now
             <ArrowRight className="w-5 h-5 ml-2" />
@@ -42,7 +41,7 @@ const Hero = () => {
           {/* Secondary CTA */}
           <Link
             to="/"
-            className="flex items-center justify-center border-2 border-primary-dark font-bold py-3 px-8 rounded-lg hover:bg-primary-dark hover:text-base-light dark:border-primary-dark transition duration-300 sm:w-auto w-full"
+            className="flex items-center justify-center border-2 border-primary-dark  font-bold py-3 px-8 rounded-lg hover:bg-primary-dark hover:text-base-light transition duration-300 sm:w-auto w-full"
           >
             Learn More
           </Link>

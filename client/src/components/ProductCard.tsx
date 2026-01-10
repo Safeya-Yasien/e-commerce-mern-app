@@ -25,7 +25,7 @@ const ProductCard = ({ product }: { product: IProduct }) => {
   });
 
   return (
-    <div className="bg-base-200 rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:scale-[1.03] hover:shadow-xl">
+    <div className="rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl dark:bg-mist-aqua-dark/5 dark:shadow-primary-dark dark:hover:shadow-lg">
       <Link to={"/products/" + product.id} className="relative">
         <img
           src={product.image}
@@ -44,7 +44,7 @@ const ProductCard = ({ product }: { product: IProduct }) => {
           <h3 className="text-lg font-semibold mb-2 text-primary-light">
             {product.name}
           </h3>
-          <p className="line-clamp-2 text-sm text-neutral-light">
+          <p className="line-clamp-2 text-sm text-neutral-light dark:text-mist-aqua-dark">
             {product.description}
           </p>
         </div>
