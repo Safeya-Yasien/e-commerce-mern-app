@@ -40,11 +40,13 @@ const Login = () => {
   });
 
   return (
-    <div className="w-full">
+    <div className="w-full bg-base-light dark:bg-base-dark px-4 py-8 rounded-lg shadow-md">
       {/* Header */}
       <div className="mb-6">
-        <h2 className="text-2xl font-semibold text-neutral">Welcome back</h2>
-        <p className="mt-1 text-sm text-neutral/70">
+        <h2 className="text-2xl font-semibold text-neutral-light">
+          Welcome back
+        </h2>
+        <p className="mt-1 text-sm text-neutral-light/70">
           Log in to continue learning
         </p>
       </div>
@@ -73,24 +75,32 @@ const Login = () => {
 
         <div className="flex items-center justify-between text-sm">
           <label className="flex items-center gap-2 cursor-pointer">
-            <input type="checkbox" className="checkbox checkbox-sm" />
-            <span className="text-neutral/70">Remember me</span>
+            <input
+              type="checkbox"
+              className="checkbox checkbox-sm border border-gray-300"
+            />
+            <span className="text-neutral-light/70 ">Remember me</span>
           </label>
 
-          <a className="text-secondary hover:underline">Forgot password?</a>
+          <a className="text-primary-light hover:underline cursor-pointer">
+            Forgot password?
+          </a>
         </div>
 
-        <button type="submit" className="btn btn-primary w-full mt-2">
+        <button
+          type="submit"
+          className="btn bg-primary-light text-base-light border-0 w-full mt-2"
+        >
           Log in
         </button>
       </form>
 
       {/* Footer */}
-      <div className="mt-6 text-center text-sm text-neutral/70">
+      <div className="mt-6 text-center text-sm text-neutral-light/70">
         Don’t have an account?{" "}
         <Link
           to={"/auth/signup"}
-          className="text-secondary font-medium hover:underline"
+          className="text-primary-light font-medium hover:underline"
         >
           Sign up
         </Link>

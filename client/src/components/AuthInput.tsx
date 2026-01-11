@@ -25,13 +25,13 @@ const AuthInput = <T extends FieldValues>({
   return (
     <div>
       <label className="label">
-        <span className="label-text">{label}</span>
+        <span className="label-text ">{label}</span>
       </label>
       <input
         type={type}
         placeholder={placeholder}
         {...register(name)}
-        className="input input-bordered w-full outline-none focus:border-primary"
+        className="input border border-gray-300 w-full outline-none focus:border-primary-light rounded-md"
       />
       {error && <p className="label-text-alt text-error">{error.message}</p>}
     </div>

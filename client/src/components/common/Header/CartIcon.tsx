@@ -10,6 +10,7 @@ const CartIcon = () => {
       const res = await axiosInstance("/cart/count");
       return res.data;
     },
+    enabled: !!localStorage.getItem("token"),
   });
 
   if (isLoading) return <p>Loading...</p>;
@@ -22,7 +23,7 @@ const CartIcon = () => {
     >
       <ShoppingCart />
       <span className="absolute -top-3 -right-2 w-4 h-4 rounded-full bg-primary-light text-base-light flex items-center justify-center text-xs">
-        {data.data.count}
+        {data?.data.count || 0}
       </span>
     </Link>
   );

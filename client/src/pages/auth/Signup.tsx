@@ -24,9 +24,6 @@ const Signup = () => {
   } = useForm<ISignupForm>({
     resolver: zodResolver(signupSchema),
   });
-  const onSubmit = (data: ISignupForm) => {
-    mutation.mutate(data);
-  };
 
   const mutation = useMutation({
     mutationKey: ["signup"],
@@ -38,27 +35,25 @@ const Signup = () => {
       toast.success("Signup successful");
       navigate("/auth/login");
     },
-
-    onError: (err) => {
-      toast.error(err.message, {});
-    },
+    onError: (err) => toast.error(err.message),
   });
 
+  const onSubmit = (data: ISignupForm) => mutation.mutate(data);
+
   return (
-    <div className="w-full">
+    <div className="w-full bg-base-light dark:bg-color-base-dark px-6 py-8 rounded-lg shadow-md">
       {/* Header */}
-      <div className="mb-6">
-        <h2 className="text-2xl font-semibold text-neutral">
+      <div className="mb-6 text-center">
+        <h2 className="text-2xl font-semibold text-neutral-light dark:text-neutral-dark">
           Create your account
         </h2>
-        <p className="mt-1 text-sm text-neutral/70">
+        <p className="mt-1 text-sm text-[var(--color-neutral-light)/70] dark:text-[var(--color-neutral-dark)/70]">
           Start learning in less than a minute
         </p>
       </div>
 
       {/* Form */}
       <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
-        {/* full name */}
         <AuthInput
           label="First Name"
           placeholder="John"
@@ -67,8 +62,6 @@ const Signup = () => {
           register={register}
           error={errors.firstName}
         />
-
-        {/* lastName */}
         <AuthInput
           label="Last Name"
           placeholder="Doe"
@@ -77,8 +70,6 @@ const Signup = () => {
           register={register}
           error={errors.lastName}
         />
-
-        {/* email */}
         <AuthInput
           label="Email"
           placeholder="you@example.com"
@@ -87,8 +78,6 @@ const Signup = () => {
           register={register}
           error={errors.email}
         />
-
-        {/* password */}
         <AuthInput
           label="Password"
           placeholder="••••••••"
@@ -97,8 +86,6 @@ const Signup = () => {
           register={register}
           error={errors.password}
         />
-
-        {/* confirm password */}
         <AuthInput
           label="Confirm Password"
           placeholder="••••••••"
@@ -108,17 +95,20 @@ const Signup = () => {
           error={errors.confirmPassword}
         />
 
-        <button type="submit" className="btn btn-primary w-full mt-2">
+        <button
+          type="submit"
+          className="w-full py-2 mt-2 bg-primary-light dark:bg-primary-dark text-base-light rounded-lg cursor-pointer transition"
+        >
           Create account
         </button>
       </form>
 
       {/* Footer */}
-      <div className="mt-6 text-center text-sm text-neutral/70">
+      <div className="mt-6 text-center text-sm text-[var(--color-neutral-light)/70] dark:text-[var(--color-neutral-dark)/70]">
         Already have an account?{" "}
         <Link
-          to={"/auth/login"}
-          className="text-secondary font-medium hover:underline"
+          to="/auth/login"
+          className="text-primary-light dark:text-primary-dark font-medium hover:underline"
         >
           Log in
         </Link>

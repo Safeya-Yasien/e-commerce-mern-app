@@ -901,7 +901,11 @@ Objects are not valid as a React child (found: object with keys {msg, data, succ
             means the component who's display the data will not invalidate the cache of the query by itself
             - so back to 'add to cart' logic and add 'invalidateQueries' to the 'cart-count' mutation in 'ProductCard' component
 
-##### 1536.
+##### 1536. I faced a problem in 'Profile' page when i logout
+
+    - when i logout the token is not removed from localStorage successfully but the user icon still appears in the header
+    - i back again to 'Profile' page in 'handleLogout' function and use 'queryClient.removeQueries' to remove the queries with 'client' key
+    - also use 'queryClient.removeQueries' to remove the queries with 'cartCount' key to make only number of products in cart appears only when the user logged in
 
 ---
 
