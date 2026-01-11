@@ -18,8 +18,6 @@
 
 ## Installation & Setup
 
-▶️ Running the Application
-
 ## 🔑 Testing & Demo Credentials
 
 ### Admin Dashboard
