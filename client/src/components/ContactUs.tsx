@@ -49,13 +49,13 @@ const ContactUs = () => {
                 key={idx}
                 type={placeholder === "Email" ? "email" : "text"}
                 placeholder={placeholder}
-                className="bg-base-light dark:bg-[#1a1a1a] p-3 rounded-lg border border-mist-aqua-light dark:border-[#a0dcdc] focus:border-sunstone focus:ring-2 focus:ring-sunstone outline-none w-full transition text-[#f0f0f0]"
+                className="bg-base-light dark:bg-[#1a1a1a] p-3 rounded-lg border border-mist-aqua-light dark:border-[#a0dcdc] focus:border-sunstone focus:ring-2 focus:ring-sunstone outline-none w-full transition text-base-dark dark:text-base-light"
               />
             ))}
             <textarea
               placeholder="Message"
               rows={5}
-              className="resize-none bg-base-light dark:bg-[#1a1a1a] p-3 rounded-lg border border-mist-aqua-light dark:border-[#a0dcdc] focus:border-sunstone focus:ring-2 focus:ring-sunstone outline-none w-full text-[#f0f0f0] transition"
+              className="resize-none p-3 rounded-lg border border-mist-aqua-light dark:border-[#a0dcdc] focus:border-sunstone focus:ring-2 focus:ring-sunstone outline-none w-full text-black dark:text-base-light transition"
             />
             <button className="cursor-pointer mt-2 py-3 rounded-lg bg-sunstone hover:bg-[#b2288a] text-base-light transition duration-300 font-bold">
               Submit

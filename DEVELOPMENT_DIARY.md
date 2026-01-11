@@ -779,7 +779,8 @@ Objects are not valid as a React child (found: object with keys {msg, data, succ
     - get id from url using "useParams" hook and this is the first time i realize that we can't use hook with async function
     - i use "useQuery" to fetch product data from the server
     - how to hidden arrows in number button for 'input type number' add "input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {-webkit-appearance: none; margin: 0;}" in "index.css" file
-    -
+    - dispaly items count and add +, - logic 
+    - active add to cart button
 
 ##### 1535. stop daisy ui for theme switch
 
@@ -851,7 +852,13 @@ Objects are not valid as a React child (found: object with keys {msg, data, succ
 
 ##### 1531. work on 'updateCartItem' logic in 'cart.controller.ts' file
 
-    -
+    - server
+        - get userId from request header
+        - get productId and quantity from request body
+        - i miss understand what 'updteCartItem' logic is i need to study mongodb operators
+    - client
+        - add 'updateCartItem' mutation in 'Cart' page
+        - and don't forget to use invalidateQueries to invalidate the cache of the 'cart' query and refetch it to update the cart momentely and cartCount
 
 ##### 1532. Work on 'productCard' component in 'Categories' section
 
@@ -907,7 +914,23 @@ Objects are not valid as a React child (found: object with keys {msg, data, succ
     - i back again to 'Profile' page in 'handleLogout' function and use 'queryClient.removeQueries' to remove the queries with 'client' key
     - also use 'queryClient.removeQueries' to remove the queries with 'cartCount' key to make only number of products in cart appears only when the user logged in
 
+##### 1537.
+
 ---
+
+ProductDetails
+udpate cart +, -
+hid limited time offers for now
+footer
+understand mongodb operators
+understand updateCartItem logic in server
+- enhance categories section heavy loading
+- add loading when fetching data
+- add not found page
+- add 'LimitedTimeOffers.tsx' section
+- add 'CountdownTimer.tsx' in separate component
+- enhance colors
+- add tag in product card in backend
 
 # client
 

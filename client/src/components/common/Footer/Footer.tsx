@@ -19,7 +19,7 @@ const Footer = memo(() => {
           <div className="col-span-2 md:col-span-1">
             <Link
               to="/"
-              className="flex items-center font-bold text-2xl text-[#b35a00] hover:text-[#e68815] transition-colors duration-300"
+              className="flex items-center font-bold text-2xl text-[#b35a00] hover:text-sunstone transition-colors duration-300"
             >
               <ShoppingBasket className="h-6 w-6 mr-2" aria-hidden="true" />
               ECO
@@ -31,13 +31,15 @@ const Footer = memo(() => {
 
           {/* 2. Quick Links */}
           <div>
-            <h3 className="text-[#b35a00] font-bold mb-3 text-lg">Quick Links</h3>
+            <h3 className="text-[#b35a00] font-bold mb-3 text-lg">
+              Quick Links
+            </h3>
             <ul className="space-y-2 text-sm">
               {["About Us", "Shipping", "Returns", "FAQ"].map((link) => (
                 <li key={link}>
                   <Link
                     to="#"
-                    className="hover:text-[#e68815] transition-colors duration-300 font-medium"
+                    className="hover:text-sunstone transition-colors duration-300 font-medium"
                   >
                     {link}
                   </Link>
@@ -54,7 +56,7 @@ const Footer = memo(() => {
                 <li key={cat}>
                   <Link
                     to="#"
-                    className="hover:text-[#e68815] transition-colors duration-300 font-medium"
+                    className="hover:text-sunstone transition-colors duration-300 font-medium"
                   >
                     {cat}
                   </Link>
@@ -70,7 +72,7 @@ const Footer = memo(() => {
               Email:{" "}
               <a
                 href="mailto:info@eco.com"
-                className="hover:text-[#e68815] transition-colors duration-300 font-medium"
+                className="hover:text-sunstone transition-colors duration-300 font-medium"
               >
                 info@eco.com
               </a>
@@ -84,7 +86,7 @@ const Footer = memo(() => {
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center w-10 h-10 rounded-full border border-neutral/30 text-neutral-light hover:border-[#e68815] hover:text-[#e68815] transition-all duration-300"
+                  className="flex items-center justify-center w-10 h-10 rounded-full border border-neutral/30 text-neutral-light hover:border-[#e68815] hover:text-sunstone transition-all duration-300"
                   aria-label={`Follow us on ${label}`}
                 >
                   <Icon className="w-5 h-5" aria-hidden="true" />
@@ -102,7 +104,7 @@ const Footer = memo(() => {
               <Link
                 key={policy}
                 to={`/${policy.toLowerCase().replace(/ /g, "-")}`}
-                className="hover:text-[#e68815] transition-colors duration-300 font-medium"
+                className="hover:text-sunstone transition-colors duration-300 font-medium"
               >
                 {policy}
               </Link>

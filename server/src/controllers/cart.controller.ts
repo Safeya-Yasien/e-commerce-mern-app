@@ -62,40 +62,26 @@ const updateCartItem = async (req: any, res: any) => {
   try {
     const userId = req.user.id;
     const { productId, quantity } = req.body;
-
-    if (!productId) {
-      return res.status(400).json({ message: "productId required" });
-    }
-
     const productObjectId = new mongoose.Types.ObjectId(productId);
 
-    const cart = await Cart.findOne({
-      userId,
-      "products.productId": productObjectId,
-    });
-
-    if (!cart) {
-      res
-        .status(404)
-        .json({ msg: "Cart not found", data: null, success: false });
-      return;
+    if (!productId || typeof quantity !== "number") {
+      return res
+        .status(400)
+        .json({ message: "productId and quantity required" });
     }
 
-    const product = cart.products.find((p) =>
-      p.productId.equals(productObjectId)
+    const result = await Cart.updateOne(
+      {
+        userId,
+        "products.productId": new mongoose.Types.ObjectId(productId),
+        ...(quantity < 0 && { "products.quantity": { $gt: 1 } }),
+      },
+      {
+        $inc: { "products.$.quantity": quantity },
+      }
     );
 
-    if (!product) {
-      res
-        .status(404)
-        .json({ msg: "Product not found", data: null, success: false });
-      return;
-    }
-
-    product.quantity = quantity;
-    await cart.save();
-
-    res.status(200).json({ msg: "success", data: cart, success: true });
+    res.status(200).json({ msg: "success", data: result, success: true });
   } catch (err) {
     res.status(500).json({ msg: "error", data: err, success: false });
   }

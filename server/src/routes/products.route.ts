@@ -31,7 +31,7 @@ router.put(
   multerMiddleware,
   updateProduct
 );
-router.get("/:id", authMiddleware, getProductById);
+router.get("/:id", getProductById);
 router.delete(
   "/delete/:id",
   authMiddleware,

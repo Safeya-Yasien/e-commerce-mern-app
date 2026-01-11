@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router";
 
 const ProductDetailsPage = () => {
-  const { id } = useParams();
+  const { id } = useParams<{ id: string }>();
 
   const { data, isLoading: isLoadingProduct } = useQuery({
     queryKey: ["product", id],
@@ -13,6 +13,9 @@ const ProductDetailsPage = () => {
     },
   });
 
+  if (!id) {
+    return <p>Invalid product</p>;
+  }
   if (isLoadingProduct) return <p>Loading...</p>;
 
   const product = data.data;
@@ -48,6 +51,7 @@ const ProductDetailsPage = () => {
               <input
                 type="number"
                 placeholder="1"
+                value={1}
                 className="w-16 text-center text-lg font-medium outline-none border-none bg-transparent focus:ring-2 focus:ring-primary-dark rounded transition-all"
               />
 

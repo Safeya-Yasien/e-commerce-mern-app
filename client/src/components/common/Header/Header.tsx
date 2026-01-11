@@ -105,7 +105,7 @@ const Header = () => {
             ) : (
               <Link
                 to="auth/login"
-                className="transition bg-primary px-3 py-1 rounded  text-base-100 hover:bg-secondary"
+                className="transition bg-primary-light text-base-light px-3 py-1 rounded  hover:bg-primary-dark"
               >
                 Login
               </Link>

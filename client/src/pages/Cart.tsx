@@ -56,6 +56,23 @@ const Cart = () => {
     },
   });
 
+  const mutationUpdateCart = useMutation({
+    mutationKey: ["updateCartItem"],
+    mutationFn: async (data: { productId: string; quantity: number }) => {
+      const res = await axiosInstance.put(`/cart/update`, data);
+      return res.data;
+    },
+
+    onSuccess: () => {
+      toast.success("Item updated in cart");
+      queryClient.invalidateQueries({ queryKey: ["cart"] });
+      queryClient.invalidateQueries({ queryKey: ["cartCount"] });
+    },
+    onError: () => {
+      toast.error("Error updating item in cart");
+    },
+  });
+
   if (isLoading) return <p>Loading cart...</p>;
   if (error) return <p>Error fetching cart</p>;
 
@@ -65,6 +82,10 @@ const Cart = () => {
     if (!item.productId) return total;
     return total + item.productId.price * item.quantity;
   }, 0);
+
+  const updateCartItem = (productId: string, newQuantity: number) => {
+    mutationUpdateCart.mutate({ productId, quantity: newQuantity });
+  };
 
   return (
     <div className="bg-gray-50 text-neutral-light p-6 py-20">
@@ -94,11 +115,17 @@ const Cart = () => {
                   </p>
 
                   <div className="flex items-center gap-2 mt-2">
-                    <button className="cursor-pointer px-3 py-1 rounded-md bg-gray-100 hover:bg-gray-200">
+                    <button
+                      onClick={() => updateCartItem(product.id, -1)}
+                      className="cursor-pointer px-3 py-1 rounded-md bg-gray-100 hover:bg-gray-200"
+                    >
                       -
                     </button>
                     <span className="min-w-6 text-center">{item.quantity}</span>
-                    <button className="cursor-pointer px-3 py-1 rounded-md bg-gray-100 hover:bg-gray-200">
+                    <button
+                      onClick={() => updateCartItem(product.id, 1)}
+                      className="cursor-pointer px-3 py-1 rounded-md bg-gray-100 hover:bg-gray-200"
+                    >
                       +
                     </button>
                   </div>

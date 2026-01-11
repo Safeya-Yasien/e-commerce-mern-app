@@ -1,24 +1,27 @@
-import {
-  ContactUs,
-  Features,
-  Hero,
-  Categories,
-  LimitedTimeOffers,
-} from "@/components";
+  import {
+    ContactUs,
+    Features,
+    Hero,
+    Categories,
+    LimitedTimeOffers,
+  } from "@/components";
+  import { Suspense } from "react";
 
-const Home = () => {
-  return (
-    <div className="px-4 md:px-4 lg:px-4">
-      <Hero />
+  const Home = () => {
+    return (
+      <div className="">
+        <Hero />
 
-      <Features />
+        <Features />
 
-      <Categories />
+        <Suspense fallback={<div>Loading Categories...</div>}>
+          <Categories />
+        </Suspense>
 
-      <LimitedTimeOffers />
+        <LimitedTimeOffers />
 
-      <ContactUs />
-    </div>
-  );
-};
-export default Home;
+        <ContactUs />
+      </div>
+    );
+  };
+  export default Home;

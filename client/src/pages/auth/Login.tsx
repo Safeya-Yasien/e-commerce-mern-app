@@ -40,7 +40,7 @@ const Login = () => {
   });
 
   return (
-    <div className="w-full bg-base-light dark:bg-base-dark px-4 py-8 rounded-lg shadow-md">
+    <div className="w-full bg-base-light px-4 py-8 rounded-lg shadow-md">
       {/* Header */}
       <div className="mb-6">
         <h2 className="text-2xl font-semibold text-neutral-light">
