@@ -1,25 +1,40 @@
-🚀 DashCRM: Admin Dashboard
+# DashCRM: Admin Dashboard
 
-✨ Key Features
+![Project Banner](https://via.placeholder.com/1200x300?text=DashCRM+E-Commerce)
 
-🛠️ Technology Stack
+## Key Features
 
-⚙️ Installation & Setup
+- Admin dashboard for managing users, products
+- Cloudinary image uploads for products
+- JWT authentication and role-based access
+-
+
+## Technology Stack
+
+- Frontend: React, Vite, Tailwind CSS, DaisyUI
+- Backend: Node.js, Express, MongoDB
+- Deployment: Vercel (client & admin & server)
+- Other: Cloudinary for image hosting
+
+## Installation & Setup
 
 ▶️ Running the Application
 
-🔑 Testing & Demo Credentials<br>
+## 🔑 Testing & Demo Credentials
 
-Admin:<br>
-nawapykeha@mailinator.com <br>
-Pa$$w0rd!<br>
+### Admin Dashboard
 
-## viewer
+- **Email:** nawapykeha@mailinator.com
+- **Password:** Pa$$w0rd!
+- **Live demo link:** [Admin Dashboard](https://e-commerce-mern-app-admin-vert.vercel.app/)
 
-test@gmail.com <br>
-123456
+### Client
 
-## client
+- **Email:** client5@gmail.com
+- **Password:** 123456
+- **Live demo link:** [Client App](https://e-commerce-mern-app-phi.vercel.app/)
 
-client5@gmail.com <br>
-123456
+### Viewer / Test Account
+
+- **Email:** test@gmail.com
+- **Password:** 123456
