@@ -30,7 +30,9 @@ const ProductCard = ({ product }: { product: IProduct }) => {
     <div className="rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl dark:bg-mist-aqua-dark/5 dark:shadow-primary-dark dark:hover:shadow-lg">
       <Link to={"/products/" + product.id} className="relative">
         <img
-          src={product.image}
+          src={
+            product.image || "https://via.placeholder.com/300x300?text=No+Image"
+          }
           alt={product.name}
           className="w-full h-60 object-cover"
           loading="lazy"
