@@ -3,7 +3,7 @@ import Product from "../models/product.model";
 
 const getProducts = async (req: any, res: any) => {
   try {
-    const limit = req.query.limit || 4;
+    const limit = req.query.limit || 8;
     const category = req.query.category;
 
     let filter: any = {};

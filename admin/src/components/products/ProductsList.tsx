@@ -19,7 +19,7 @@ const ProductsList = () => {
   } = useQuery<IProductsResponse>({
     queryKey: ["product"],
     queryFn: async () => {
-      const response = await fetch(`${BASE_URL}`, {
+      const response = await fetch(`${BASE_URL}?limit=8`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
