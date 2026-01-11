@@ -9,7 +9,11 @@ import authRouter from "./src/routes/auth.route";
 import cartRouter from "./src/routes/cart.route";
 
 const corsOptions = {
-  origin: "http://localhost:5173",
+  origin: [
+    "http://localhost:5173",
+    "https://e-commerce-mern-app-phi.vercel.app",
+    "https://e-commerce-mern-app-admin-vert.vercel.app",
+  ],
   optionSuccessStatus: 200,
 };
 
