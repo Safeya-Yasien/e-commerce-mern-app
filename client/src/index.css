@@ -2,19 +2,11 @@
 @custom-variant dark (&:where(.dark, .dark *));
 @plugin "daisyui" {
   themes: false;
+  exclude: properties;
 }
 
 /* Your color tokens */
 @theme {
-  /* --color-crimson-tide: #d31638;
-  --color-royal-plum: #a71666;
-  --color-sunstone: #e68815;
-  --color-mist-aqua: #c5dfdf;
-  --color-dark-aqua: #2d6b6b;
-  --color-desert-taupe: #bd9e84;
-  --color-charcoal: #1a1a1a;
-  --color-deep-slate: #2d2d2d; */
-
   /* both */
   --color-sunstone: #e68815;
 
@@ -30,36 +22,6 @@
   --color-base-dark: #1a1a1a;
   --color-mist-aqua-dark: #c5dfdf;
 }
-
-/* 
-
-@plugin "daisyui/theme" {
-  name: "light";
-  default: true;
-
-  --color-base-100: white;
-  --color-neutral: var(--color-charcoal);
-
-  --color-primary: var(--color  -crimson-tide);
-  --color-secondary: var(--color-royal-plum);
-  --color-accent: var(--color-sunstone);
- --color-mist-aqua: var(--color-mist-aqua);
-  --color-desert-taupe: var(--color-desert-taupe);
-}
-
- @plugin "daisyui/theme" {
-  name: "dark";
-
-  --color-base-100: var(--color-charcoal);
-  --color-neutral: var(--color-deep-slate);
-
-  --color-primary: var(--color-royal-plum);
-  --color-secondary: var(--color-crimson-tide);
-  --color-accent: var(--color-sunstone);
- --color-mist-aqua: var(--color-mist-aqua);
-
-  --color-desert-taupe: var(--color-desert-taupe);
-} */
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {

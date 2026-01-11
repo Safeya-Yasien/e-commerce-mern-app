@@ -51,7 +51,6 @@ const ProductDetailsPage = () => {
               <input
                 type="number"
                 placeholder="1"
-                value={1}
                 className="w-16 text-center text-lg font-medium outline-none border-none bg-transparent focus:ring-2 focus:ring-primary-dark rounded transition-all"
               />
 
