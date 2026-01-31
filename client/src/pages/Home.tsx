@@ -1,27 +1,36 @@
-  import {
-    ContactUs,
-    Features,
-    Hero,
-    Categories,
-    LimitedTimeOffers,
-  } from "@/components";
-  import { Suspense } from "react";
+import { lazy, Suspense } from "react";
+import {
+  ContactUs,
+  Features,
+  Hero,
+  LimitedTimeOffers,
+  ProductCardSkeleton,
+} from "@/components";
+const Categories = lazy(() => import("@/components/Categories/Categories"));
 
-  const Home = () => {
-    return (
-      <div className="">
-        <Hero />
+const CategoriesSkeleton = () => (
+  <div className="max-w-7xl mx-auto grid gap-10 sm:grid-cols-2 lg:grid-cols-4 px-4 py-20">
+    {Array.from({ length: 8 }).map((_, idx) => (
+      <ProductCardSkeleton key={idx} />
+    ))}
+  </div>
+);
 
-        <Features />
+const Home = () => {
+  return (
+    <div className="">
+      <Hero />
 
-        <Suspense fallback={<div>Loading Categories...</div>}>
-          <Categories />
-        </Suspense>
+      <Features />
 
-        <LimitedTimeOffers />
+      <Suspense fallback={<CategoriesSkeleton />}>
+        <Categories />
+      </Suspense>
 
-        <ContactUs />
-      </div>
-    );
-  };
-  export default Home;
+      <LimitedTimeOffers />
+
+      <ContactUs />
+    </div>
+  );
+};
+export default Home;

@@ -779,7 +779,7 @@ Objects are not valid as a React child (found: object with keys {msg, data, succ
     - get id from url using "useParams" hook and this is the first time i realize that we can't use hook with async function
     - i use "useQuery" to fetch product data from the server
     - how to hidden arrows in number button for 'input type number' add "input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {-webkit-appearance: none; margin: 0;}" in "index.css" file
-    - dispaly items count and add +, - logic 
+    - dispaly items count and add +, - logic
     - active add to cart button
 
 ##### 1535. stop daisy ui for theme switch
@@ -914,7 +914,24 @@ Objects are not valid as a React child (found: object with keys {msg, data, succ
     - i back again to 'Profile' page in 'handleLogout' function and use 'queryClient.removeQueries' to remove the queries with 'client' key
     - also use 'queryClient.removeQueries' to remove the queries with 'cartCount' key to make only number of products in cart appears only when the user logged in
 
-##### 1537.
+##### 1537. Enahance 'Categories' section
+
+    - add 'productCardSkeleton' instead of 'loading' when fetching data
+    - we were use parallel fetching for the products and categories so loading is so heavy
+    how to make it better?
+        - first i use 'isLoadingProducts' and display array of 'ProductCardSkeleton' when it's true
+        - then i use 'staleTime' in 'useQuery' in 'categories' to make it refresh every 10 minutes means will get the data from the cache until the 10 minutes passed
+        - in 'home' page i use 'lazy' to load 'Categories' component
+        - use 'useSuspenseQuery' instead of 'useQuery' in 'Categories' and 'Products' 
+        - 
+
+
+
+    sources:
+        - https://www.developerway.com/posts/how-to-fetch-data-in-react
+        - https://freedium-mirror.cfd/https://medium.com/@ThinkingLoop/12-react-19-data-fetching-patterns-that-kill-waterfalls-6782ef923fc0
+        - https://tanstack.com/query/v5/docs/framework/react/guides/request-waterfalls
+        -
 
 ---
 
@@ -924,6 +941,7 @@ hid limited time offers for now
 footer
 understand mongodb operators
 understand updateCartItem logic in server
+
 - enhance categories section heavy loading
 - add loading when fetching data
 - add not found page

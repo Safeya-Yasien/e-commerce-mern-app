@@ -1,10 +1,11 @@
-import { keepPreviousData, useQuery } from "@tanstack/react-query";
+import { useSuspenseQuery } from "@tanstack/react-query";
 import ProductCard from "../ProductCard";
 import type { IProduct } from "@/types/product.types";
 import { useState } from "react";
 import { fetchProducts } from "@/api/products";
 import { fetchCategories } from "@/api/categories";
 import CategoriesFilter from "./CategoriesFilter";
+import ProductCardSkeleton from "../skeletons/ProductCardSkeleton";
 
 const Categories = () => {
   const [category, setCategory] = useState<string | null>(null);
@@ -13,27 +14,21 @@ const Categories = () => {
     data: products,
     isLoading: isLoadingProducts,
     error: errorProducts,
-  } = useQuery({
+  } = useSuspenseQuery({
     queryKey: ["products", category],
     queryFn: () => fetchProducts(category),
-    placeholderData: keepPreviousData,
+    // placeholderData: keepPreviousData
   });
 
   const {
     data: categories,
     isLoading: isLoadingCategories,
     error: errorCategories,
-  } = useQuery({
+  } = useSuspenseQuery({
     queryKey: ["categories"],
     queryFn: () => fetchCategories(),
+    staleTime: 1000 * 60 * 10,
   });
-
-  if (isLoadingProducts || isLoadingCategories)
-    return (
-      <p className="text-center py-20 text-neutral-light dark:text-mist-aqua-dark/70">
-        Loading...
-      </p>
-    );
 
   if (errorProducts || errorCategories)
     return (
@@ -52,17 +47,24 @@ const Categories = () => {
           Categories
         </h2>
       </div>
-
-      <CategoriesFilter
-        categories={categories.data}
-        active={category}
-        onChange={setCategory}
-      />
+      {isLoadingCategories ? (
+        <p>Loading Categories...</p>
+      ) : (
+        <CategoriesFilter
+          categories={categories.data}
+          active={category}
+          onChange={setCategory}
+        />
+      )}
 
       <div className="max-w-7xl mx-auto grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
-        {products.data?.map((product: IProduct) => (
-          <ProductCard product={product} key={product.id} />
-        ))}
+        {isLoadingProducts
+          ? Array.from({ length: 8 }).map((_, idx) => (
+              <ProductCardSkeleton key={idx} />
+            ))
+          : products.data?.map((product: IProduct) => (
+              <ProductCard product={product} key={product.id} />
+            ))}
       </div>
     </section>
   );
