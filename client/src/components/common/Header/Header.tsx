@@ -53,12 +53,12 @@ const Header = () => {
   });
 
   return (
-    <header className="bg-base-light dark:bg-base-dark text-base-content fixed top-0 left-0 w-full z-50 h-14 border-b border-base-light dark:border-0 shadow-sm ">
+    <header className="bg-base-100 text-base-content fixed top-0 left-0 w-full z-50 h-14 border-b border-base-200 shadow-md">
       <div className="flex items-center justify-between px-4 h-full">
         {/* Logo */}
         <Link
           to="/"
-          className="flex items-center font-bold text-xl text-primary-light "
+          className="flex items-center font-bold text-xl text-primary"
         >
           <ShoppingBasket className="h-8 w-8 mr-2 " />
           ECO
@@ -73,7 +73,7 @@ const Header = () => {
                 <li key={name}>
                   <Link
                     to={path}
-                    className="cursor-pointer flex items-center gap-1 dark:text-base-light hover:text-sunstone transition"
+                    className="cursor-pointer flex items-center gap-1 text-base-content hover:text-primary-content transition"
                   >
                     <Icon className="h-4 w-4" />
                     {name}
@@ -86,9 +86,9 @@ const Header = () => {
           {/* mobile menu button */}
           <label
             htmlFor="my-drawer-5"
-            className="drawer-button cursor-pointer md:hidden bg-neutral text-base-100 px-2 py-1 rounded-md border border-neutral group transition"
+            className="drawer-button cursor-pointer md:hidden bg-base-200 text-base-content px-2 py-1 rounded-md border border-base-300 group transition"
           >
-            <Menu className="w-6 h-6 text-primary group-hover:text-accent transition" />
+            <Menu className="w-6 h-6 text-primary group-hover:text-secondary transition" />
           </label>
 
           {/* Cart + Login */}
@@ -96,16 +96,13 @@ const Header = () => {
             <CartIcon />
 
             {client ? (
-              <Link
-                to="/profile"
-                className="transition text-primary-light dark:text-base-light hover:text-sunstone"
-              >
+              <Link to="/profile" className="transition hover:text-secondary">
                 <User className="w-6 h-6 " />
               </Link>
             ) : (
               <Link
                 to="auth/login"
-                className="transition bg-primary-light text-base-light px-3 py-1 rounded  hover:bg-primary-dark"
+                className="transition bg-primary text-primary-content px-3 py-1 rounded hover:bg-secondary"
               >
                 Login
               </Link>
@@ -131,7 +128,7 @@ const Header = () => {
               htmlFor="my-drawer-5"
               className="cursor-pointer hover:text-primary transition"
             >
-              <X className="w-6 h-6 text-mist-aqua" />
+              <X className="w-6 h-6 text-primary" />
             </label>
           </div>
 

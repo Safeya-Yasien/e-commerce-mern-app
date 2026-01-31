@@ -25,6 +25,7 @@
     "react-router": "^7.9.6",
     "react-toastify": "^11.0.5",
     "tailwindcss": "^4.1.17",
+    "theme-change": "^2.5.0",
     "zod": "^4.2.1"
   },
   "devDependencies": {

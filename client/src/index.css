@@ -1,25 +1,8 @@
 @import "tailwindcss";
-@custom-variant dark (&:where(.dark, .dark *));
 @plugin "daisyui" {
-  themes: false;
-  exclude: properties;
-}
-
-@theme {
-  /* both */
-  --color-sunstone: #e68815;
-
-  /* light theme */
-  --color-primary-light: #d31638; /* crimson-tide primary*/
-  --color-neutral-light: #1a1a1a;
-  --color-base-light: #ffffff;
-  --color-mist-aqua-light: #2d6b6b;
-
-  /* dark theme */
-  --color-primary-dark: #a71666; /* secondary*/
-  --color-neutral-dark: #2d2d2d;
-  --color-base-dark: #1a1a1a;
-  --color-mist-aqua-dark: #c5dfdf;
+  themes:
+    light --default,
+    black --prefersdark;
 }
 
 input::-webkit-outer-spin-button,
