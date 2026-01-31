@@ -1,4 +1,4 @@
-import { lazy, Suspense } from "react";
+import { lazy } from "react";
 import { ContactUs, Features, Hero, LimitedTimeOffers } from "@/components";
 const Categories = lazy(() => import("@/components/Categories/Categories"));
 
@@ -9,9 +9,7 @@ const Home = () => {
 
       <Features />
 
-      <Suspense fallback={<div>Loading...</div>}>
-        <Categories />
-      </Suspense>
+      <Categories />
 
       <LimitedTimeOffers />
 
