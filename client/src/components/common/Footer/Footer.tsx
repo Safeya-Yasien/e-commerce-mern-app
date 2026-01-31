@@ -12,7 +12,7 @@ const Footer = memo(() => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="mt-auto border-t border-neutral/20 text-neutral-light">
+    <footer className="mt-auto border-t border-neutral/20 text-neutral-light dark:text-base-light dark:bg-linear-to-r dark:from-[#0f1112] dark:to-[#1a1a1a]">
       <div className="max-w-7xl mx-auto px-4 py-12">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-10 pb-8 border-b border-neutral/20">
           {/* 1. Brand/Logo */}
@@ -24,7 +24,7 @@ const Footer = memo(() => {
               <ShoppingBasket className="h-6 w-6 mr-2" aria-hidden="true" />
               ECO
             </Link>
-            <p className="mt-3 text-sm max-w-xs text-neutral-light/70">
+            <p className="mt-3 text-sm max-w-xs ">
               Sustainable products for a healthier planet.
             </p>
           </div>
@@ -86,7 +86,7 @@ const Footer = memo(() => {
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center w-10 h-10 rounded-full border border-neutral/30 text-neutral-light hover:border-[#e68815] hover:text-sunstone transition-all duration-300"
+                  className="flex items-center justify-center w-10 h-10 rounded-full border border-neutral/30 text-neutral-light  hover:text-sunstone transition-all duration-300"
                   aria-label={`Follow us on ${label}`}
                 >
                   <Icon className="w-5 h-5" aria-hidden="true" />
@@ -97,7 +97,7 @@ const Footer = memo(() => {
         </div>
 
         {/* --- Copyright Section --- */}
-        <div className="pt-6 flex flex-col md:flex-row justify-between items-center text-sm text-neutral-light/50">
+        <div className="pt-6 flex flex-col md:flex-row justify-between items-center text-sm ">
           <p>&copy; {currentYear} ECO. All rights reserved.</p>
           <div className="mt-3 md:mt-0 flex gap-4">
             {["Privacy Policy", "Terms of Service"].map((policy) => (

@@ -4,7 +4,8 @@ const ContactUs = () => {
   return (
     <section
       id="contact"
-      className="px-4 py-16 bg-linear-to-b from-base-light to-mist-aqua-light dark:from-neutral-dark dark:to-mist-aqua-dark text-neutral-dark dark:text-base-light"
+      // className="px-4 py-16 bg-linear-to-b from-base-light to-mist-aqua-light dark:from-neutral-dark dark:to-mist-aqua-dark text-neutral-dark dark:text-base-light"
+      className="px-4 py-16   text-neutral-dark dark:text-base-light dark:bg-neutral-light"
     >
       {/* Header */}
       <div className="text-center mx-auto mb-12 max-w-7xl">
