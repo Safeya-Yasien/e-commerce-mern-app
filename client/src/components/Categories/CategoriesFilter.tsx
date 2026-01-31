@@ -11,15 +11,18 @@ const CategoriesFilter = ({
   active,
   onChange,
 }: CategoriesFilterProps) => {
+  const getButtonClasses = (isActive: boolean) =>
+    `btn rounded-lg transition-colors ${
+      isActive
+        ? "bg-primary text-primary-content border-none"
+        : "bg-base-200 dark:bg-base-300 text-base-content hover:bg-primary hover:text-primary-content border-none"
+    }`;
+
   return (
     <div className="mb-14 max-w-7xl mx-auto flex justify-center gap-6 flex-wrap">
       <button
         onClick={() => onChange(null)}
-        className={`btn rounded-lg ${
-          active === null
-            ? "bg-primary-light text-base-light border-none"
-            : "bg-primary-dark text-base-light"
-        }`}
+        className={getButtonClasses(active === null)}
       >
         All
       </button>
@@ -28,11 +31,7 @@ const CategoriesFilter = ({
         <button
           key={category}
           onClick={() => onChange(category)}
-          className={`btn rounded-lg ${
-            active === category
-              ? "bg-primary-light text-base-light border-none"
-              : "bg-primary-dark text-base-light hover:bg-primary-light  border-none"
-          }`}
+          className={getButtonClasses(active === category)}
         >
           {category}
         </button>
