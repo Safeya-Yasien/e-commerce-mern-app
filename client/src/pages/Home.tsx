@@ -1,20 +1,6 @@
 import { lazy, Suspense } from "react";
-import {
-  ContactUs,
-  Features,
-  Hero,
-  LimitedTimeOffers,
-  ProductCardSkeleton,
-} from "@/components";
+import { ContactUs, Features, Hero, LimitedTimeOffers } from "@/components";
 const Categories = lazy(() => import("@/components/Categories/Categories"));
-
-const CategoriesSkeleton = () => (
-  <div className="max-w-7xl mx-auto grid gap-10 sm:grid-cols-2 lg:grid-cols-4 px-4 py-20">
-    {Array.from({ length: 8 }).map((_, idx) => (
-      <ProductCardSkeleton key={idx} />
-    ))}
-  </div>
-);
 
 const Home = () => {
   return (
@@ -23,7 +9,7 @@ const Home = () => {
 
       <Features />
 
-      <Suspense fallback={<CategoriesSkeleton />}>
+      <Suspense fallback={<div>Loading...</div>}>
         <Categories />
       </Suspense>
 
