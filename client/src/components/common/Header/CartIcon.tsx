@@ -13,15 +13,28 @@ const CartIcon = () => {
     enabled: !!localStorage.getItem("token"),
   });
 
-  if (isLoading) return <p>Loading...</p>;
-  if (error) return <p>Error loading cart count</p>;
+  if (isLoading)
+    return (
+      <span className="loading loading-spinner loading-xs text-primary"></span>
+    );
+  if (error) return <ShoppingCart className="opacity-50" />;
+
+  const count = data?.data.count || 0;
 
   return (
-    <Link to="/cart" className="flex items-center gap-1 transition relative ">
-      <ShoppingCart />
-      <span className="absolute -top-3 -right-2 w-4 h-4 rounded-full bg-primary text-base-100 flex items-center justify-center text-xs">
-        {data?.data.count || 0}
-      </span>
+    <Link to="/cart">
+      <div className="indicator">
+        {/* The Indicator Badge */}
+        {count > 0 && (
+          <span className="indicator-item badge badge-primary font-bold w-5 h-5 aspect-square p-0 flex items-center justify-center text-[10px]">
+            {" "}
+            {count}
+          </span>
+        )}
+
+        {/* The Icon */}
+        <ShoppingCart className="h-5 w-5 md:h-6 md:w-6" />
+      </div>
     </Link>
   );
 };

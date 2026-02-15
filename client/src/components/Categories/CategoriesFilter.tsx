@@ -12,19 +12,19 @@ const CategoriesFilter = ({
   onChange,
 }: CategoriesFilterProps) => {
   const getButtonClasses = (isActive: boolean) =>
-    `btn rounded-lg transition-colors ${
+    `btn btn-sm md:btn-md rounded-full px-6 transition-all ${
       isActive
-        ? "bg-primary text-primary-content border-none"
-        : "bg-base-200 dark:bg-base-300 text-base-content hover:bg-primary hover:text-primary-content border-none"
+        ? "btn-primary shadow-lg scale-105"
+        : "btn-ghost bg-base-200 hover:bg-base-300 border-none"
     }`;
 
   return (
-    <div className="mb-14 max-w-7xl mx-auto flex justify-center gap-6 flex-wrap">
+    <div className="mb-14 max-w-7xl mx-auto flex justify-center gap-3 md:gap-4 flex-wrap">
       <button
         onClick={() => onChange(null)}
         className={getButtonClasses(active === null)}
       >
-        All
+        All Products
       </button>
 
       {categories.map((category) => (
@@ -39,5 +39,4 @@ const CategoriesFilter = ({
     </div>
   );
 };
-
 export default React.memo(CategoriesFilter);

@@ -1,6 +1,15 @@
 import { axiosInstance } from "@/api/axios";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import {
+  Calendar,
+  Edit3,
+  Key,
+  LogOut,
+  Mail,
+  ShieldCheck,
+  User,
+} from "lucide-react";
 import { useEffect, useState } from "react";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router";
@@ -66,145 +75,208 @@ const Profile = () => {
     }
   }, [user, reset]);
 
-  if (isLoading) return <p className="text-center">Loading profile...</p>;
-  if (error) return <p className="text-center">Failed to load profile</p>;
+  if (isLoading)
+    return (
+      <div className="min-h-[60vh] flex items-center justify-center">
+        <span className="loading loading-dots loading-lg text-primary"></span>
+      </div>
+    );
+
+  if (error)
+    return (
+      <div className="text-center py-20 text-error font-bold">
+        Failed to load profile
+      </div>
+    );
 
   const handleLogout = () => {
     localStorage.removeItem("token");
-    queryClient.removeQueries({ queryKey: ["profile"] });
-    queryClient.removeQueries({ queryKey: ["client"] });
-    queryClient.removeQueries({ queryKey: ["cartCount"] });
+    // this is the true but i comment it only for now
+    // queryClient.clear();
+
+    // this is i need to remove it because clear is enough
+    // queryClient.removeQueries({ queryKey: ["profile"] });
+    // queryClient.removeQueries({ queryKey: ["client"] });
+    // queryClient.removeQueries({ queryKey: ["cartCount"] });
     navigate("/");
+    // toast.info("Logged out successfully");
   };
 
   return (
-    <section className="max-w-4xl mx-auto py-16 px-4">
-      <div className="bg-base-light border border-gray-200 rounded-xl p-8 shadow-md">
-        {/* Header */}
-        <div className="flex items-center gap-6 mb-8">
-          <img
-            src={user.avatar || "https://i.pravatar.cc/150"}
-            alt="avatar"
-            className="w-24 h-24 rounded-full object-cover border border-gray-300"
-          />
+    <section className="max-w-4xl mx-auto py-16 px-4 min-h-screen">
+      <div className="card bg-base-100 shadow-xl border border-base-300 overflow-hidden">
+        {/* Profile Header Banner */}
+        <div className="h-32 bg-linear-to-r from-primary to-secondary opacity-80" />
 
-          <div>
-            <h1 className="text-2xl font-bold text-neutral-light capitalize">
-              {user.firstName} {user.lastName}
-            </h1>
-            <p className="text-gray-600">{user.email}</p>
-
-            <span className="inline-block mt-2 px-3 py-1 text-sm rounded-md bg-primary-light/10 text-primary-light">
-              {user.role}
-            </span>
+        <div className="px-8 pb-8">
+          {/* Avatar and Main Info */}
+          <div className="relative -mt-12 flex flex-col md:flex-row items-end gap-6 mb-10">
+            <div className="avatar">
+              <div className="w-32 h-32 rounded-2xl ring ring-base-100 ring-offset-base-100 shadow-2xl">
+                <img
+                  src={
+                    user.avatar ||
+                    `https://ui-avatars.com/api/?name=${user.firstName}+${user.lastName}&background=random`
+                  }
+                  alt="avatar"
+                />
+              </div>
+            </div>
+            <div className="pb-2 flex-1">
+              <h1 className="text-3xl font-black text-base-content capitalize">
+                {user.firstName} {user.lastName}
+              </h1>
+              <div className="flex items-center gap-2 text-base-content/60 mt-1">
+                <Mail className="w-4 h-4" />
+                <span>{user.email}</span>
+              </div>
+            </div>
+            <div className="pb-2">
+              <div className="badge badge-primary badge-lg font-bold gap-2 py-4 uppercase tracking-widest text-xs">
+                <ShieldCheck className="w-4 h-4" />
+                {user.role}
+              </div>
+            </div>
           </div>
-        </div>
 
-        {/* Info */}
-        <div className="space-y-4">
-          <div className="flex justify-between border-b border-gray-200 pb-2">
-            <span className="text-gray-500">Account type</span>
-            <span className="font-medium text-neutral-light">{user.role}</span>
-          </div>
+          <div className="divider">Account Details</div>
 
-          <div className="flex justify-between border-b border-gray-200 pb-2">
-            <span className="text-gray-500">Joined</span>
-            <span className="font-medium text-neutral-light">
-              {new Date(user.created_at).toLocaleDateString()}
-            </span>
-          </div>
-        </div>
-
-        {/* Modal */}
-        {open && (
-          <dialog className="modal modal-open">
-            <div className="modal-box bg-base-light text-neutral-light">
-              <button
-                className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
-                onClick={() => setOpen(false)}
-              >
-                ✕
-              </button>
-
-              <h3 className="font-bold text-lg mb-4">Edit Profile</h3>
-
-              <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-                <div>
-                  <label className="block text-sm text-gray-600 mb-1">
-                    First Name
-                  </label>
-                  <input
-                    className="w-full bg-base-light border border-gray-300 focus:border-primary-light focus:ring-primary-light rounded-md outline-0 p-2"
-                    {...register("firstName")}
-                  />
-                  {errors.firstName && (
-                    <p className="text-red-500 text-sm">
-                      {errors.firstName.message}
-                    </p>
-                  )}
-                </div>
-
-                <div>
-                  <label className="block text-sm text-gray-600 mb-1">
-                    Last Name
-                  </label>
-                  <input
-                    className="w-full bg-base-light border border-gray-300 focus:border-primary-light focus:ring-primary-light rounded-md outline-0 p-2"
-                    {...register("lastName")}
-                  />
-                  {errors.lastName && (
-                    <p className="text-red-500 text-sm">
-                      {errors.lastName.message}
-                    </p>
-                  )}
-                </div>
-
-                <div className="modal-action">
-                  <button
-                    type="button"
-                    className="btn border-gray-300 hover:bg-gray-100 text-gray-600"
-                    onClick={() => setOpen(false)}
-                  >
-                    Cancel
-                  </button>
-
-                  <button
-                    type="submit"
-                    className="btn bg-primary-light border-none text-base-light"
-                  >
-                    Save
-                  </button>
-                </div>
-              </form>
+          {/* Details Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+            <div className="flex items-center p-4 bg-base-200 rounded-xl gap-4">
+              <div className="bg-primary/10 p-3 rounded-lg text-primary">
+                <User className="w-5 h-5" />
+              </div>
+              <div>
+                <p className="text-xs uppercase font-bold opacity-50">
+                  Full Name
+                </p>
+                <p className="font-semibold">
+                  {user.firstName} {user.lastName}
+                </p>
+              </div>
             </div>
 
-            <form method="dialog" className="modal-backdrop">
-              <button onClick={() => setOpen(false)} />
-            </form>
-          </dialog>
-        )}
+            <div className="flex items-center p-4 bg-base-200 rounded-xl gap-4">
+              <div className="bg-secondary/10 p-3 rounded-lg text-secondary">
+                <Calendar className="w-5 h-5" />
+              </div>
+              <div>
+                <p className="text-xs uppercase font-bold opacity-50">
+                  Joined On
+                </p>
+                <p className="font-semibold">
+                  {new Date(user.created_at).toLocaleDateString()}
+                </p>
+              </div>
+            </div>
+          </div>
 
-        {/* Actions */}
-        <div className="mt-8 flex flex-wrap gap-4">
-          <button
-            className="btn border-primary-light text-primary-light bg-transparent hover:bg-primary-light hover:text-base-light rounded-md"
-            onClick={() => setOpen(true)}
-          >
-            Edit Profile
-          </button>
+          {/* Action Buttons */}
+          <div className="flex flex-wrap gap-4 pt-4">
+            <button
+              className="btn btn-outline btn-primary gap-2"
+              onClick={() => setOpen(true)}
+            >
+              <Edit3 className="w-4 h-4" />
+              Edit Profile
+            </button>
 
-          <button className="btn border-primary-light text-primary-light bg-transparent rounded-md">
-            Change Password
-          </button>
+            <button className="btn btn-ghost hover:bg-base-300 gap-2">
+              <Key className="w-4 h-4" />
+              Change Password
+            </button>
 
-          <button
-            className="btn bg-primary-light border-none text-base-light rounded-md"
-            onClick={handleLogout}
-          >
-            Logout
-          </button>
+            <div className="flex-1 md:text-right">
+              <button
+                className="btn btn-error btn-outline gap-2"
+                onClick={handleLogout}
+              >
+                <LogOut className="w-4 h-4" />
+                Logout
+              </button>
+            </div>
+          </div>
         </div>
       </div>
+
+      {/* Edit Modal */}
+      {open && (
+        <div className="modal modal-open">
+          <div className="modal-box bg-base-100 border border-base-300 shadow-2xl">
+            <h3 className="font-black text-xl mb-6">Update Your Info</h3>
+
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+              <div className="flex flex-col gap-2 mb-4">
+                <label className="label font-bold text-xs uppercase opacity-60 ml-1">
+                  First Name
+                </label>
+                <input
+                  className={`
+                            input input-bordered bg-base-200 
+                            transition-all duration-200
+                            focus:outline-none focus:border-primary focus:ring-0
+                            ${errors.firstName ? "border-error text-error" : "border-base-300"}
+                          `}
+                  placeholder="Enter your first name"
+                  {...register("firstName")}
+                />
+                {errors.firstName && (
+                  <span className="text-error text-[10px] font-bold uppercase mt-1 ml-1">
+                    {errors.firstName.message}
+                  </span>
+                )}
+              </div>
+
+              <div className="flex flex-col gap-2 mb-4">
+                <label className="label font-bold text-xs uppercase opacity-60 ml-1">
+                  Last Name
+                </label>
+                <input
+                  className={`
+                            input input-bordered focus:input-primary bg-base-200 
+                            transition-all duration-200
+                            focus:outline-none focus:border-primary focus:ring-0
+                            ${errors.lastName ? "border-error text-error" : "border-base-300"}
+                          `}
+                  placeholder="Enter your last name"
+                  {...register("lastName")}
+                />
+                {errors.lastName && (
+                  <span className="text-error text-[10px] font-bold uppercase mt-1 ml-1">
+                    {errors.lastName.message}
+                  </span>
+                )}
+              </div>
+
+              <div className="modal-action">
+                <button
+                  type="button"
+                  className="btn btn-ghost"
+                  onClick={() => setOpen(false)}
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  disabled={mutation.isPending}
+                  className="btn btn-primary px-8"
+                >
+                  {mutation.isPending ? (
+                    <span className="loading loading-spinner"></span>
+                  ) : (
+                    "Save Changes"
+                  )}
+                </button>
+              </div>
+            </form>
+          </div>
+          <div
+            className="modal-backdrop bg-black/40"
+            onClick={() => setOpen(false)}
+          ></div>
+        </div>
+      )}
     </section>
   );
 };

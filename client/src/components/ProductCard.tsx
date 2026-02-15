@@ -27,41 +27,50 @@ const ProductCard = ({ product }: { product: IProduct }) => {
   });
 
   return (
-    <div className="rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl dark:bg-mist-aqua-dark/5 dark:shadow-primary-dark dark:hover:shadow-lg">
-      <Link to={"/products/" + product.id} className="relative">
+    <div className="card bg-base-100 shadow-sm border border-base-200 hover:shadow-xl hover:border-primary/30 transition-all duration-300 group overflow-hidden">
+      <Link
+        to={"/products/" + product.id}
+        className="relative block h-64 overflow-hidden"
+      >
         <img
           src={
             product.image || "https://via.placeholder.com/300x300?text=No+Image"
           }
           alt={product.name}
-          className="w-full h-60 object-cover"
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
           loading="lazy"
         />
+
         {product.tag && (
-          <span className="absolute top-3 left-3 bg-sunstone text-base-light text-xs font-semibold px-2 py-1 rounded">
+          <span className="absolute top-3 left-3 badge badge-secondary font-bold p-3 shadow-lg z-10">
             {product.tag}
           </span>
         )}
       </Link>
-      <div className="p-4 flex flex-col justify-between h-40">
-        <div>
-          <h3 className="text-lg font-semibold mb-2 text-primary-light">
-            {product.name}
-          </h3>
-          <p className="line-clamp-2 text-sm text-neutral-light dark:text-mist-aqua-dark">
-            {product.description}
-          </p>
-        </div>
-        <div className="flex items-center  justify-between">
-          <p className="text-primary-light font-bold text-lg ">
-            {product.price}$
-          </p>
+
+      <div className="card-body p-5">
+        <h3 className="card-title text-lg font-bold line-clamp-1">
+          {product.name}
+        </h3>
+        <p className="text-sm text-base-content/60 line-clamp-2 min-h-10">
+          {product.description}
+        </p>
+
+        <div className="card-actions justify-between items-center mt-4">
+          <p className="text-xl font-black text-primary">${product.price}</p>
           <button
             onClick={() => mutation.mutate()}
-            className="cursor-pointer flex items-center gap-1 bg-primary-light text-base-light py-1 p-2 rounded-lg font-semibold hover:bg-primary-dark transition text-sm"
+            disabled={mutation.isPending}
+            className="btn btn-primary btn-sm md:btn-md gap-2 rounded-lg"
           >
-            <ShoppingBag className="w-4 h-4" />
-            Add
+            {mutation.isPending ? (
+              <span className="loading loading-spinner loading-xs"></span>
+            ) : (
+              <>
+                <ShoppingBag className="w-4 h-4" />
+                Add
+              </>
+            )}
           </button>
         </div>
       </div>

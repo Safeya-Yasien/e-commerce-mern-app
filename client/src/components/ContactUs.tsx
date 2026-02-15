@@ -20,54 +20,75 @@ const ContactUs = () => {
   ];
 
   return (
-    <section id="contact" className="px-4 py-16">
+    <section
+      id="contact"
+      className="px-4 py-20 bg-base-100 transition-colors duration-300"
+    >
       {/* Header */}
-      <div className="text-center mx-auto mb-12 max-w-7xl">
-        <h2 className="text-3xl md:text-5xl font-bold mb-4 text-base-content">
+      <div className="text-center mx-auto mb-16 max-w-7xl">
+        <h2 className="text-3xl md:text-5xl font-black mb-4 tracking-tight">
           Contact <span className="text-primary">Us</span>
         </h2>
-        <p className="text-base-content/70 max-w-2xl mx-auto">
-          If you have any questions, feel free to reach out!
+        <p className="text-base-content/60 max-w-xl mx-auto text-lg">
+          Have questions about our sustainable products? We're here to help.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-7xl mx-auto">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-7xl mx-auto">
         {/* Left - Contact info cards */}
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-4">
           {contactInfo.map(({ Icon, title, subtitle }, idx) => (
             <div
               key={idx}
-              className="group flex items-center p-6 rounded-3xl bg-base-200 dark:bg-base-300 shadow-md transition-all hover:shadow-xl hover:bg-primary hover:text-primary-content"
+              className="flex items-center p-6 rounded-2xl bg-base-200 border border-transparent hover:border-primary/20 hover:bg-base-300 transition-all duration-300"
             >
-              <Icon className="w-6 h-6 text-base-content group-hover:text-primary-content transition" />
-              <div className="ml-4 flex flex-col">
-                <p className="font-semibold">{title}</p>
-                <p className="text-base-content/70 group-hover:text-primary-content transition">
-                  {subtitle}
-                </p>
+              {/* Icon Container with subtle tint */}
+              <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+                <Icon className="w-6 h-6" />
+              </div>
+              <div className="ml-6">
+                <p className="font-bold text-lg text-base-content">{title}</p>
+                <p className="text-base-content/60">{subtitle}</p>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Right - Form */}
-        <div>
-          <form className="flex flex-col gap-4 rounded-3xl p-6 bg-base-200 dark:bg-base-300 shadow-md">
-            {["Name", "Email"].map((placeholder, idx) => (
+        <div className="card bg-base-200 shadow-xl border border-base-300/50">
+          <form
+            className="card-body gap-5"
+            onSubmit={(e) => e.preventDefault()}
+          >
+            {/* Name Input */}
+            <div className="form-control">
               <input
-                key={idx}
-                type={placeholder === "Email" ? "email" : "text"}
-                placeholder={placeholder}
-                className="bg-base-100 dark:bg-base-200 p-3 rounded-lg border border-base-300 dark:border-base-200 focus:border-primary focus:ring-2 focus:ring-primary outline-none w-full transition text-base-content"
+                type="text"
+                placeholder="Full Name"
+                className="input input-bordered bg-base-100 border-base-300 focus:border-primary focus:outline-none text-base-content placeholder:text-base-content/40 transition-all w-full"
               />
-            ))}
-            <textarea
-              placeholder="Message"
-              rows={5}
-              className="resize-none p-3 rounded-lg border border-base-300 dark:border-base-200 focus:border-primary focus:ring-2 focus:ring-primary outline-none w-full text-base-content bg-base-100 dark:bg-base-200 transition"
-            />
-            <button className="cursor-pointer mt-2 py-3 rounded-lg bg-primary hover:bg-secondary text-primary-content transition duration-300 font-bold">
-              Submit
+            </div>
+
+            {/* Email Input */}
+            <div className="form-control">
+              <input
+                type="email"
+                placeholder="Email Address"
+                className="input input-bordered bg-base-100 border-base-300 focus:border-primary focus:outline-none text-base-content placeholder:text-base-content/40 transition-all w-full"
+              />
+            </div>
+
+            {/* Message Area */}
+            <div className="form-control">
+              <textarea
+                placeholder="How can we help you?"
+                rows={4}
+                className="textarea textarea-bordered bg-base-100 border-base-300 focus:border-primary focus:outline-none text-base-content placeholder:text-base-content/40 transition-all w-full resize-none"
+              />
+            </div>
+
+            {/* Submit Button */}
+            <button className="btn btn-primary font-bold shadow-md hover:shadow-primary/20 transition-all ">
+              Send Message
             </button>
           </form>
         </div>

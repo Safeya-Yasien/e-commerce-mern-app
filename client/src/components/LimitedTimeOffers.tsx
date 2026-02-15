@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import { ShoppingBag } from "lucide-react";
+import { ShoppingBag, Timer } from "lucide-react";
 import CountdownTimer from "./CountdownTimer";
 
 const LimitedTimeOffers = () => {
@@ -42,53 +42,75 @@ const LimitedTimeOffers = () => {
   ];
 
   return (
-    <section className="px-4 py-20 text-base-content dark:text-base-content dark:bg-base-200">
+    <section
+      className="px-4 py-20 bg-base-200 text-base-content transition-colors duration-300"
+      id="offers"
+    >
       {/* Section Header */}
       <div className="text-center mx-auto mb-12 max-w-7xl">
-        <h2 className="text-3xl md:text-5xl font-bold mb-4">
+        <div className="flex items-center justify-center gap-2 mb-2">
+          <Timer className="w-6 h-6 text-secondary animate-pulse" />
+          <span className="text-secondary font-bold tracking-widest text-sm uppercase">
+            Don't Miss Out
+          </span>
+        </div>
+        <h2 className="text-3xl md:text-5xl font-black mb-4">
           Limited <span className="text-primary">Time</span> Offers
         </h2>
-        <p className="text-base-content/70 font-medium">
-          Get 50% off on all products
-        </p>
+        <div className="badge badge-secondary badge-lg py-4 px-6 font-bold shadow-lg">
+          🔥 Get 50% OFF Today
+        </div>
       </div>
 
-      {/* Countdown */}
-      <CountdownTimer />
+      {/* Countdown - Make sure this uses daisyUI 'countdown' class internally */}
+      <div className="mb-16">
+        <CountdownTimer />
+      </div>
 
       {/* Products Grid */}
-      <div className="max-w-7xl mx-auto grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="max-w-7xl mx-auto grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
         {products.map((product) => (
           <div
             key={product.id}
-            className="bg-base-100 dark:bg-base-300 rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-2xl group"
+            className="card bg-base-100 shadow-sm hover:shadow-2xl transition-all duration-500 group border border-base-300/50 overflow-hidden"
           >
-            <Link to={"/"} className="relative overflow-hidden">
+            <Link to={"/"} className="relative block h-60 overflow-hidden">
               <img
                 src={product.img}
                 alt={product.name}
-                className="w-full h-60 object-cover transition-transform duration-300 group-hover:scale-105"
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               />
               {product.tag && (
-                <span className="absolute top-3 left-3 bg-primary text-primary-content text-xs font-semibold px-2 py-1 rounded shadow-md">
+                <span className="absolute top-3 left-3 badge badge-primary font-bold shadow-md z-10">
                   {product.tag}
                 </span>
               )}
-            </Link>
-            <div className="p-4 flex flex-col justify-between h-44">
-              <div>
-                <h3 className="text-lg font-semibold mb-2 text-base-content group-hover:text-primary transition-colors">
-                  {product.name}
-                </h3>
-                <p className="line-clamp-2 text-sm text-base-content/70 group-hover:text-base-content transition-colors">
-                  {product.description}
-                </p>
+              {/* Sale Overlay */}
+              <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                <span className="btn btn-sm btn-white no-animation">
+                  Quick View
+                </span>
               </div>
-              <div className="flex items-center justify-between mt-2">
-                <p className="text-primary font-bold text-lg group-hover:text-secondary transition-colors">
-                  {product.price}
-                </p>
-                <button className="flex items-center gap-1 bg-primary hover:bg-secondary text-primary-content py-2 px-3 rounded-lg font-semibold transition-colors text-sm shadow-md">
+            </Link>
+
+            <div className="card-body p-5">
+              <h3 className="card-title text-lg font-bold group-hover:text-primary transition-colors">
+                {product.name}
+              </h3>
+              <p className="text-sm text-base-content/60 line-clamp-2">
+                {product.description}
+              </p>
+
+              <div className="card-actions justify-between items-center mt-4">
+                <div className="flex flex-col">
+                  <span className="text-xs line-through text-base-content/40">
+                    $50.00
+                  </span>
+                  <span className="text-xl font-black text-secondary">
+                    {product.price}
+                  </span>
+                </div>
+                <button className="btn btn-primary btn-sm md:btn-md gap-2 rounded-lg shadow-md  active:scale-95 transition-all">
                   <ShoppingBag className="w-4 h-4" />
                   Add
                 </button>

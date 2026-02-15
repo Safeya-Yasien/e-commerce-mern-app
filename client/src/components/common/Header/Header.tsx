@@ -53,15 +53,15 @@ const Header = () => {
   });
 
   return (
-    <header className="bg-base-100 text-base-content fixed top-0 left-0 w-full z-50 h-14 border-b border-base-200 shadow-md">
-      <div className="flex items-center justify-between px-4 h-full">
+    <header className="bg-base-100/80 backdrop-blur-md text-base-content fixed top-0 left-0 w-full z-50 h-14 border-b border-base-200 shadow-sm">
+      <div className="flex items-center justify-between px-4 h-full max-w-7xl mx-auto">
         {/* Logo */}
         <Link
           to="/"
-          className="flex items-center font-bold text-xl text-primary"
+          className="flex items-center font-bold text-xl text-primary "
         >
           <ShoppingBasket className="h-8 w-8 mr-2 " />
-          ECO
+          <span className="tracking-tighter">ECO</span>
         </Link>
 
         {/* Navigation + Actions */}
@@ -73,7 +73,7 @@ const Header = () => {
                 <li key={name}>
                   <Link
                     to={path}
-                    className="cursor-pointer flex items-center gap-1 text-base-content hover:text-primary-content transition"
+                    className="flex items-center gap-1 hover:text-primary transition-colors"
                   >
                     <Icon className="h-4 w-4" />
                     {name}
@@ -83,34 +83,33 @@ const Header = () => {
             </ul>
           </nav>
 
-          {/* mobile menu button */}
-          <label
-            htmlFor="my-drawer-5"
-            className="drawer-button cursor-pointer md:hidden bg-base-200 text-base-content px-2 py-1 rounded-md border border-base-300 group transition"
-          >
-            <Menu className="w-6 h-6 text-primary group-hover:text-secondary transition" />
-          </label>
-
-          {/* Cart + Login */}
-          <div className="flex items-center gap-4 font-medium">
+          {/* Cart + Login + mobile menu */}
+          <div className="flex items-center gap-3">
             <CartIcon />
 
             {client ? (
-              <Link to="/profile" className="transition hover:text-secondary">
+              <Link to="/profile" className="btn btn-ghost btn-circle">
                 <User className="w-6 h-6 " />
               </Link>
             ) : (
               <Link
                 to="auth/login"
-                className="transition bg-primary text-primary-content px-3 py-1 rounded hover:bg-secondary"
+                className="btn btn-primary btn-sm px-5 rounded-lg font-bold"
               >
                 Login
               </Link>
             )}
+
+            {/* mobile menu button */}
+            <label
+              htmlFor="my-drawer-5"
+              className="drawer-button btn btn-ghost btn-sm  md:hidden  px-2 "
+            >
+              <Menu className="w-6 h-6 text-primary" />
+            </label>
           </div>
         </div>
       </div>
-
       {/* drawer */}
       <div className="drawer drawer-end ">
         <input id="my-drawer-5" type="checkbox" className="drawer-toggle" />

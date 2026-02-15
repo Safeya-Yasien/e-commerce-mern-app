@@ -12,7 +12,7 @@ const ThemeSwitcher = () => {
   return (
     <button
       className="fixed right-6 cursor-pointer bottom-8 bg-base-100 rounded-full w-10 h-10 flex items-center justify-center p-2"
-      onClick={() => setTheme(theme === "light" ? "black" : "light")}
+      onClick={() => setTheme(theme === "light" ? "night" : "light")}
     >
       {theme === "light" ? (
         <Moon className="w-6 h-6" />

@@ -39,13 +39,14 @@ const Categories = () => {
 
   return (
     <section
-      className="px-4 py-20 text-base-content dark:text-mist-aqua-dark dark:bg-base-dark"
+      className="px-4 py-20 bg-base-100 text-base-content"
       id="categories"
     >
       <div className="text-center mx-auto mb-12">
-        <h2 className="text-3xl md:text-5xl font-bold mb-4 text-sunstone">
-          Categories
+        <h2 className="text-3xl md:text-5xl font-black mb-4 tracking-tight">
+          Browse <span className="text-primary">Categories</span>{" "}
         </h2>
+        <div className="w-20 h-1.5 bg-primary mx-auto rounded-full"></div>
       </div>
       {isLoadingCategories ? (
         <p>Loading Categories...</p>
