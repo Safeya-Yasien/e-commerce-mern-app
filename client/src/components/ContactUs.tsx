@@ -43,7 +43,7 @@ const ContactUs = () => {
               className="flex items-center p-6 rounded-2xl bg-base-200 border border-transparent hover:border-primary/20 hover:bg-base-300 transition-all duration-300"
             >
               {/* Icon Container with subtle tint */}
-              <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+              <div className="shrink-0 w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
                 <Icon className="w-6 h-6" />
               </div>
               <div className="ml-6">
